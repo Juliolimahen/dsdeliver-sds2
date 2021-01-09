@@ -1,7 +1,7 @@
 import './styles.css';
 import { ReactComponent as Logo} from './logo.svg';
 
-function Navbar(){
+function Orders (){
     return (
         <nav className="main-navbar">
             <Logo/>
@@ -10,4 +10,4 @@ function Navbar(){
     )
 }
 
-export default Navbar;
+export default Orders;
