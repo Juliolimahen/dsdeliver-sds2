@@ -41,6 +41,7 @@ public class Order implements Serializable {
 
 	public Order() {	
 	}
+	
 	//não colocar coleção(produtos) nos construtores
 	public Order(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
 		super();
@@ -51,42 +52,63 @@ public class Order implements Serializable {
 		this.moment = moment;
 		this.status = status;
 	}
+	
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public String getAddress() {
 		return address;
 	}
+	
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
 	public Double getLatitude() {
 		return latitude;
 	}
+	
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
+	
 	public Double getLongitude() {
 		return longitude;
 	}
+	
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
+	
 	public Instant getMoment() {
 		return moment;
 	}
+	
 	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
+	
 	public OrderStatus getStatus() {
 		return status;
 	}
+	
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
+	
+	public Double getTotal() {
+		double sum = 0.0;
+		for (Product p : products) {
+			sum += p.getPrice();
+		}
+		return sum;
+	}
+	
 	public Set<Product> getProducts() {
 		return products;
 	}
@@ -99,6 +121,7 @@ public class Order implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
