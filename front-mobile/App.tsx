@@ -1,12 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Header from './src/Header'
+import { AppLoading } from 'expo';
+import { useFonts, OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fonts/open-sans';
+import Home from './src/Home';
 
 export default function App() {
+    let [fontsLoaded] = useFonts({
+      OpenSans_400Regular,
+      OpenSans_700Bold,
+    });
+
+    if (!fontsLoaded) {
+      return <AppLoading />;
+    }
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Header/>
       <StatusBar style="auto" />
+      <Home />
     </View>
   );
 }
@@ -14,8 +27,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
