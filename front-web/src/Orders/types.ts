@@ -1,6 +1,6 @@
 import { type } from "os"
 
-export type Product ={
+export type Product = {
     id: number;
     name: string;
     price: number;
@@ -13,11 +13,11 @@ export type OrderLocationData = {
     longitude: number;
     address: string;
 }
-type ProductId={
+type ProductId = {
     id: number;
 }
 
-export type OrderPayload ={
-    products: ProductId[]; 
+export type OrderPayload = {
+    products: ProductId[];
 } & OrderLocationData;
 
