@@ -2,28 +2,28 @@ import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import AsyncSelect from 'react-select/async'
 import { fetchLocalMapBox } from './api';
-import { OrderLocationdata } from './types';
+import { OrderLocationData } from './types';
 
 const initialPosition = {
     lat: -21.4876675,
     lng: -51.708496
 }
 
-type Place={
+type Place = {
     label?: string;
     value?: string;
-    position:{
+    position: {
         lat: number;
         lng: number;
-    };  
+    };
 }
 
-type Props ={
-    onChangeLocation:(location: OrderLocationdata) => void;
+type Props = {
+    onChangeLocation: (location: OrderLocationData) => void;
 }
 
-function OrderLocation({ onChangeLocation }:Props) {
-    const [address, setAddress] =useState<Place>({
+function OrderLocation({ onChangeLocation }: Props) {
+    const [address, setAddress] = useState<Place>({
         position: initialPosition
     });
 
@@ -47,11 +47,11 @@ function OrderLocation({ onChangeLocation }:Props) {
 
     const handleChangeSelect = (place: Place) => {
         setAddress(place);
-           //onChangeLocation({
-           // latitude: place.position.lat,
-           // longitude: place.position.lng,
-           // address: place.label!
-        //});
+        onChangeLocation({
+            latitude: place.position.lat,
+            longitude: place.position.lng,
+            address: place.label!
+        });
     };
     return (
 
@@ -64,15 +64,15 @@ function OrderLocation({ onChangeLocation }:Props) {
                     <AsyncSelect
                         placeholder="Digite um endereço para entregar o pedido" className="filter"
                         loadOptions={loadOptions}
-                        onChange={value =>handleChangeSelect(value as Place)}
+                        onChange={value => handleChangeSelect(value as Place)}
                     />
                 </div>
 
-                <MapContainer 
-                center={address.position} 
-                zoom={15} 
-                key={address.position.lat}
-                scrollWheelZoom
+                <MapContainer
+                    center={address.position}
+                    zoom={15}
+                    key={address.position.lat}
+                    scrollWheelZoom
                 >
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -80,7 +80,7 @@ function OrderLocation({ onChangeLocation }:Props) {
                     />
                     <Marker position={address.position}>
                         <Popup>
-                           {address.label}
+                            {address.label}
                         </Popup>
                     </Marker>
                 </MapContainer>
