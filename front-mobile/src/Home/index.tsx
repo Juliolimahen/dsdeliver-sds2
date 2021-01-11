@@ -7,7 +7,7 @@ import Header from '../Header';
 function Home() {
     const navigation = useNavigation();
 
-    const handOnPress = () => {
+    const handleOnPress = () => {
 
     }
 
@@ -20,7 +20,7 @@ function Home() {
                 <Text style={styles.subTitle}>Receba todos os pedidos de seu {'\n'} restaurante na palma de sua mão</Text>
             </View>
             <View style={styles.footer}>
-                <RectButton style={styles.button}> onPress={handOnPress}
+                <RectButton style={styles.button}> onPress={handleOnPress}
                     <Text style={styles.buttonText}>VER PEDIDOS</Text>
                 </RectButton>
             </View>
