@@ -25,6 +25,6 @@ yarn-error.log*
 .eslintcache
 .env
 /.metadata/
-/.gitignore/
+
 
 
