@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import Header from '../Header'
+import { StyleSheet, Text, View} from 'react-native';
 import { Order } from '../types';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
@@ -28,8 +27,7 @@ function dateFromNow(date: string) {
 function OrderCard({ order }: Props) {
 
     return (
-        <>
-            <Header />
+
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.orderName}>Pedido{order.id}</Text>
@@ -43,7 +41,6 @@ function OrderCard({ order }: Props) {
 
                 </View>
             </View>
-        </>
     );
 }
 
@@ -97,7 +94,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         marginTop: 20,
         paddingTop: 15
-    }
+    },
 
 });
 

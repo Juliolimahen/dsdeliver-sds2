@@ -6,12 +6,12 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 function Header() {
     const navigation = useNavigation();
 
-    const handOnPress = () => {
+    const handleOnPress = () => {
         navigation.navigate('Home');
     }
     
     return (
-        <TouchableWithoutFeedback onPress={handOnPress}>
+        <TouchableWithoutFeedback onPress={handleOnPress}>
             <View style={styles.container}>
                 <Image source={require('../assets/logo.png')} />
                 <Text style={styles.text}>DS Delivery</Text>
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
         paddingTop: 50,
         flexDirection: 'row',
         justifyContent: 'center'
-
     },
     text: {
         fontWeight: 'bold',

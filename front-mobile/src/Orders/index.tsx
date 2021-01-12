@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { fetchOrders } from '../api';
-import { StyleSheet, Text, ScrollView, Image, Alert } from 'react-native';
+import { StyleSheet, Text, ScrollView, Alert } from 'react-native';
 import Header from '../Header';
 import OrderCard from '../OrderCard'
 import { Order } from '../types';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
+
 
 function Orders() {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -17,7 +18,7 @@ function Orders() {
         setIsloading(true)
         fetchOrders()
             .then(response => setOrders(response.data))
-            .catch(error => Alert.alert('Erro ao buscar os pedidos!'))
+            .catch(() => Alert.alert('Erro ao buscar os pedidos!'))
             .finally(() => setIsloading(false));
     }
 
@@ -28,7 +29,7 @@ function Orders() {
     }, [isFocused]);
 
     const handleOnPress = ( order : Order) => {
-        navigation.navigate('OrdersDetails',{
+        navigation.navigate('OrderDetails',{
             order
         });
     }
@@ -42,7 +43,7 @@ function Orders() {
                 ) : (
                         orders.map(order => (
                             <TouchableWithoutFeedback 
-                            key={order.id}
+                                key={order.id}
                                 onPress={() => handleOnPress(order)}
                             >
                                 <OrderCard order={order} />
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     container: {
         paddingRight: '5%',
         paddingLeft: '5%',
-    }
+    },
 });
 
 export default Orders;
