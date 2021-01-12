@@ -43,7 +43,7 @@ function OrderDetails({ route }: Props) {
             <Header />
             <View style={styles.container}>
                 <OrderCard order={order} />
-                <RectButton style={styles.button} onPress={handStartNavigation}>l
+                <RectButton style={styles.button} onPress={handStartNavigation}>
                     <Text style={styles.buttonText}>INICIAR NEVEGAÇÃO</Text>
                 </RectButton>
                 <RectButton style={styles.button}>
