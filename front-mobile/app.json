@@ -4,7 +4,6 @@
     "slug": "front-mobile",
     "version": "1.0.0",
     "sdkVersion": "43.0.0",
-    "nativeVersion":"0.64.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
