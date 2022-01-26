@@ -1,5 +1,5 @@
-# dsdeliver-sds2 
-- Aplicação WEB para realização dos pedidos, Apliacativo movel para acompanhamento dos entrgadores 
+# dsdeliver-sds2 (Aplicação de registro e entrega de pedidos)
+
 O projeto consiste em um sistema de registro e entrega de pedidos. Onde desenvolvemos uma aplicação WEB para realização dos pedidos e um apliacativo movel para acompanhamento dos entrgadores. 
 - Foram utilizadas as seguintes tecnologias:
     Back-end: Java Spring Boot
