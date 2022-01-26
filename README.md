@@ -1,7 +1,11 @@
-# dsdeliver-sds2
-O projeto consiste em um sistema de registro e entrega de pedidos. Foram utilizadas as seguintes tecnologias:
-Java Spring Boot, ReactJS e ReactNative. #reactjs #reactnative #springboot
+# dsdeliver-sds2 
+- Aplicação WEB para realização dos pedidos, Apliacativo movel para acompanhamento dos entrgadores 
+O projeto consiste em um sistema de registro e entrega de pedidos. Onde desenvolvemos uma aplicação WEB para realização dos pedidos e um apliacativo movel para acompanhamento dos entrgadores. 
+- Foram utilizadas as seguintes tecnologias:
+    Back-end: Java Spring Boot
+    Front-end: ReactJS
+    Aplicativo movel: ReactNative
 
-link da aplicação web: https://lnkd.in/exJRaBG
+link da aplicação publicada: https://juliohensds2.netlify.app/
 
-OBS. os dados (os produtos) podem demorar alguns segundos para carregar, visto que a hospedagem do backend é um plano gratuito que hiberna depois de 30 min sem requisição...  
+- OBS. os dados (os produtos) podem demorar alguns segundos para carregar, visto que a hospedagem do backend é um plano gratuito que hiberna depois de 30 min sem requisição...  
