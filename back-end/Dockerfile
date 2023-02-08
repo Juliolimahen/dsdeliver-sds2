@@ -1,9 +1,9 @@
 #
 # Build stage
 #
-FROM maven:3.8.4-jdk-11 AS build
+FROM maven:3.8.2-jdk-11 AS build
 COPY . .
-RUN mvn clean install -DskipTests -DskipITs
+RUN mvn clean package -Pprod -DskipTests
 
 #
 # Package stage
