@@ -69,31 +69,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-        <profile>
-            <id>unit-test</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>integration-test</id>
-            <properties>
-                <skip.unit-tests>true</skip.unit-tests>
-                <skip.integration-tests>false</skip.integration-tests>
-                <skip.end-to-end-tests>true</skip.end-to-end-tests>
-            </properties>
-        </profile>
-</profiles>
-
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>${maven-surefire-plugin.version}</version>
-    <configuration>
-        <skipTests>${skip.unit-tests}</skipTests>
-    </configuration>
-</plugin>
-
 </project>
