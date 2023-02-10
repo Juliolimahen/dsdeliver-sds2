@@ -2,13 +2,7 @@ import axios from "axios";
 import { OrderPayload } from "./types";
 
 const API_URL = process.env.REACT_APP_API_URL;
-
-//https://ds-deliver-juliolimahen.onrender.com
-
-//const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
-
-const mapboxToken = 'pk.eyJ1IjoianVsaW8wOTkwOTkiLCJhIjoiY2tqcTZqdTRxMG96bDM0bW5vbTR0YWdzYiJ9.g0UhwSpA0s4KEvqqrh8Kvg';
-
+const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
 
 export function fetchProducts() {
     return axios(`${API_URL}/products`)
