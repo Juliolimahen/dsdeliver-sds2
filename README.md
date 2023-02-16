@@ -12,6 +12,7 @@ O projeto consiste em um sistema de registro e entrega de pedidos. Onde desenvol
 
 - OBS. os dados (os produtos) podem demorar alguns segundos para carregar, visto que a hospedagem do backend é um plano gratuito que hiberna depois de 30 min sem requisição...  
 
+
 <ul>
 <br><li><p><b>Aplicativo móvel (React Native)</b></p></li><br>
 <div align="center"><img height="40%" width="40%" src="print-screen/1.png"/><br>
