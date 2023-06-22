@@ -292,3 +292,12 @@
     width: 100%;
   }
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust the height according to your needs */
+  font-size: 20px;
+  font-weight: bold;
+}
