@@ -162,7 +162,7 @@
   width: 80%;
 }
 
-.filter > div {
+.filter>div {
   border-radius: 10px;
   min-height: 60px;
 }
@@ -293,11 +293,13 @@
   }
 }
 
-.loading {
+.loading-container {
   display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
-  height: 200px; /* Adjust the height according to your needs */
+  height: 200px;
   font-size: 20px;
   font-weight: bold;
+  color: #DA5C5C;
 }

@@ -1,7 +1,5 @@
 import './styles.css';
 import { toast } from 'react-toastify';
-import StepsHeader from './StepsHeader';
-import ProductsList from './ProductsList';
 import { useEffect, useState } from 'react';
 import { OrderLocationData, Product } from './types';
 import { fetchProducts, saveOrder } from './api';
@@ -9,34 +7,36 @@ import OrderLocation from './OrderLocation';
 import OrderSummary from './OrderSummary';
 import Footer from '../Footer';
 import { checkIsSelected } from './helpers';
+import { FadeLoader } from 'react-spinners';
+
+import StepsHeader from './StepsHeader';
+import ProductsList from './ProductsList';
 
 function Orders() {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
-  const [orderLocation, setOrderLocation] = useState<OrderLocationData>();
-  const [loading, setLoading] = useState(true); // Added loading state
-  const totalPrice = selectedProducts.reduce((sum, item) => {
-    return sum + item.price;
-  }, 0);
+  const [orderLocation, setOrderLocation] = useState<OrderLocationData | undefined>();
+  const [loading, setLoading] = useState(true);
+  const totalPrice = selectedProducts.reduce((sum, item) => sum + item.price, 0);
 
   useEffect(() => {
     fetchProducts()
       .then(response => {
         setProducts(response.data);
-        setLoading(false); // Set loading to false when the response is received
+        setLoading(false);
       })
       .catch(() => {
         toast.warning('Erro ao listar produtos!');
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false);
       });
   }, []);
 
   const handleSubmit = () => {
-    setLoading(true); // Set loading to true when submitting the order
+    setLoading(true);
 
     const productsIds = selectedProducts.map(({ id }) => ({ id }));
     const payload = {
-      ...orderLocation!,
+      ...(orderLocation as OrderLocationData),
       products: productsIds
     };
 
@@ -44,11 +44,11 @@ function Orders() {
       .then((response) => {
         toast.error(`Pedido enviado com sucesso! Nº ${response.data.id}`);
         setSelectedProducts([]);
-        setLoading(false); // Set loading to false after successful submission
+        setLoading(false);
       })
       .catch(() => {
         toast.warning('Erro ao enviar pedido');
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false);
       });
   };
 
@@ -68,7 +68,9 @@ function Orders() {
       <div className="orders-container">
         <StepsHeader />
         {loading ? (
-          <div className="loading">Loading...</div>
+          <div className="loading-container">
+            <FadeLoader color="#DA5C5C" loading={loading} />
+          </div>
         ) : (
           <ProductsList
             products={products}
@@ -76,7 +78,7 @@ function Orders() {
             selectedProducts={selectedProducts}
           />
         )}
-        <OrderLocation onChangeLocation={location => setOrderLocation(location)} />
+        <OrderLocation onChangeLocation={setOrderLocation} />
         <OrderSummary
           amount={selectedProducts.length}
           totalPrice={totalPrice}
