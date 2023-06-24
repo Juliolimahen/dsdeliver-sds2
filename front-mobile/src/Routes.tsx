@@ -1,7 +1,7 @@
 import React from 'react';
-import Home from "./Home";
-import Orders from "./Orders";
-import OrderDetails from "./OrderDetails";
+import Home from "./components/Home";
+import Orders from "./components/Orders";
+import OrderDetails from "./components/OrderDetails";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 
