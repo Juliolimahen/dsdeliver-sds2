@@ -76,7 +76,7 @@ Pré-requisitos: npm / yarn
 
 ```bash
 # clonar repositório
-git clone https://github.com/Juliolimahen/ds-movie-sds6
+git clone https://github.com/Juliolimahen/dsdeliver-sds2
 
 # entrar na pasta do projeto front end web
 cd front-web
