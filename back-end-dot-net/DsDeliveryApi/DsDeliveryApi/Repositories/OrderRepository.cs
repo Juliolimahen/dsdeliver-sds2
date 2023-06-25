@@ -28,7 +28,7 @@ namespace DsDeliveryApi.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Order> GetByIdAsync(long id)
+        public async Task<Order> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
         }

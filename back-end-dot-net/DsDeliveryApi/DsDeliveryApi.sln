@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsDeliveryApi", "DsDeliveryApi\DsDeliveryApi.csproj", "{00616D40-4A9B-4A9A-8563-4541CE9C3E85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DsDeliveryApi", "DsDeliveryApi\DsDeliveryApi.csproj", "{00616D40-4A9B-4A9A-8563-4541CE9C3E85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsDeliveryApi.Tests", "DsDeliveryApi.Tests\DsDeliveryApi.Tests.csproj", "{23703AEB-A4EF-4B8D-9AB8-486D80A22F34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{00616D40-4A9B-4A9A-8563-4541CE9C3E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00616D40-4A9B-4A9A-8563-4541CE9C3E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00616D40-4A9B-4A9A-8563-4541CE9C3E85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23703AEB-A4EF-4B8D-9AB8-486D80A22F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23703AEB-A4EF-4B8D-9AB8-486D80A22F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23703AEB-A4EF-4B8D-9AB8-486D80A22F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23703AEB-A4EF-4B8D-9AB8-486D80A22F34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

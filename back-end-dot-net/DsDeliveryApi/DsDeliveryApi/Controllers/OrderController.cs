@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 
 
-namespace com.devsuperior.dsdeliver.controllers
+namespace DsDeliveryApi.Controllers
 {
     [Route("orders")]
     [ApiController]
@@ -23,22 +23,22 @@ namespace com.devsuperior.dsdeliver.controllers
         [HttpGet]
         public async Task<ActionResult<List<OrderDTO>>> FindAll()
         {
-            List<OrderDTO> list = await _service.GetAll();
+            List<OrderDTO> list = await _service.GetAllAsync();
             return Ok(list);
         }
 
         [HttpPost]
         public async Task<ActionResult<OrderDTO>> Insert([FromBody] OrderDTO dto)
         {
-            dto = await _service.Insert(dto);
+            dto = await _service.InsertAsync(dto);
             Uri uri = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}/{dto.Id}");
             return Created(uri, dto);
         }
 
         [HttpPut("{id}/delivered")]
-        public async Task<ActionResult<OrderDTO>> SetDelivered([FromRoute] long id)
+        public async Task<ActionResult<OrderDTO>> SetDelivered([FromRoute] int id)
         {
-            OrderDTO dto = await _service.SetDelivered(id);
+            OrderDTO dto = await _service.SetDeliveredAsync(id);
             return Ok(dto);
         }
     }

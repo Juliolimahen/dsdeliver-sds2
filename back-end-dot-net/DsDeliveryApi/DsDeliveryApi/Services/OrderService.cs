@@ -23,22 +23,47 @@ namespace DsDeliveryApi.Services
             this.productRepository = productRepository;
         }
 
-        public async Task<List<OrderDTO>> GetAll()
+        public async Task<List<OrderDTO>> GetAllAsync()
         {
             List<Order> orders = await repository.FindOrdersWithProducts();
-            List<OrderDTO> orderDTOs = _mapper.Map<List<OrderDTO>>(orders);
 
-            return orderDTOs;
+            List<OrderDTO> dtoList = orders.Select(order =>
+            {
+                List<ProductDTO> productDTOs = order.OrderProducts
+                    .Select(op => new ProductDTO
+                    {
+                        Id = op.Product.Id,
+                        Name = op.Product.Name,
+                        Price = op.Product.Price,
+                        Description = op.Product.Description,
+                        ImageUri = op.Product.ImageUri
+                    })
+                    .ToList();
+
+                return new OrderDTO
+                {
+                    Id = order.Id,
+                    Address = order.Address,
+                    Latitude = order.Latitude,
+                    Longitude = order.Longitude,
+                    Moment = order.Moment,
+                    Status = order.Status.ToString(),
+                    Total = order.GetTotal(),
+                    Products = productDTOs
+                };
+            }).ToList();
+
+            return dtoList;
         }
 
-        public async Task<OrderDTO> GetById(int id)
+        public async Task<OrderDTO> GetByIdAsync(int id)
         {
             Order order = await repository.GetByIdAsync(id);
             OrderDTO orderDto = _mapper.Map<OrderDTO>(order);
             return orderDto;
         }
 
-        public async Task<OrderDTO> SetDelivered(long id)
+        public async Task<OrderDTO> SetDeliveredAsync(int id)
         {
             Order order = await repository.GetByIdAsync(id);
             order.Status = OrderStatus.DELIVERED;
@@ -46,11 +71,12 @@ namespace DsDeliveryApi.Services
             return _mapper.Map<OrderDTO>(order);
         }
 
-        public async Task<OrderDTO> Insert(OrderDTO dto)
+        public async Task<OrderDTO> InsertAsync(OrderDTO dto)
         {
             Order order = _mapper.Map<Order>(dto);
             order.Moment = DateTime.Now;
             order.Status = OrderStatus.PENDING;
+            order.OrderProducts = new List<OrderProduct>(); // Inicializa a lista OrderProducts
 
             foreach (ProductDTO p in dto.Products)
             {
@@ -72,7 +98,7 @@ namespace DsDeliveryApi.Services
         }
 
 
-        public Task<OrderDTO> Update(int id, OrderDTO dto)
+        public Task<OrderDTO> UpdateAsync(int id, OrderDTO dto)
         {
             throw new NotImplementedException();
         }

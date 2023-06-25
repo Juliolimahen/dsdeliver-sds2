@@ -21,7 +21,7 @@ namespace DsDeliveryApi.Services
             _dbSet = dbContext.Set<Product>();
         }
 
-        public async Task<Product> GetByIdAsync(long id)
+        public async Task<Product> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
         }
@@ -56,13 +56,13 @@ namespace DsDeliveryApi.Services
             return await _dbContext.SaveChangesAsync() > 0;
         }
 
-        public async Task<List<Product>> FindAllByOrderByNameAsc()
+        public async Task<List<Product>> FindAllByOrderByNameAscAsync()
         {
             List<Product> productList = await _dbSet.OrderBy(p => p.Name).ToListAsync();
             return productList;
         }
 
-        public List<Order> FindOrdersWithProducts()
+        public List<Order> FindOrdersWithProductsAsync()
         {
             throw new NotImplementedException();
         }

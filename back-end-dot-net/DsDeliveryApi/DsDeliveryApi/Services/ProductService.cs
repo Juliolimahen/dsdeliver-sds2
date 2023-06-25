@@ -2,10 +2,10 @@
 using DsDeliveryApi.Dto;
 using DsDeliveryApi.Models;
 using DsDeliveryApi.Repositories;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace DsDeliveryApi.Services
 {
@@ -20,37 +20,79 @@ namespace DsDeliveryApi.Services
             _mapper = mapper;
         }
 
-        public Task Delete(int id)
+        public async Task<List<ProductDTO>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<List<ProductDTO>> FindAll()
-        {
-            List<Product> list = await repository.FindAllByOrderByNameAsc();
+            List<Product> list = await repository.FindAllByOrderByNameAscAsync();
             List<ProductDTO> dtoList = list.Select(x => _mapper.Map<ProductDTO>(x)).ToList();
             return dtoList;
         }
 
-
-        public Task<List<ProductDTO>> GetAll()
+        public async Task<ProductDTO> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            Product product = await repository.GetByIdAsync(id);
+
+            if (product == null)
+            {
+                throw new NotFoundException($"Product with ID {id} not found");
+            }
+
+            ProductDTO productDTO = _mapper.Map<ProductDTO>(product);
+
+            return productDTO;
         }
 
-        public Task<ProductDTO> GetById(int id)
+        public async Task<ProductDTO> InsertAsync(ProductDTO dto)
         {
-            throw new System.NotImplementedException();
+            Product product = _mapper.Map<Product>(dto);
+            product = await repository.AddAsync(product);
+            ProductDTO insertedDto = _mapper.Map<ProductDTO>(product);
+
+            return insertedDto;
         }
 
-        public Task<ProductDTO> Insert(ProductDTO dto)
+
+        public async Task<ProductDTO> UpdateAsync(int id, ProductDTO dto)
         {
-            throw new System.NotImplementedException();
+            // Verificar se o produto com o ID especificado existe no banco de dados
+            Product existingProduct = await repository.GetByIdAsync(id);
+            if (existingProduct == null)
+            {
+                // Produto não encontrado, você pode lançar uma exceção adequada ou retornar um valor nulo, dependendo do seu caso de uso.
+                throw new NotFoundException("Produto não encontrado");
+            }
+
+            // Atualizar as propriedades do produto existente com os valores do DTO
+            existingProduct.Name = dto.Name;
+            existingProduct.Price = dto.Price;
+            existingProduct.Description = dto.Description;
+            existingProduct.ImageUri = dto.ImageUri;
+
+            // Atualizar o produto no repositório
+            existingProduct = await repository.UpdateAsync(existingProduct);
+
+            // Mapear a entidade Product atualizada de volta para DTO
+            ProductDTO updatedDto = _mapper.Map<ProductDTO>(existingProduct);
+
+            return updatedDto;
         }
 
-        public Task<ProductDTO> Update(int id, ProductDTO dto)
+        public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            Product product = await repository.GetByIdAsync(id);
+
+            if (product == null)
+            {
+                throw new NotFoundException($"Product with ID {id} not found");
+            }
+
+            await repository.RemoveAsync(product);
+        }
+
+    }
+    public class NotFoundException : Exception
+    {
+        public NotFoundException(string message) : base(message)
+        {
         }
     }
 }

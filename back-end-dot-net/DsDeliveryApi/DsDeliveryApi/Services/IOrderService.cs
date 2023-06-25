@@ -7,10 +7,10 @@ namespace DsDeliveryApi.Services
     public interface IOrderService
     {
         Task Delete(int id);
-        Task<List<OrderDTO>> GetAll();
-        Task<OrderDTO> GetById(int id);
-        Task<OrderDTO> Insert(OrderDTO dto);
-        Task<OrderDTO> SetDelivered(long id);
-        Task<OrderDTO> Update(int id, OrderDTO dto);
+        Task<List<OrderDTO>> GetAllAsync();
+        Task<OrderDTO> GetByIdAsync(int id);
+        Task<OrderDTO> InsertAsync(OrderDTO dto);
+        Task<OrderDTO> SetDeliveredAsync(int id);
+        Task<OrderDTO> UpdateAsync(int id, OrderDTO dto);
     }
 }

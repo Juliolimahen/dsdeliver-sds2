@@ -10,7 +10,6 @@ namespace DsDeliveryApi.Dto
         public double Price { get; set; }
         public string Description { get; set; }
         public string ImageUri { get; set; }
-        public List<OrderProduct> OrderProducts { get; set; }
 
         public ProductDTO()
         {

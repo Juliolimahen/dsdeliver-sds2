@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "moI60fmVpgSYgvA8+8Dia73Twnh+KgrfODOZsSb+ESAgdSJInas7RVYXnr0cw8va0xzXjbQRuimn3PTc2FINGA==",
+  "dgSpecHash": "JWpDXuWn8XdOpBdA4N8YUocqPK6yL7SAzXJQtxCaTiWTYieDOAis8PiHCxxPp0nT9vtKIX+VEuUR7Kn9tfssKw==",
   "success": true,
   "projectFilePath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi\\DsDeliveryApi.csproj",
   "expectedPackageFiles": [
@@ -43,6 +43,7 @@
     "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",

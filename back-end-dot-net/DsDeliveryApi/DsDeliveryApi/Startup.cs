@@ -35,6 +35,16 @@ namespace DsDeliveryApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DsDeliveryApi", Version = "v1" });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             services.AddDataBaseConfiguration(Configuration);
 
             services.AddScoped<IOrderRepository, OrderRepository>();
@@ -45,7 +55,7 @@ namespace DsDeliveryApi
 
             services.AddAutoMapper(typeof(MappingProfile));
 
-    
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +71,8 @@ namespace DsDeliveryApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

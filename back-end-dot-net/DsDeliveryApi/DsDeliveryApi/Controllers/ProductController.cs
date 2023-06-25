@@ -1,10 +1,14 @@
-﻿using DsDeliveryApi.Dto;
+﻿using AutoMapper;
+using DsDeliveryApi.Dto;
+using DsDeliveryApi.Models;
 using DsDeliveryApi.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace com.devsuperior.dsdeliver.controllers
+namespace DsDeliveryApi.Controllers
 {
     [Route("products")]
     [ApiController]
@@ -20,8 +24,43 @@ namespace com.devsuperior.dsdeliver.controllers
         [HttpGet]
         public async Task<ActionResult<List<ProductDTO>>> FindAll()
         {
-            List<ProductDTO> list = await _service.FindAll();
+            List<ProductDTO> list = await _service.GetAllAsync();
             return Ok(list);
         }
+
+        [HttpGet("{productId}")]
+        public async Task<IActionResult> GetByIdAsync(int productId)
+        {
+            try
+            {
+                var product = await _service.GetByIdAsync(productId);
+
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertAsync(ProductDTO dto)
+        {
+            try
+            {
+                var insertedProduct = await _service.InsertAsync(dto);
+                return CreatedAtAction(nameof(GetByIdAsync), new { productId = insertedProduct.Id }, insertedProduct);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
     }
 }
