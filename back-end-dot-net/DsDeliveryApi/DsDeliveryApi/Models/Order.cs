@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
+using System.Linq;
 
 namespace DsDeliveryApi.Models
 {
     public class Order
     {
         private object moment;
+  
         public int Id { get; set; }
         public string Address { get; set; }
         public double Latitude { get; set; }
@@ -14,10 +16,17 @@ namespace DsDeliveryApi.Models
         public DateTime Moment { get; set; }
         public OrderStatus Status { get; set; }
 
-        public ICollection<Product> Products { get; set; } = new HashSet<Product>();
+        //public List<OrderProduct> OrderProducts { get; set; }
+
+        public ICollection<OrderProduct> OrderProducts { get; set; } = new HashSet<OrderProduct>();
 
         public Order(object id)
         {
+        }
+
+        public Order()
+        {
+
         }
 
         public Order(int id, string address, double latitude, double longitude, DateTime moment, OrderStatus status)
@@ -41,12 +50,7 @@ namespace DsDeliveryApi.Models
 
         public double GetTotal()
         {
-            double sum = 0.0;
-            foreach (Product p in Products)
-            {
-                sum += p.Price;
-            }
-            return sum;
+            return OrderProducts.Sum(op => op.Product.Price);
         }
 
         public override int GetHashCode()

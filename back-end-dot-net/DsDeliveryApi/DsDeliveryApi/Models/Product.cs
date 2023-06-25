@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DsDeliveryApi.Models
 {
@@ -9,6 +10,7 @@ namespace DsDeliveryApi.Models
         public double Price { get; set; }
         public string Description { get; set; }
         public string ImageUri { get; set; }
+        public List<OrderProduct> OrderProducts { get; set; }
 
         public Product()
         {

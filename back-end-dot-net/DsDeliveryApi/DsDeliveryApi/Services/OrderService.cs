@@ -3,37 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Threading.Tasks;
+using AutoMapper;
 using DsDeliveryApi.Dto;
 using DsDeliveryApi.Models;
 using DsDeliveryApi.Repositories;
 
 namespace DsDeliveryApi.Services
 {
-    public class OrderService: IOrderService
+    public class OrderService : IOrderService
     {
+        private readonly IMapper _mapper;
         private readonly IOrderRepository repository;
         private readonly IProductRepository productRepository;
 
-        public OrderService(IOrderRepository repository, IProductRepository productRepository)
+        public OrderService(IMapper mapper, IOrderRepository repository, IProductRepository productRepository)
         {
+            _mapper = mapper;
             this.repository = repository;
             this.productRepository = productRepository;
         }
 
-        public List<OrderDTO> FindAll()
+        public async Task<List<OrderDTO>> GetAll()
         {
-            List<Order> list = repository.FindOrdersWithProducts();
-            return list.Select(x => new OrderDTO(x)).ToList();
+            List<Order> orders = await repository.FindOrdersWithProducts();
+            List<OrderDTO> orderDTOs = _mapper.Map<List<OrderDTO>>(orders);
+
+            return orderDTOs;
         }
 
-        public Task<List<OrderDTO>> GetAll()
+        public async Task<OrderDTO> GetById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<OrderDTO> GetById(int id)
-        {
-            throw new NotImplementedException();
+            Order order = await repository.GetByIdAsync(id);
+            OrderDTO orderDto = _mapper.Map<OrderDTO>(order);
+            return orderDto;
         }
 
         public async Task<OrderDTO> SetDelivered(long id)
@@ -41,30 +43,34 @@ namespace DsDeliveryApi.Services
             Order order = await repository.GetByIdAsync(id);
             order.Status = OrderStatus.DELIVERED;
             order = await repository.AddAsync(order);
-            return new OrderDTO(order);
+            return _mapper.Map<OrderDTO>(order);
         }
 
         public async Task<OrderDTO> Insert(OrderDTO dto)
         {
-            Order order = new Order(
-                id: null,
-                address: dto.Address,
-                latitude: dto.Latitude,
-                longitude: dto.Longitude,
-                moment: DateTime.Now,
-                status: OrderStatus.PENDING
-            );
+            Order order = _mapper.Map<Order>(dto);
+            order.Moment = DateTime.Now;
+            order.Status = OrderStatus.PENDING;
 
             foreach (ProductDTO p in dto.Products)
             {
                 Product product = await productRepository.GetByIdAsync(p.Id);
-                order.Products.Add(product);
+                if (product != null)
+                {
+                    OrderProduct orderProduct = new OrderProduct
+                    {
+                        Order = order,
+                        Product = product
+                    };
+                    order.OrderProducts.Add(orderProduct);
+                }
             }
 
             order = await repository.AddAsync(order);
 
-            return new OrderDTO(order);
+            return _mapper.Map<OrderDTO>(order);
         }
+
 
         public Task<OrderDTO> Update(int id, OrderDTO dto)
         {

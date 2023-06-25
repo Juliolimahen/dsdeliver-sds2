@@ -10,6 +10,8 @@ using DsDeliveryApi.Models;
 using DsDeliveryApi.Services;
 using DsDeliveryApi.Dto;
 using DsDeliveryApi.Configuration;
+using DsDeliveryApi.Mapping;
+using System;
 
 namespace DsDeliveryApi
 {
@@ -40,6 +42,10 @@ namespace DsDeliveryApi
 
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IProductService, ProductService>();
+
+            services.AddAutoMapper(typeof(MappingProfile));
+
+    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

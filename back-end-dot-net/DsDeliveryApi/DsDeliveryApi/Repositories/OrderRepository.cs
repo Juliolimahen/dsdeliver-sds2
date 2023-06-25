@@ -20,9 +20,12 @@ namespace DsDeliveryApi.Repositories
             _dbSet = dbContext.Set<Order>();
         }
 
-        public List<Order> FindOrdersWithProducts()
+        public async Task< List<Order>> FindOrdersWithProducts()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Orders
+                .Include(o => o.OrderProducts)
+                .ThenInclude(op => op.Product)
+                .ToListAsync();
         }
 
         public async Task<Order> GetByIdAsync(long id)

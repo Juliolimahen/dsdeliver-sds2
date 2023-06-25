@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DsDeliveryApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230625011445_Initial")]
+    [Migration("20230625120145_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -53,6 +53,21 @@ namespace DsDeliveryApi.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("DsDeliveryApi.Models.OrderProduct", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderProducts");
+                });
+
             modelBuilder.Entity("DsDeliveryApi.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -70,29 +85,41 @@ namespace DsDeliveryApi.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
-
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DsDeliveryApi.Models.Product", b =>
+            modelBuilder.Entity("DsDeliveryApi.Models.OrderProduct", b =>
                 {
-                    b.HasOne("DsDeliveryApi.Models.Order", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderId");
+                    b.HasOne("DsDeliveryApi.Models.Order", "Order")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DsDeliveryApi.Models.Product", "Product")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("DsDeliveryApi.Models.Order", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("OrderProducts");
+                });
+
+            modelBuilder.Entity("DsDeliveryApi.Models.Product", b =>
+                {
+                    b.Navigation("OrderProducts");
                 });
 #pragma warning restore 612, 618
         }

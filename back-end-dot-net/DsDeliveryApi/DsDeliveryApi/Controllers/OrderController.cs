@@ -21,9 +21,9 @@ namespace com.devsuperior.dsdeliver.controllers
         }
 
         [HttpGet]
-        public ActionResult<List<OrderDTO>> FindAll()
+        public async Task<ActionResult<List<OrderDTO>>> FindAll()
         {
-            List<OrderDTO> list = _service.FindAll();
+            List<OrderDTO> list = await _service.GetAll();
             return Ok(list);
         }
 

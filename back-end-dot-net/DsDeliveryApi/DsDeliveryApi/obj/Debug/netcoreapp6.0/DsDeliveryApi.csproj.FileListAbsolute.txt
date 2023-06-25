@@ -85,3 +85,5 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\bin\D
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\bin\Debug\netcoreapp6.0\System.Text.Encodings.Web.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\bin\Debug\netcoreapp6.0\System.Text.Json.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\bin\Debug\netcoreapp6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\bin\Debug\netcoreapp6.0\AutoMapper.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\bin\Debug\netcoreapp6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
