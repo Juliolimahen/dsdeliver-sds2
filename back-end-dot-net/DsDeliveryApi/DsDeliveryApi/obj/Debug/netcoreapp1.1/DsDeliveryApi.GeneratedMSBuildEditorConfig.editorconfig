@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = DsDeliveryApi
+build_property.ProjectDir = C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\

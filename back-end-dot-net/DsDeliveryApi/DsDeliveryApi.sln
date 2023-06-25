@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsDeliveryApi", "DsDeliveryApi\DsDeliveryApi.csproj", "{00616D40-4A9B-4A9A-8563-4541CE9C3E85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00616D40-4A9B-4A9A-8563-4541CE9C3E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00616D40-4A9B-4A9A-8563-4541CE9C3E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00616D40-4A9B-4A9A-8563-4541CE9C3E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00616D40-4A9B-4A9A-8563-4541CE9C3E85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21D89336-A404-4270-9A86-CDBDE0844FA6}
+	EndGlobalSection
+EndGlobal
