@@ -19,4 +19,4 @@ export function saveOrder(payload: OrderPayload) {
 
 export function saveProduct(product: Product) {
     return axios.put(`${API_URL}/products/${product.id}`, product);
-  }
+}
