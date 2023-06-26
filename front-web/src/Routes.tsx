@@ -12,7 +12,7 @@ function Routes() {
         <Route path="/orders">
           <Orders />
         </Route>
-        <Route path="/administrativo/products">
+        <Route path="/admin/products">
           <ProductList />
         </Route>
         <Route path="/">
