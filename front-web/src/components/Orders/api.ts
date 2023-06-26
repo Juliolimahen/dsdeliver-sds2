@@ -1,9 +1,8 @@
 import axios from "axios";
-import { OrderPayload } from "./types";
+import { OrderPayload, Product } from "./types";
 
 const API_URL = process.env.REACT_APP_API_URL ?? 'https://localhost:44304';
-const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX?? 'pk.eyJ1IjoianVsaW8wOTkwOTkiLCJhIjoiY2tqcTZqdTRxMG96bDM0bW5vbTR0YWdzYiJ9.g0UhwSpA0s4KEvqqrh8Kvg';
-
+const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
 
 
 export function fetchProducts() {
@@ -17,3 +16,7 @@ export function fetchLocalMapBox(local: string) {
 export function saveOrder(payload: OrderPayload) {
     return axios.post(`${API_URL}/orders`, payload);
 }
+
+export function saveProduct(product: Product) {
+    return axios.put(`${API_URL}/products/${product.id}`, product);
+  }
