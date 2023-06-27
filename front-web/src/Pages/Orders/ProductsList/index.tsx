@@ -1,6 +1,6 @@
-import { checkIsSelected } from "./helpers";
-import ProductCard from "./ProductCard";
-import { Product } from "./types";
+import { checkIsSelected } from "../helpers";
+import ProductCard from "../ProductCard";
+import { Product } from "../types";
 
 type Props = {
     products: Product[];

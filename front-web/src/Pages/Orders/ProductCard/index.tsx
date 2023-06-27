@@ -1,5 +1,5 @@
-import { formatPrice } from './helpers';
-import { Product } from './types';
+import { formatPrice } from '../helpers';
+import { Product } from '../types';
 
 
 type Props = {

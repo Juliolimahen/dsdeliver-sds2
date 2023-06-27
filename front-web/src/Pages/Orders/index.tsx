@@ -2,15 +2,15 @@ import './styles.css';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { OrderLocationData, Product } from './types';
-import { fetchProducts, saveOrder } from './api';
-import OrderLocation from './OrderLocation';
-import OrderSummary from './OrderSummary';
-import Footer from '../Footer';
+import { fetchProducts, saveOrder } from '../../Services/api';
+import OrderLocation from './OrderLocation/index';
+import OrderSummary from './OrderSummary/index';
+import Footer from '../../Components/Footer/index';
 import { checkIsSelected } from './helpers';
 import { FadeLoader } from 'react-spinners';
 
-import StepsHeader from './StepsHeader';
-import ProductsList from './ProductsList';
+import StepsHeader from './StepsHeader/index';
+import ProductsList from './ProductsList/index';
 
 function Orders() {
   const [products, setProducts] = useState<Product[]>([]);

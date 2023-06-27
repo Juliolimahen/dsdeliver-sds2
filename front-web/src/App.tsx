@@ -1,8 +1,8 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createTheme, ThemeProvider, useMediaQuery} from '@mui/material';
+import { createTheme, ThemeProvider} from '@mui/material';
 
-import './App.css';
+import './styles/App.css';
 import Routes from './Routes';
 
 const theme = createTheme({

@@ -1,9 +1,9 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
-import Home from './components/Home';
-import Navbar from './components/Navbar';
-import Orders from './components/Orders/index';
-import ProductList from './components/Cadastro/index';
+import Home from './Pages/Home/index';
+import Navbar from './Components/Navbar/index';
+import Orders from './Pages/Orders/index';
+import ProductList from './Pages/Cadastro/index';
 const theme = createTheme();
 
 

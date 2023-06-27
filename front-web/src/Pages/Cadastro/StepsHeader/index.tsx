@@ -6,7 +6,7 @@ import {
   StepsItems,
   StepsItem,
   StepsNumber
-} from './StepsHeader.style';
+} from './style';
 
 const StepsHeader: React.FC = () => {
   return (

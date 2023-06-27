@@ -1,5 +1,5 @@
-import './styles.css';
-import { formatPrice } from './helpers';
+import '../styles.css';
+import { formatPrice } from '../helpers';
 
 type Props = {
     amount: number;

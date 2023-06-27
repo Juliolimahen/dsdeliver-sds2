@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import {
   Paper,
   TableContainer,
@@ -16,76 +15,14 @@ import {
   createTheme,
   ThemeProvider
 } from '@mui/material';
-import Footer from '../Footer';
-import { fetchProducts, saveProduct } from '../Orders/api';
-import { Product } from '../Orders/types';
-import StepsHeader from './StepsHeader';
+import Footer from '../../Components/Footer';
+import { fetchProducts, saveProduct } from '../../Services/api';
+import StepsHeader from './StepsHeader/index';
+import { Product } from "../Orders/types";
+import { Container, ProductImage, AddProductButtonWrapper, StyledButton, StyledModalPaper } from './style'
 
 const theme = createTheme();
 
-const Container = styled.div<{ hasProducts: boolean }>`
-  max-width: 830px;
-  margin: 0 auto;
-  padding: 20px;
-  padding-top: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media only screen and (max-width: 768px) {
-    max-width: 100%;
-    margin-bottom: 50px;
-  }
-
-  @media (max-height: 700px) {
-    margin-bottom: 30px;
-  }
-
-  ${({ hasProducts }) => !hasProducts && `
-    height: calc(100vh - 254px);
-    justify-content: center;
-  `}
-`;
-
-
-const ProductImage = styled.img`
-  width: 100%;
-  height: auto;
-  margin-bottom: 5px;
-  border-radius: 50%;
-`;
-
-const AddProductButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-const StyledButton = styled(Button)`
-  && {
-    margin-bottom: 20px;
-    background-color: var(--primary-color);
-    color: white;
-    &:hover {
-      background-color: var(--primary-hover-color);
-    }
-  }
-`;
-
-const StyledModalPaper = styled(Paper) <{ theme: Theme }>`
-  && {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    padding: 24px;
-
-    ${({ theme }) => theme.breakpoints.down('sm')} {
-      width: 90%;
-    }
-  }
-`;
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -171,7 +108,7 @@ const ProductList: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <>
-      <Container hasProducts={hasProducts}>
+        <Container hasProducts={hasProducts}>
           <StepsHeader />
           <TableContainer component={Paper} sx={{ my: 4 }}>
             <Table>
