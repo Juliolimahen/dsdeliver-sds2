@@ -66,7 +66,7 @@ namespace DsDelivery.Manager.Interfaces
             return _mapper.Map<OrderDTO>(order);
         }
 
-        public async Task<CreateOrderDTO> InsertAsync(CreateOrderDTO dto)
+        public async Task<OrderDTO> InsertAsync(OrderDTO dto)
         {
             Order order = _mapper.Map<Order>(dto);
             order.Moment = DateTime.Now;

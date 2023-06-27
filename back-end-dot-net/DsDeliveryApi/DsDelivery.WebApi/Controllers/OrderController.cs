@@ -14,12 +14,10 @@ namespace DsDelivery.WebApi.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _service;
-        private readonly IMapper _mapper;
 
-        public OrderController(IOrderService service, IMapper mapper)
+        public OrderController(IOrderService service)
         {
             _service = service;
-            _mapper= mapper;
         }
 
         [HttpGet]
@@ -30,11 +28,10 @@ namespace DsDelivery.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateOrderDTO>> Insert([FromBody] CreateOrderDTO dto)
+        public async Task<ActionResult<OrderDTO>> Insert([FromBody] OrderDTO dto)
         {
             dto = await _service.InsertAsync(dto);
-            OrderDTO orderDTO= _mapper.Map<OrderDTO>(dto);
-            Uri uri = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}/{orderDTO.Id}");
+            Uri uri = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}/{dto.Id}");
             return Created(uri, dto);
         }
 

@@ -5,7 +5,7 @@ namespace DsDelivery.Core.Shared
 {
     public class OrderDTO : CreateOrderDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public OrderDTO()
         {

@@ -9,7 +9,7 @@ namespace DsDelivery.Manager.Interfaces
         Task Delete(int id);
         Task<List<OrderDTO>> GetAllAsync();
         Task<OrderDTO> GetByIdAsync(int id);
-        Task<CreateOrderDTO> InsertAsync(CreateOrderDTO dto);
+        Task<OrderDTO> InsertAsync(OrderDTO dto);
         Task<OrderDTO> SetDeliveredAsync(int id);
     }
 }
