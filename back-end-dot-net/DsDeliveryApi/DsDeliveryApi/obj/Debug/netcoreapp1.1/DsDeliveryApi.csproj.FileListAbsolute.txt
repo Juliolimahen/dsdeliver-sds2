@@ -1,5 +1,0 @@
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\obj\Debug\netcoreapp1.1\DsDeliveryApi.csproj.AssemblyReference.cache
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\obj\Debug\netcoreapp1.1\DsDeliveryApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\obj\Debug\netcoreapp1.1\DsDeliveryApi.AssemblyInfoInputs.cache
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\obj\Debug\netcoreapp1.1\DsDeliveryApi.AssemblyInfo.cs
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi\obj\Debug\netcoreapp1.1\DsDeliveryApi.csproj.CoreCompileInputs.cache

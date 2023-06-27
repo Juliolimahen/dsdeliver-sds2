@@ -2787,22 +2787,72 @@
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
       },
-      "DsDeliveryApi/1.0.0": {
+      "DsDelivery.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/DsDelivery.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DsDelivery.Core.dll": {}
+        }
+      },
+      "DsDelivery.Core.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/DsDelivery.Core.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DsDelivery.Core.Shared.dll": {}
+        }
+      },
+      "DsDelivery.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "AutoMapper": "12.0.1",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "DsDelivery.Core": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.8",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "compile": {
-          "bin/placeholder/DsDeliveryApi.dll": {}
+          "bin/placeholder/DsDelivery.Data.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DsDeliveryApi.dll": {}
+          "bin/placeholder/DsDelivery.Data.dll": {}
+        }
+      },
+      "DsDelivery.Manager/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "DsDelivery.Core.Shared": "1.0.0",
+          "DsDelivery.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DsDelivery.Manager.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DsDelivery.Manager.dll": {}
+        }
+      },
+      "DsDelivery.WebApi/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "DsDelivery.Manager": "1.0.0",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.0",
+          "Swashbuckle.AspNetCore": "6.5.0"
+        },
+        "compile": {
+          "bin/placeholder/DsDelivery.WebApi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DsDelivery.WebApi.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -9037,15 +9087,37 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "DsDeliveryApi/1.0.0": {
+    "DsDelivery.Core/1.0.0": {
       "type": "project",
-      "path": "../DsDeliveryApi/DsDeliveryApi.csproj",
-      "msbuildProject": "../DsDeliveryApi/DsDeliveryApi.csproj"
+      "path": "../DsDelivery.Core/DsDelivery.Core.csproj",
+      "msbuildProject": "../DsDelivery.Core/DsDelivery.Core.csproj"
+    },
+    "DsDelivery.Core.Shared/1.0.0": {
+      "type": "project",
+      "path": "../DsDelivery.Core.Shared/DsDelivery.Core.Shared.csproj",
+      "msbuildProject": "../DsDelivery.Core.Shared/DsDelivery.Core.Shared.csproj"
+    },
+    "DsDelivery.Data/1.0.0": {
+      "type": "project",
+      "path": "../DsDelivery.Data/DsDelivery.Data.csproj",
+      "msbuildProject": "../DsDelivery.Data/DsDelivery.Data.csproj"
+    },
+    "DsDelivery.Manager/1.0.0": {
+      "type": "project",
+      "path": "../DsDelivery.Manager/DsDelivery.Manager.csproj",
+      "msbuildProject": "../DsDelivery.Manager/DsDelivery.Manager.csproj"
+    },
+    "DsDelivery.WebApi/1.0.0": {
+      "type": "project",
+      "path": "../DsDelivery.WebApi/DsDelivery.WebApi.csproj",
+      "msbuildProject": "../DsDelivery.WebApi/DsDelivery.WebApi.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "DsDeliveryApi >= 1.0.0",
+      "DsDelivery.Core.Shared >= 1.0.0",
+      "DsDelivery.Manager >= 1.0.0",
+      "DsDelivery.WebApi >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.1.0",
       "Moq >= 4.18.4",
       "coverlet.collector >= 3.1.2",
@@ -9060,9 +9132,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi.Tests\\DsDeliveryApi.Tests.csproj",
-      "projectName": "DsDeliveryApi.Tests",
-      "projectPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi.Tests\\DsDeliveryApi.Tests.csproj",
+      "projectUniqueName": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi.Tests\\DsDelivery.WebApi.Tests.csproj",
+      "projectName": "DsDelivery.WebApi.Tests",
+      "projectPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi.Tests\\DsDelivery.WebApi.Tests.csproj",
       "packagesPath": "C:\\Users\\DevPC\\.nuget\\packages\\",
       "outputPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi.Tests\\obj\\",
       "projectStyle": "PackageReference",
@@ -9084,8 +9156,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi\\DsDeliveryApi.csproj": {
-              "projectPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi\\DsDeliveryApi.csproj"
+            "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.Core.Shared\\DsDelivery.Core.Shared.csproj": {
+              "projectPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.Core.Shared\\DsDelivery.Core.Shared.csproj"
+            },
+            "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.Manager\\DsDelivery.Manager.csproj": {
+              "projectPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.Manager\\DsDelivery.Manager.csproj"
+            },
+            "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.WebApi\\DsDelivery.WebApi.csproj": {
+              "projectPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.WebApi\\DsDelivery.WebApi.csproj"
             }
           }
         }

@@ -1,6 +1,6 @@
-﻿using DsDeliveryApi.Controllers;
-using DsDeliveryApi.Dto;
-using DsDeliveryApi.Services;
+﻿using DsDelivery.Core.Shared;
+using DsDelivery.Manager.Interfaces;
+using DsDelivery.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DsDelivery.WebApi.props" />
+</Project>
