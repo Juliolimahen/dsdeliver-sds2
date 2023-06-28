@@ -1,7 +1,7 @@
 import axios from "axios";
 import { OrderPayload, Product } from "../Pages/Orders/types";
 
-const API_URL = process.env.REACT_APP_API_URL ?? 'https://localhost:44304';
+const API_URL = process.env.REACT_APP_API_URL ?? 'https://localhost:44369';
 const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
 
 

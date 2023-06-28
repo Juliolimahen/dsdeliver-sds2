@@ -30,7 +30,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.Core\\DsDelivery.Core.csproj": {
+                "projectPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.Core\\DsDelivery.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

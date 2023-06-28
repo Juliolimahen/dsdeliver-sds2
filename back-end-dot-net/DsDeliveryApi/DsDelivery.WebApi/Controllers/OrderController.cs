@@ -21,7 +21,7 @@ namespace DsDelivery.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<OrderDTO>>> FindAll()
+        public async Task<IActionResult> FindAll()
         {
             List<OrderDTO> list = await _service.GetAllAsync();
             return Ok(list);

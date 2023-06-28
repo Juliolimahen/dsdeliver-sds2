@@ -9,8 +9,9 @@ namespace DsDeliveryApi.Mapping
         public MappingProfile()
         {
             CreateMap<Order, OrderDTO>().ReverseMap();
+            CreateMap<Order, CreateOrderDTO>().ReverseMap();
             CreateMap<Product, ProductDTO>().ReverseMap();
-            // Mapeie outras entidades e DTOs conforme necessário
+            CreateMap<OrderProduct, ProductDTO>().ReverseMap();
         }
     }
 }

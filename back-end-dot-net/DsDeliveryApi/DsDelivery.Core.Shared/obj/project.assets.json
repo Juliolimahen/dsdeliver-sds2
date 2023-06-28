@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "DsDelivery.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/DsDelivery.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DsDelivery.Core.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DsDelivery.Core/1.0.0": {
+      "type": "project",
+      "path": "../DsDelivery.Core/DsDelivery.Core.csproj",
+      "msbuildProject": "../DsDelivery.Core/DsDelivery.Core.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "DsDelivery.Core >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\DevPC\\.nuget\\packages\\": {},
@@ -37,7 +56,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.Core\\DsDelivery.Core.csproj": {
+              "projectPath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDelivery.Core\\DsDelivery.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

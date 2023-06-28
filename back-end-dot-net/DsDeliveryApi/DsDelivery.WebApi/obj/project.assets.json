@@ -1183,6 +1183,9 @@
       "DsDelivery.Core.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "DsDelivery.Core": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DsDelivery.Core.Shared.dll": {}
         },

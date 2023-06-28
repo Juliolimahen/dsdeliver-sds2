@@ -689,6 +689,9 @@
         }
       },
       "DsDelivery.Core.Shared/1.0.0": {
+        "dependencies": {
+          "DsDelivery.Core": "1.0.0"
+        },
         "runtime": {
           "DsDelivery.Core.Shared.dll": {}
         }

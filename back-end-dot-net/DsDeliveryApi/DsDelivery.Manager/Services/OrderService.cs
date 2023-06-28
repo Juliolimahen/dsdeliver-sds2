@@ -2,6 +2,7 @@
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared;
 using DsDeliveryApi.Repositories;
+using DsDeliveryApi.Services;
 
 namespace DsDelivery.Manager.Interfaces
 {

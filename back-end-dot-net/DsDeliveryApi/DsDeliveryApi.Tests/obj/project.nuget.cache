@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SAfml1yZ7XWE5KdUl1xw+vy0zZOd5ASpHkFvRMLiJI+TFBDhxU53Yz8lc3OTXZeqneI/KQhyo7QKYaNQQ0NZCg==",
+  "dgSpecHash": "JHTkbSrAg0+fEEnt0HECG+yN4/vMz9dYmThL9RB5UDg78n/Oc1K1s5iaqEKAIMQVrjdAVlwVtK7F3dAs3kO8CQ==",
   "success": true,
   "projectFilePath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi.Tests\\DsDelivery.WebApi.Tests.csproj",
   "expectedPackageFiles": [
