@@ -33,13 +33,23 @@ public class Startup
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "DsDeliveryApi", Version = "v1" });
         });
 
+        //services.AddCors(options =>
+        //{
+        //    options.AddDefaultPolicy(builder =>
+        //    {
+        //        builder.WithOrigins("http://localhost:3000")
+        //            .AllowAnyHeader()
+        //            .AllowAnyMethod();
+        //    });
+        //});
+
         services.AddCors(options =>
         {
             options.AddDefaultPolicy(builder =>
             {
-                builder.WithOrigins("http://localhost:3000")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
             });
         });
 
@@ -71,6 +81,20 @@ public class Startup
         app.UseRouting();
 
         app.UseCors();
+
+        app.UseCors(builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+
+        // Add logging middleware
+        app.Use(async (context, next) =>
+        {
+            Console.WriteLine($"Request: {context.Request.Method} {context.Request.Path}");
+            await next.Invoke();
+        });
 
         app.UseAuthorization();
 

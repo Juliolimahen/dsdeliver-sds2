@@ -1,7 +1,7 @@
 ﻿using DsDelivery.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace DsDeliveryApi.Data
+namespace DsDeliveryApi.Data.Context
 {
     public class AppDbContext : DbContext
     {

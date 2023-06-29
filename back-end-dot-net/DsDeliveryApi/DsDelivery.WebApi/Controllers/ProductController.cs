@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DsDelivery.Core.Shared;
-using DsDelivery.Core.Shared.Dto;
+using DsDelivery.Core.Shared.Dto.Order;
+using DsDelivery.Core.Shared.Dto.Product;
 using DsDelivery.Manager.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace DsDelivery.WebApi.Controllers;
 
 [Route("products")]
+[Produces("application/json")]
 [ApiController]
 public class ProductController : ControllerBase
 {
@@ -49,17 +51,19 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> InsertAsync(ProductDTO dto)
     {
         try
         {
             var insertedProduct = await _service.InsertAsync(dto);
-            return CreatedAtAction(nameof(GetByIdAsync), new { productId = insertedProduct.Id }, insertedProduct);
+            return Ok(dto);
         }
         catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
-
 }

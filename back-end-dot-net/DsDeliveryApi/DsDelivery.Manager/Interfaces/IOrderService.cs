@@ -1,4 +1,4 @@
-﻿using DsDelivery.Core.Shared.Dto;
+﻿using DsDelivery.Core.Shared.Dto.Order;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,6 +9,6 @@ public interface IOrderService
     Task Delete(int id);
     Task<List<OrderDTO>> GetAllAsync();
     Task<OrderDTO> GetByIdAsync(int id);
-    Task<OrderDTO> InsertAsync(OrderDTO dto);
+    Task<OrderDTO> InsertAsync(CreateOrderDTO dto);
     Task<OrderDTO> SetDeliveredAsync(int id);
 }

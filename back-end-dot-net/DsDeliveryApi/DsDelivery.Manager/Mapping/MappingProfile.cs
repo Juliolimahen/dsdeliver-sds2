@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DsDelivery.Core.Domain;
-using DsDelivery.Core.Shared.Dto;
+using DsDelivery.Core.Shared.Dto.Order;
+using DsDelivery.Core.Shared.Dto.Product;
 
 namespace DsDelivery.Manager.Mapping;
 
@@ -12,5 +13,6 @@ public class MappingProfile : Profile
         CreateMap<Order, CreateOrderDTO>().ReverseMap();
         CreateMap<Product, ProductDTO>().ReverseMap();
         CreateMap<OrderProduct, ProductDTO>().ReverseMap();
+        CreateMap<Product, ReferenciaProducts>().ReverseMap();
     }
 }

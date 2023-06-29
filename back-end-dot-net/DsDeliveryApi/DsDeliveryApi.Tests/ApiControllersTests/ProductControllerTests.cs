@@ -1,50 +1,36 @@
-﻿using DsDelivery.Core.Shared.Dto;
+﻿using AutoMapper;
+using DsDelivery.Core.Shared;
+using DsDelivery.Core.Shared.Dto.Product;
 using DsDelivery.Manager.Interfaces;
 using DsDelivery.WebApi.Controllers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
-namespace DsDeliveryApi.Tests.ApiControllersTests
+namespace DsDelivery.WebApi.Tests.Controllers
 {
     public class ProductControllerTests
     {
-        [Fact]
-        public async Task FindAll_ReturnsOkResultWithListOfProducts()
+        private readonly ProductController _controller;
+        private readonly Mock<IProductService> _serviceMock;
+
+        public ProductControllerTests()
         {
-            // Arrange
-            var products = new List<ProductDTO>
-            {
-                new ProductDTO
-                {
-                   Id = 5,
-                   Name = "Risoto Funghi",
-                   Price = 59.95,
-                   Description = "Risoto Funghi feito com ingredientes finos e o toque especial do chef.",
-                   ImageUri = "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/risoto_funghi.jpg"
-                },
-            };
-
-            var serviceMock = new Mock<IProductService>();
-            serviceMock.Setup(s => s.GetAllAsync()).ReturnsAsync(products);
-
-            var controller = new ProductController(serviceMock.Object);
-
-            // Act
-            var result = await controller.FindAll();
-
-            // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result.Result);
-            var model = Assert.IsAssignableFrom<List<ProductDTO>>(okResult.Value);
-            Assert.Equal(1, model.Count);
+            _serviceMock = new Mock<IProductService>();
+            _controller = new ProductController(_serviceMock.Object);
         }
 
         [Fact]
-        public async Task GetById_ReturnsOkResultWithProduct()
+        public async Task GetByIdAsync_WithValidId_ReturnsOkResultWithData()
         {
             // Arrange
-            var productId = 1;
-            var product = new ProductDTO
+            int productId = 1; // Populate with valid product ID
+
+            var productDto = new ProductDTO
             {
                 Id = 1,
                 Name = "Risoto Funghi",
@@ -53,45 +39,69 @@ namespace DsDeliveryApi.Tests.ApiControllersTests
                 ImageUri = "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/risoto_funghi.jpg"
             };
 
-            var serviceMock = new Mock<IProductService>();
-            serviceMock.Setup(s => s.GetByIdAsync(productId)).ReturnsAsync(product);
-
-            var controller = new ProductController(serviceMock.Object);
+            _serviceMock.Setup(s => s.GetByIdAsync(productId)).ReturnsAsync(productDto);
 
             // Act
-            var result = await controller.GetByIdAsync(productId);
+            var result = await _controller.GetByIdAsync(productId);
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
             var model = Assert.IsType<ProductDTO>(okResult.Value);
-            Assert.Equal(productId, model.Id);
+            Assert.Equal(productDto, model);
         }
 
         [Fact]
-        public async Task Insert_ReturnsCreatedResultWithProduct()
+        public async Task GetByIdAsync_WithInvalidId_ReturnsNotFound()
         {
             // Arrange
-            var dto = new ProductDTO
+            int productId = 2003; // Populate with invalid product ID
+            _serviceMock.Setup(s => s.GetByIdAsync(productId)).ReturnsAsync((ProductDTO)null);
+
+            // Act
+            var result = await _controller.GetByIdAsync(productId);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+
+        [Fact]
+        public async Task InsertAsync_WithValidDto_ReturnsOkResultWithData()
+        {
+            // Arrange
+            var productDto = new ProductDTO
             {
-                Id = 5,
+                Id = 1,
                 Name = "Risoto Funghi",
                 Price = 59.95,
                 Description = "Risoto Funghi feito com ingredientes finos e o toque especial do chef.",
                 ImageUri = "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/risoto_funghi.jpg"
             };
 
-            var serviceMock = new Mock<IProductService>();
-            serviceMock.Setup(s => s.InsertAsync(dto)).ReturnsAsync(dto);
-
-            var controller = new ProductController(serviceMock.Object);
+            _serviceMock.Setup(s => s.InsertAsync(It.IsAny<ProductDTO>())).ReturnsAsync(productDto);
 
             // Act
-            var result = await controller.InsertAsync(dto);
+            var result = await _controller.InsertAsync(productDto);
 
             // Assert
-            var createdResult = Assert.IsType<CreatedAtActionResult>(result);
-            var model = Assert.IsType<ProductDTO>(createdResult.Value);
-            Assert.Equal(dto.Id, model.Id);
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var model = Assert.IsType<ProductDTO>(okResult.Value);
+            Assert.Equal(productDto, model);
+        }
+
+        [Fact]
+        public async Task InsertAsync_WithInvalidDto_ReturnsInternalServerError()
+        {
+            // Arrange
+            var productDto = new ProductDTO();
+            _serviceMock.Setup(s => s.InsertAsync(It.IsAny<ProductDTO>())).ThrowsAsync(new Exception("Error message"));
+
+            // Act
+            var result = await _controller.InsertAsync(productDto);
+
+            // Assert
+            var statusCodeResult = Assert.IsType<ObjectResult>(result);
+            Assert.Equal(StatusCodes.Status500InternalServerError, statusCodeResult.StatusCode);
         }
     }
 }

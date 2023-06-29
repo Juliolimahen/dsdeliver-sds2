@@ -1,5 +1,5 @@
 ﻿using DsDelivery.Core.Shared;
-using DsDelivery.Core.Shared.Dto;
+using DsDelivery.Core.Shared.Dto.Product;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

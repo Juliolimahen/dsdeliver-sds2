@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DsDelivery.Core.Domain;
-using DsDelivery.Core.Shared.Dto;
+using DsDelivery.Core.Shared.Dto.Order;
+using DsDelivery.Core.Shared.Dto.Product;
 using DsDelivery.Data.Repositories;
 using DsDelivery.Manager.Interfaces;
 
@@ -44,7 +45,7 @@ public class OrderService : IOrderService
                 Latitude = order.Latitude,
                 Longitude = order.Longitude,
                 Moment = order.Moment,
-                Status = order.Status.ToString(),
+                Status = order.Status,
                 Total = order.GetTotal(),
                 Products = productDTOs
             };
@@ -68,16 +69,21 @@ public class OrderService : IOrderService
         return _mapper.Map<OrderDTO>(order);
     }
 
-    public async Task<OrderDTO> InsertAsync(OrderDTO dto)
+    public async Task<OrderDTO> InsertAsync(CreateOrderDTO dto)
     {
-        Order order = _mapper.Map<Order>(dto);
-        order.Moment = DateTime.Now;
-        order.Status = OrderStatus.PENDING;
-        order.OrderProducts = new List<OrderProduct>(); // Inicializa a lista OrderProducts
-
-        foreach (ProductDTO p in dto.Products)
+        Order order = new Order
         {
-            Product product = await _productRepository.GetByIdAsync(p.Id);
+            Address = dto.Address,
+            Latitude = dto.Latitude,
+            Longitude = dto.Longitude,
+            Moment = DateTime.Now,
+            Status = OrderStatus.PENDING,
+            OrderProducts = new List<OrderProduct>()
+        };
+
+        foreach (var dtoProduct in dto.Products)
+        {
+            Product product = await _productRepository.GetByIdAsync(dtoProduct.Id);
             if (product != null)
             {
                 OrderProduct orderProduct = new OrderProduct
@@ -89,10 +95,12 @@ public class OrderService : IOrderService
             }
         }
 
+
         order = await _repository.AddAsync(order);
 
         return _mapper.Map<OrderDTO>(order);
     }
+
 
     public Task Delete(int id)
     {

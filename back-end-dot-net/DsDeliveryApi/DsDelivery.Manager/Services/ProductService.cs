@@ -2,7 +2,7 @@
 using DsDelivery.Manager.Interfaces;
 using DsDelivery.Core.Domain;
 using DsDelivery.Data.Repositories;
-using DsDelivery.Core.Shared.Dto;
+using DsDelivery.Core.Shared.Dto.Product;
 
 namespace DsDelivery.Manager.Services;
 

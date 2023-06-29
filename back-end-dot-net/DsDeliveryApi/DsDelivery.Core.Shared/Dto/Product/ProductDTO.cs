@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DsDelivery.Core.Shared.Dto;
+namespace DsDelivery.Core.Shared.Dto.Product;
 
 
 public class ProductDTO

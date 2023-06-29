@@ -16,13 +16,13 @@ import {
   ThemeProvider
 } from '@mui/material';
 import Footer from '../../Components/Footer';
-import { fetchProducts, saveProduct } from '../../Services/api';
+import { fetchProducts, saveProduct, createProduct } from '../../Services/api';
 import StepsHeader from './StepsHeader/index';
 import { Product } from "../Orders/types";
 import { Container, ProductImage, AddProductButtonWrapper, StyledButton, StyledModalPaper } from './style'
 import '../Orders/styles.css';
-const theme = createTheme();
 
+const theme = createTheme();
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -33,12 +33,13 @@ const ProductList: React.FC = () => {
   const [editedDescription, setEditedDescription] = useState('');
   const [editedImageUri, setEditedImageUri] = useState('');
   const [hasProducts, setHasProducts] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     fetchProducts()
       .then((response) => {
         setProducts(response.data);
-        setHasProducts(response.data.length > 0); // Atualiza o estado hasProducts
+        setHasProducts(response.data.length > 0);
       })
       .catch((error) => {
         console.error('Erro ao obter os produtos:', error);
@@ -52,6 +53,7 @@ const ProductList: React.FC = () => {
     setEditedDescription(product.description);
     setEditedImageUri(product.imageUri);
     setIsModalOpen(true);
+    setIsEditing(true);
   };
 
   const handleModalClose = () => {
@@ -61,13 +63,14 @@ const ProductList: React.FC = () => {
     setEditedDescription('');
     setEditedImageUri('');
     setIsModalOpen(false);
+    setIsEditing(false);
   };
 
   const handleSaveChanges = async () => {
-    if (!selectedProduct) return;
+    if (!editedName || !editedPrice || !editedDescription || !editedImageUri) return;
 
     const editedProduct: Product = {
-      ...selectedProduct,
+      id: selectedProduct ? selectedProduct.id : 0,
       name: editedName,
       price: parseFloat(editedPrice),
       description: editedDescription,
@@ -75,32 +78,30 @@ const ProductList: React.FC = () => {
     };
 
     try {
-      await saveProduct(editedProduct);
-      setProducts((prevProducts) =>
-        prevProducts.map((product) => (product.id === editedProduct.id ? editedProduct : product))
-      );
+      if (isEditing) {
+        await saveProduct(editedProduct);
+        setProducts((prevProducts) =>
+          prevProducts.map((product) => (product.id === editedProduct.id ? editedProduct : product))
+        );
+      } else {
+        await createProduct(editedProduct);
+        setProducts((prevProducts) => [...prevProducts, editedProduct]);
+      }
+
       handleModalClose();
     } catch (error) {
-      console.error('Erro ao editar o produto:', error);
+      console.error('Erro ao salvar as alterações:', error);
     }
   };
 
-  const handleAddProduct = async () => {
-    const newProduct: Product = {
-      id: products.length + 1,
-      name: editedName,
-      price: parseFloat(editedPrice),
-      description: editedDescription,
-      imageUri: editedImageUri,
-    };
-
-    try {
-      await saveProduct(newProduct);
-      setProducts((prevProducts) => [...prevProducts, newProduct]);
-      handleModalClose();
-    } catch (error) {
-      console.error('Erro ao adicionar o produto:', error);
-    }
+  const handleAddProduct = () => {
+    setSelectedProduct(null);
+    setEditedName('');
+    setEditedPrice('');
+    setEditedDescription('');
+    setEditedImageUri('');
+    setIsModalOpen(true);
+    setIsEditing(false);
   };
 
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
@@ -145,11 +146,10 @@ const ProductList: React.FC = () => {
             </Table>
           </TableContainer>
           <AddProductButtonWrapper>
-            <StyledButton variant="contained" onClick={() => setIsModalOpen(true)}>
+            <StyledButton variant="contained" onClick={handleAddProduct}>
               Adicionar Produto
             </StyledButton>
           </AddProductButtonWrapper>
-
           <Modal open={isModalOpen} onClose={handleModalClose}>
             <StyledModalPaper theme={theme}>
               <TextField
@@ -182,15 +182,15 @@ const ProductList: React.FC = () => {
                 fullWidth
                 sx={{ mb: 2 }}
               />
-              <StyledButton variant="contained" onClick={selectedProduct ? handleSaveChanges : handleAddProduct}>
-                {selectedProduct ? 'Salvar Alterações' : 'Adicionar Produto'}
+              <StyledButton variant="contained" onClick={handleSaveChanges}>
+                {isEditing ? 'Salvar Alterações' : 'Adicionar Produto'}
               </StyledButton>
             </StyledModalPaper>
           </Modal>
         </Container>
         <Footer />
       </>
-    </ThemeProvider >
+    </ThemeProvider>
   );
 };
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using DsDelivery.Core.Domain;
-using DsDeliveryApi.Data;
+using DsDeliveryApi.Data.Context;
 
 namespace DsDelivery.Data.Repositories;
 
