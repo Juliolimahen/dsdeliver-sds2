@@ -20,7 +20,7 @@ import { fetchProducts, saveProduct } from '../../Services/api';
 import StepsHeader from './StepsHeader/index';
 import { Product } from "../Orders/types";
 import { Container, ProductImage, AddProductButtonWrapper, StyledButton, StyledModalPaper } from './style'
-
+import '../Orders/styles.css';
 const theme = createTheme();
 
 
@@ -108,9 +108,9 @@ const ProductList: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <>
+        <StepsHeader />
         <Container hasProducts={hasProducts}>
-          <StepsHeader />
-          <TableContainer component={Paper} sx={{ my: 4 }}>
+          <TableContainer component={Paper} sx={{ my: 4, maxWidth: 830 }}>
             <Table>
               <TableHead>
                 <TableRow>
@@ -190,7 +190,7 @@ const ProductList: React.FC = () => {
         </Container>
         <Footer />
       </>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 };
 

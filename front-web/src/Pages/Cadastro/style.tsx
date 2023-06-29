@@ -6,13 +6,12 @@ import {
 } from '@mui/material';
 
 export const Container = styled.div<{ hasProducts: boolean }>`
-  max-width: 830px;
   margin: 0 auto;
   padding: 20px;
-  padding-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--light-color);
 
   @media only screen and (max-width: 768px) {
     max-width: 100%;

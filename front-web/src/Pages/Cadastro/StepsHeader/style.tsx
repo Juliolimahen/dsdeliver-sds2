@@ -10,7 +10,7 @@ export const OrdersStepsContainer = styled.div`
 export const OrdersStepsContent = styled.div`
   display: flex;
   padding: 10px 0;
-  width: 60%;
+  width: 40%;
 
   @media only screen and (max-width: 768px) {
     display: flex;
@@ -26,7 +26,7 @@ export const StepsTitle = styled.h2`
   line-height: 34px;
   letter-spacing: -0.015em;
   color: var(--primary-color);
-  margin-right: 80px;
+  margin-right: 100px;
 `;
 
 export const StepsItems = styled.ul`

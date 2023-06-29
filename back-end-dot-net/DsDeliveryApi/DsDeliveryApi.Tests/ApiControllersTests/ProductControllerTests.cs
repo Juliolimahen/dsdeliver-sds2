@@ -1,4 +1,4 @@
-﻿using DsDelivery.Core.Shared;
+﻿using DsDelivery.Core.Shared.Dto;
 using DsDelivery.Manager.Interfaces;
 using DsDelivery.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;

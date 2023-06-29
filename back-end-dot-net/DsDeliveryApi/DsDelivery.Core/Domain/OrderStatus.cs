@@ -1,8 +1,7 @@
-﻿namespace DsDelivery.Core.Domain
+﻿namespace DsDelivery.Core.Domain;
+
+public enum OrderStatus
 {
-    public enum OrderStatus
-    {
-        PENDING,
-        DELIVERED
-    }
+    PENDING,
+    DELIVERED
 }

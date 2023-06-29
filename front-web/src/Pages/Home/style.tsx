@@ -38,7 +38,7 @@ export const HomeActions = styled.div`
 
 export const HomeTitle = styled.h1`
   font-weight: bold;
-  font-size: 55px;
+  font-size: 53px;
   line-height: 58px;
   letter-spacing: -0.015em;
   color: var(--dark-color);
@@ -50,9 +50,8 @@ export const HomeTitle = styled.h1`
 `;
 
 export const HomeSubtitle = styled.h3`
-  padding-left:2%;  
   font-weight: normal;
-  font-size: 24px;
+  font-size: 21.5px;
   line-height: 33px;
   letter-spacing: -0.015em;
   color: var(--secondary-color);
