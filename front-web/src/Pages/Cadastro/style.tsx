@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import {
-    Paper,
-    Button,
-    Theme
+  Paper,
+  Button,
+  Theme
 } from '@mui/material';
 
 export const Container = styled.div<{ hasProducts: boolean }>`
@@ -67,3 +67,8 @@ export const StyledModalPaper = styled(Paper) <{ theme: Theme }>`
     }
   }
 `;
+
+export const ButtonAlignmentStyle = styled.div`
+    display: flex; 
+    gap: 8px;
+`

@@ -13,13 +13,20 @@ import {
   useMediaQuery,
   Theme,
   createTheme,
-  ThemeProvider
+  ThemeProvider,
 } from '@mui/material';
 import Footer from '../../Components/Footer';
-import { fetchProducts, saveProduct, createProduct } from '../../Services/api';
+import { fetchProducts, saveProduct, createProduct, deleteProduct } from '../../Services/api';
 import StepsHeader from './StepsHeader/index';
-import { Product } from "../Orders/types";
-import { Container, ProductImage, AddProductButtonWrapper, StyledButton, StyledModalPaper } from './style'
+import { Product } from '../Orders/types';
+import {
+  Container,
+  ButtonAlignmentStyle,
+  ProductImage,
+  AddProductButtonWrapper,
+  StyledButton,
+  StyledModalPaper,
+} from './style';
 import '../Orders/styles.css';
 
 const theme = createTheme();
@@ -34,6 +41,9 @@ const ProductList: React.FC = () => {
   const [editedImageUri, setEditedImageUri] = useState('');
   const [hasProducts, setHasProducts] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+  const [deleteProductId, setDeleteProductId] = useState<number | null>(null);
 
   useEffect(() => {
     fetchProducts()
@@ -56,6 +66,38 @@ const ProductList: React.FC = () => {
     setIsEditing(true);
   };
 
+  const handleDeleteProduct = async (productId: number) => {
+    if (confirmDelete) {
+      try {
+        await deleteProduct(productId);
+        setProducts((prevProducts) => prevProducts.filter((product) => product.id !== productId));
+        setConfirmDelete(false);
+      } catch (error) {
+        console.error('Erro ao excluir o produto:', error);
+      }
+    } else {
+      setDeleteProductId(productId);
+      setDeleteConfirmationOpen(true);
+    }
+  };
+
+  const handleConfirmDelete = async () => {
+    if (deleteProductId) {
+      try {
+        await deleteProduct(deleteProductId);
+        setProducts((prevProducts) => prevProducts.filter((product) => product.id !== deleteProductId));
+        setDeleteConfirmationOpen(false);
+      } catch (error) {
+        console.error('Erro ao excluir o produto:', error);
+      }
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteConfirmationOpen(false);
+    setDeleteProductId(null);
+  };
+
   const handleModalClose = () => {
     setSelectedProduct(null);
     setEditedName('');
@@ -64,6 +106,7 @@ const ProductList: React.FC = () => {
     setEditedImageUri('');
     setIsModalOpen(false);
     setIsEditing(false);
+    setConfirmDelete(false);
   };
 
   const handleSaveChanges = async () => {
@@ -119,7 +162,7 @@ const ProductList: React.FC = () => {
                   <TableCell>Preço</TableCell>
                   <TableCell>Descrição</TableCell>
                   {!isMobile && <TableCell>Imagem</TableCell>}
-                  <TableCell align="right">Ações</TableCell>
+                  <TableCell align="center">Ações</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -136,9 +179,22 @@ const ProductList: React.FC = () => {
                       </TableCell>
                     )}
                     <TableCell align="right">
-                      <Button variant="outlined" onClick={() => handleEditProduct(product)}>
-                        Editar
-                      </Button>
+                      <ButtonAlignmentStyle>
+                        <Button
+                          sx={{ maxWidth: 80 }}
+                          variant="outlined"
+                          onClick={() => handleEditProduct(product)}
+                        >
+                          Editar
+                        </Button>
+                        <Button
+                          sx={{ maxWidth: 80 }}
+                          variant="outlined"
+                          onClick={() => handleDeleteProduct(product.id)}
+                        >
+                          {confirmDelete ? 'Confirmar' : 'Excluir'}
+                        </Button>
+                      </ButtonAlignmentStyle>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -184,6 +240,17 @@ const ProductList: React.FC = () => {
               />
               <StyledButton variant="contained" onClick={handleSaveChanges}>
                 {isEditing ? 'Salvar Alterações' : 'Adicionar Produto'}
+              </StyledButton>
+            </StyledModalPaper>
+          </Modal>
+          <Modal open={deleteConfirmationOpen} onClose={handleCancelDelete}>
+            <StyledModalPaper sx={{ maxWidth: 280 }} theme={theme}>
+              <p>Deseja realmente excluir o produto?</p>
+              <StyledButton variant="contained" onClick={handleConfirmDelete}>
+                Confirmar
+              </StyledButton>
+              <StyledButton sx={{ marginLeft: 5 }} variant="contained" onClick={handleCancelDelete}>
+                Cancelar
               </StyledButton>
             </StyledModalPaper>
           </Modal>
