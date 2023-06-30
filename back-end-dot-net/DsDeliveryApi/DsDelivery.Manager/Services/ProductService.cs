@@ -26,16 +26,8 @@ public class ProductService : IProductService
 
     public async Task<ProductDTO> GetByIdAsync(int id)
     {
-        Product product = await _repository.GetByIdAsync(id);
-
-        if (product == null)
-        {
-            throw new NotFoundException($"Product with ID {id} not found");
-        }
-
-        ProductDTO productDTO = _mapper.Map<ProductDTO>(product);
-
-        return productDTO;
+        var product = await _repository.GetByIdAsync(id);
+        return _mapper.Map<ProductDTO>(product);
     }
 
     public async Task<ProductDTO> InsertAsync(ProductDTO dto)
@@ -47,43 +39,18 @@ public class ProductService : IProductService
         return insertedDto;
     }
 
-    public async Task<ProductDTO> UpdateAsync(int id, ProductDTO dto)
+    public async Task<ProductDTO> UpdateAsync(UpdateProductDTO productDTO)
     {
-        // Verificar se o produto com o ID especificado existe no banco de dados
-        Product existingProduct = await _repository.GetByIdAsync(id);
-        if (existingProduct == null)
-        {
-            // Produto não encontrado, você pode lançar uma exceção adequada ou retornar um valor nulo, dependendo do seu caso de uso.
-            throw new NotFoundException("Produto não encontrado");
-        }
-
-        // Atualizar as propriedades do produto existente com os valores do DTO
-        existingProduct.Name = dto.Name;
-        existingProduct.Price = dto.Price;
-        existingProduct.Description = dto.Description;
-        existingProduct.ImageUri = dto.ImageUri;
-
-        // Atualizar o produto no repositório
-        existingProduct = await _repository.UpdateAsync(existingProduct);
-
-        // Mapear a entidade Product atualizada de volta para DTO
-        ProductDTO updatedDto = _mapper.Map<ProductDTO>(existingProduct);
-
-        return updatedDto;
+        var product = _mapper.Map<Product>(productDTO);
+        product = await _repository.UpdateAsync(product);
+        return _mapper.Map<ProductDTO>(product);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<ProductDTO> DeleteAsync(int id)
     {
-        Product product = await _repository.GetByIdAsync(id);
-
-        if (product == null)
-        {
-            throw new NotFoundException($"Product with ID {id} not found");
-        }
-
-        await _repository.RemoveAsync(product);
+        var product = await _repository.RemoveAsync(id);
+        return _mapper.Map<ProductDTO>(product);
     }
-
 }
 public class NotFoundException : Exception
 {

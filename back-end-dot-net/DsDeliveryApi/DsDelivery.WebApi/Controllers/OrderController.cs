@@ -1,12 +1,6 @@
-﻿using AutoMapper;
-using DsDelivery.Core.Shared;
-using DsDelivery.Core.Shared.Dto.Order;
+﻿using DsDelivery.Core.Shared.Dto.Order;
 using DsDelivery.Manager.Interfaces;
-using DsDelivery.Manager.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 
 namespace DsDelivery.WebApi.Controllers;
@@ -24,7 +18,10 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> FindAll()
+    [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetAll()
     {
         try
         {
@@ -38,6 +35,9 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetOrderById(int id)
     {
         try
@@ -77,6 +77,9 @@ public class OrderController : ControllerBase
     }
 
     [HttpPut("{id}/delivered")]
+    [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<OrderDTO>> SetDelivered([FromRoute] int id)
     {
         try

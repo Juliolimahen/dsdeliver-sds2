@@ -1,9 +1,5 @@
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\CoverletSourceRootsMapping
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.csproj.AssemblyReference.cache
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.AssemblyInfoInputs.cache
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.AssemblyInfo.cs
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.csproj.CoreCompileInputs.cache
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\testhost.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.WebApi.deps.json
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.WebApi.runtimeconfig.json
@@ -29,7 +25,6 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
@@ -162,6 +157,11 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.WebApi.pdb
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.Core.pdb
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.Data.pdb
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.csproj.AssemblyReference.cache
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.AssemblyInfoInputs.cache
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.AssemblyInfo.cs
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.csproj.CoreCompileInputs.cache
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.csproj.CopyComplete
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\refint\DsDelivery.WebApi.Tests.dll

@@ -12,7 +12,9 @@ public class MappingProfile : Profile
         CreateMap<Order, OrderDTO>().ReverseMap();
         CreateMap<Order, CreateOrderDTO>().ReverseMap();
         CreateMap<Product, ProductDTO>().ReverseMap();
+        CreateMap<Product, UpdateProductDTO>().ReverseMap();
         CreateMap<OrderProduct, ProductDTO>().ReverseMap();
+        CreateMap<Order, UpdateProductDTO>().ReverseMap();
         CreateMap<Product, ReferenciaProducts>().ReverseMap();
     }
 }

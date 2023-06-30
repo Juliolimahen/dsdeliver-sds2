@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DsDelivery.Core.Shared.Dto.Product;
 
-public class UpdateProductDTO
+public class UpdateProductDTO : CreateProductDTO
 {
+    public int Id { get; set; }
 }

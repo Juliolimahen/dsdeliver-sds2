@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared;
 using DsDelivery.Core.Shared.Dto.Order;
 using DsDelivery.Core.Shared.Dto.Product;
@@ -24,13 +25,19 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ProductDTO>>> FindAll()
+    [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<List<ProductDTO>>> GetAll()
     {
         List<ProductDTO> list = await _service.GetAllAsync();
         return Ok(list);
     }
 
     [HttpGet("{productId}")]
+    [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetByIdAsync(int productId)
     {
         try
@@ -51,10 +58,10 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> InsertAsync(ProductDTO dto)
+    public async Task<IActionResult> Insert(ProductDTO dto)
     {
         try
         {
@@ -65,5 +72,37 @@ public class ProductController : ControllerBase
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
+    }
+
+    [HttpPut("{id:int}")]
+    [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Update(int id, UpdateProductDTO productDTO)
+    {
+        if (productDTO.Id == id)
+        {
+            var product = await _service.UpdateAsync(productDTO);
+            return Ok(product);
+        }
+
+        else
+        {
+            return NotFound();
+        }
+    }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var producRemoved = await _service.DeleteAsync(id);
+        if (producRemoved == null)
+        {
+            return NotFound();
+        }
+        return NoContent();
     }
 }

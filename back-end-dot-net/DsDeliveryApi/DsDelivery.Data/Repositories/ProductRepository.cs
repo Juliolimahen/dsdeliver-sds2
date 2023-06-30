@@ -4,6 +4,7 @@ using DsDelivery.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using DsDeliveryApi.Data.Context;
+using System.Collections.Generic;
 
 namespace DsDelivery.Data.Repositories;
 
@@ -47,15 +48,21 @@ public class ProductRepository : IProductRepository
         return entity;
     }
 
-    public async Task<bool> RemoveAsync(Product entity)
-    {
-        _dbSet.Remove(entity);
-        return await _dbContext.SaveChangesAsync() > 0;
-    }
-
     public async Task<List<Product>> FindAllByOrderByNameAscAsync()
     {
         List<Product> productList = await _dbSet.OrderBy(p => p.Name).ToListAsync();
         return productList;
+    }
+
+    public async Task<Product> RemoveAsync(int id)
+    {
+        var product = await _dbSet.FindAsync(id);
+        if (product == null)
+        {
+            return null;
+        }
+        var productRemoved = _dbSet.Remove(product);
+        await _dbContext.SaveChangesAsync();
+        return productRemoved.Entity;
     }
 }

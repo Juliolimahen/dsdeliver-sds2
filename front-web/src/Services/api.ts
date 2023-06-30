@@ -2,7 +2,7 @@ import axios from "axios";
 import { OrderPayload, Product } from "../Pages/Orders/types";
 
 const API_URL = process.env.REACT_APP_API_URL ?? 'https://localhost:44369';
-const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
+const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX ?? 'pk.eyJ1IjoianVsaW8wOTkwOTkiLCJhIjoiY2tqcTZqdTRxMG96bDM0bW5vbTR0YWdzYiJ9.g0UhwSpA0s4KEvqqrh8Kvg';
 
 
 export function fetchProducts() {
@@ -36,4 +36,8 @@ export function createProduct(product: Product) {
             'Content-Type': 'application/json',
         },
     });
+}
+
+export function deleteProduct(productId: number) {
+    return axios.delete(`${API_URL}/products/${productId}`);
 }

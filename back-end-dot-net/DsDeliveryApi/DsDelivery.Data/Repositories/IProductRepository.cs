@@ -10,6 +10,6 @@ public interface IProductRepository
     Task<List<Product>> FindAsync(Expression<Func<Product, bool>> predicate);
     Task<List<Product>> GetAllAsync();
     Task<Product> GetByIdAsync(int id);
-    Task<bool> RemoveAsync(Product entity);
+    Task<Product> RemoveAsync(int id);
     Task<Product> UpdateAsync(Product entity);
 }

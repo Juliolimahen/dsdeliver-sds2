@@ -58,4 +58,17 @@ public class OrderRepository : IOrderRepository
         _dbSet.Remove(entity);
         return await _dbContext.SaveChangesAsync() > 0;
     }
+
+    public async Task<Order> RemoveAsync(int id)
+    {
+
+        var order = await _dbSet.FindAsync(id);
+        if (order == null)
+        {
+            return null;
+        }
+        var orderRemoved = _dbSet.Remove(order);
+        await _dbContext.SaveChangesAsync();
+        return orderRemoved.Entity;
+    }
 }

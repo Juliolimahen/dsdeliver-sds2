@@ -10,6 +10,6 @@ public interface IOrderRepository
     Task<List<Order>> FindOrdersWithProducts();
     Task<List<Order>> GetAllAsync();
     Task<Order> GetByIdAsync(int id);
-    Task<bool> RemoveAsync(Order entity);
+    Task<Order> RemoveAsync(int id);
     Task<Order> UpdateAsync(Order entity);
 }
