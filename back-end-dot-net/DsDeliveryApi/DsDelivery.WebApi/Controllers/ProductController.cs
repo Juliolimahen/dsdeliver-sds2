@@ -1,108 +1,150 @@
-﻿using AutoMapper;
-using DsDelivery.Core.Domain;
-using DsDelivery.Core.Shared;
-using DsDelivery.Core.Shared.Dto.Order;
+﻿using Azure;
 using DsDelivery.Core.Shared.Dto.Product;
 using DsDelivery.Manager.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using SerilogTimings;
+using Serilog;
+using Operation = SerilogTimings.Operation;
 
-namespace DsDelivery.WebApi.Controllers;
-
-[Route("products")]
-[Produces("application/json")]
-[ApiController]
-public class ProductController : ControllerBase
+namespace DsDelivery.WebApi.Controllers
 {
-    private readonly IProductService _service;
-
-    public ProductController(IProductService service)
+    [Route("products")]
+    [Produces("application/json")]
+    [ApiController]
+    public class ProductController : ControllerBase
     {
-        _service = service;
-    }
+        private readonly IProductService _service;
+        private readonly ILogger<ProductController> _logger;
 
-    [HttpGet]
-    [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<List<ProductDTO>>> GetAll()
-    {
-        List<ProductDTO> list = await _service.GetAllAsync();
-        return Ok(list);
-    }
-
-    [HttpGet("{productId}")]
-    [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetByIdAsync(int productId)
-    {
-        try
+        public ProductController(IProductService service, ILogger<ProductController> logger)
         {
-            var product = await _service.GetByIdAsync(productId);
+            _service = service;
+            _logger = logger;
+        }
 
-            if (product == null)
+        [HttpGet]
+        [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<ProductDTO>>> GetAll()
+        {
+            using (Operation.Time("GetAllProducts"))
             {
-                return NotFound();
+                try
+                {
+                    List<ProductDTO> list = await _service.GetAllAsync();
+                    return Ok(list);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Ocorreu um erro ao obter todos os produtos.");
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
             }
-
-            return Ok(product);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
-    }
-
-    [HttpPost]
-    [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Insert(ProductDTO dto)
-    {
-        try
-        {
-            var insertedProduct = await _service.InsertAsync(dto);
-            return Ok(dto);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
-    }
-
-    [HttpPut("{id:int}")]
-    [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Update(int id, UpdateProductDTO productDTO)
-    {
-        if (productDTO.Id == id)
-        {
-            var product = await _service.UpdateAsync(productDTO);
-            return Ok(product);
         }
 
-        else
+        [HttpGet("{productId}")]
+        [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetById(int productId)
         {
-            return NotFound();
-        }
-    }
+            using (Operation.Time("GetProductById"))
+            {
+                try
+                {
+                    var product = await _service.GetByIdAsync(productId);
 
-    [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Delete(int id)
-    {
-        var producRemoved = await _service.DeleteAsync(id);
-        if (producRemoved == null)
-        {
-            return NotFound();
+                    if (product == null)
+                    {
+                        return NotFound();
+                    }
+
+                    return Ok(product);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Ocorreu um erro ao obter o produto por ID.");
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+            }
         }
-        return NoContent();
+
+        [HttpPost]
+        [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Insert(ProductDTO productDTO)
+        {
+            using (Operation.Time("InsertProduct"))
+            {
+                try
+                {
+                    ProductDTO insertedProduct;
+                    _logger.LogInformation("Objeto recebido {@dto}", productDTO);
+                    insertedProduct = await _service.InsertAsync(productDTO);
+                    return CreatedAtAction(nameof(GetById), new { id = insertedProduct.Id }, insertedProduct);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Ocorreu um erro ao inserir o produto.");
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+            }
+        }
+
+        [HttpPut("{id:int}")]
+        [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update(int id, UpdateProductDTO productDTO)
+        {
+            using (Operation.Time("UpdateProduct"))
+            {
+                try
+                {
+                    if (productDTO.Id == id)
+                    {
+                        var product = await _service.UpdateAsync(productDTO);
+                        return Ok(product);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Ocorreu um erro ao atualizar o produto.");
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            using (Operation.Time("DeleteProduct"))
+            {
+                try
+                {
+                    var productRemoved = await _service.DeleteAsync(id);
+                    if (productRemoved == null)
+                    {
+                        return NotFound();
+                    }
+                    return NoContent();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Ocorreu um erro ao excluir o produto.");
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+            }
+        }
     }
 }
