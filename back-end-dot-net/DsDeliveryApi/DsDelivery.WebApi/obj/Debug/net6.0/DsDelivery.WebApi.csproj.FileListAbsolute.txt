@@ -87,10 +87,7 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\o
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\obj\Debug\net6.0\DsDelivery.WebApi.pdb
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\obj\Debug\net6.0\DsDelivery.WebApi.genruntimeconfig.cache
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\obj\Debug\net6.0\ref\DsDelivery.WebApi.dll
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.AspNetCore.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
@@ -101,6 +98,6 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\b
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.Sinks.File.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\SerilogTimings.dll
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\System.Text.Json.dll
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\ILoggerTimings.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.Exceptions.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.Sinks.Async.dll

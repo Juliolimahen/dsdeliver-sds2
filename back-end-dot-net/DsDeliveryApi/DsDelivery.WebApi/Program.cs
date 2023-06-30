@@ -1,12 +1,14 @@
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
+using Serilog.Formatting.Compact;
+using Microsoft.Extensions.Logging;
 
 namespace DsDelivery.WebApi;
 
@@ -14,11 +16,26 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        CreateHostBuilder(args).Build().Run();
+        //CreateHostBuilder(args).Build().Run();
 
         IConfigurationRoot configuration = GetConfiguration();
 
         ConfiguraLog(configuration);
+
+        try
+        {
+            Log.Information("Iniciando o WebApi");
+            CreateHostBuilder(args).Build().Run();
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "Erro catastr�fico.");
+            throw;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
     }
 
     private static void ConfiguraLog(IConfigurationRoot configuration)

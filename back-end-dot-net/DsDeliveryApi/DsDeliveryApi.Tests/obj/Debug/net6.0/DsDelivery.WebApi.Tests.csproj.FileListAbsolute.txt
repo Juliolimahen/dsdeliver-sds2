@@ -168,3 +168,17 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.pdb
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.genruntimeconfig.cache
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\ref\DsDelivery.WebApi.Tests.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\ILoggerTimings.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.AspNetCore.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Exceptions.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Sinks.Async.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.Sinks.File.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\SerilogTimings.dll

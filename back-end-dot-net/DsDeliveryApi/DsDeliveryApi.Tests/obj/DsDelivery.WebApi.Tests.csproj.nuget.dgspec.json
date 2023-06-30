@@ -334,6 +334,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "ILoggerTimings": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.17.0, )"
@@ -344,11 +352,31 @@
             },
             "Serilog.AspNetCore": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[5.0.0, )"
+            },
+            "Serilog.Exceptions": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Serilog.Formatting.Compact": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
+            "Serilog.Sinks.Async": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "SerilogTimings": {
               "target": "Package",
-              "version": "[3.0.1, )"
+              "version": "[2.3.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

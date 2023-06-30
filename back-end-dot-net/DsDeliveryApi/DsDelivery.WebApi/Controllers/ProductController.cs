@@ -27,7 +27,7 @@ namespace DsDelivery.WebApi.Controllers
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<List<ProductDTO>>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
             using (Operation.Time("GetAllProducts"))
             {
@@ -75,7 +75,7 @@ namespace DsDelivery.WebApi.Controllers
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Insert(ProductDTO productDTO)
+        public async Task<IActionResult> Insert(CreateProductDTO productDTO)
         {
             using (Operation.Time("InsertProduct"))
             {

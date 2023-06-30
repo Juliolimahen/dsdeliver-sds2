@@ -10,6 +10,6 @@ public interface IProductService
     Task <ProductDTO> DeleteAsync(int id);
     Task<List<ProductDTO>> GetAllAsync();
     Task<ProductDTO> GetByIdAsync(int id);
-    Task<ProductDTO> InsertAsync(ProductDTO dto);
+    Task<ProductDTO> InsertAsync(CreateProductDTO dto);
     Task<ProductDTO> UpdateAsync(UpdateProductDTO productDTO);
 }

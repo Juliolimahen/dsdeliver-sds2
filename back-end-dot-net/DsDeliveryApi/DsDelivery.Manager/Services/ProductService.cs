@@ -30,7 +30,7 @@ public class ProductService : IProductService
         return _mapper.Map<ProductDTO>(product);
     }
 
-    public async Task<ProductDTO> InsertAsync(ProductDTO dto)
+    public async Task<ProductDTO> InsertAsync(CreateProductDTO dto)
     {
         Product product = _mapper.Map<Product>(dto);
         product = await _repository.AddAsync(product);
