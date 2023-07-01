@@ -30,7 +30,6 @@ function Home() {
                     </HomeImage>
                 </HomeContent>
             </HomeContainer>
-            <Footer />
         </>
     )
 }

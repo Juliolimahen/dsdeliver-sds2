@@ -5,7 +5,6 @@ import { OrderLocationData, Product } from './types';
 import { fetchProducts, saveOrder } from '../../Services/api';
 import OrderLocation from './OrderLocation/index';
 import OrderSummary from './OrderSummary/index';
-import Footer from '../../Components/Footer/index';
 import { checkIsSelected } from './helpers';
 import { FadeLoader } from 'react-spinners';
 
@@ -64,7 +63,6 @@ function Orders() {
   };
 
   return (
-    <>
       <div className="orders-container">
         <StepsHeader />
         {loading ? (
@@ -85,8 +83,6 @@ function Orders() {
           onSubmit={handleSubmit}
         />
       </div>
-      <Footer />
-    </>
   );
 }
 

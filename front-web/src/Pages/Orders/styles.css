@@ -1,5 +1,8 @@
 .orders-container {
   background-color: var(--light-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .orders-container h3 {

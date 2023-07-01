@@ -1,13 +1,13 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@mui/material';
+import { ThemeProvider} from '@mui/material';
 import Home from './Pages/Home/index';
 import Navbar from './Components/Navbar/index';
 import Orders from './Pages/Orders/index';
 import ProductList from './Pages/Cadastro/index';
-import Login from './Pages/Login';
-
-const theme = createTheme();
+import Login from './Pages/Admin/Login';
+import theme from './styles/theme/theme';
+import Footer from './Components/Footer';
 
 const Routes: React.FC = () => {
   return (
@@ -28,6 +28,7 @@ const Routes: React.FC = () => {
             <Login />
           </Route>
         </Switch>
+        <Footer/>
       </BrowserRouter>
     </ThemeProvider>
   );

@@ -255,7 +255,6 @@ const ProductList: React.FC = () => {
             </StyledModalPaper>
           </Modal>
         </Container>
-        <Footer />
       </>
     </ThemeProvider>
   );

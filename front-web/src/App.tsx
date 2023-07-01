@@ -1,21 +1,9 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createTheme, ThemeProvider} from '@mui/material';
-
+import {ThemeProvider} from '@mui/material';
+import theme from './styles/theme/theme';
 import './styles/App.css';
 import Routes from './Routes';
-
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
-});
 
 
 function App() {
