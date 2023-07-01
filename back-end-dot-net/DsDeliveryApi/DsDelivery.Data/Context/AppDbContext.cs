@@ -19,6 +19,8 @@ namespace DsDeliveryApi.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<OrderProduct>()
                 .HasKey(op => new { op.OrderId, op.ProductId });
 
@@ -32,10 +34,12 @@ namespace DsDeliveryApi.Data.Context
                 .WithMany(p => p.OrderProducts)
                 .HasForeignKey(op => op.ProductId);
 
-            // Restante das configurações do modelo...
+            modelBuilder.Entity<Address>().HasKey(e => e.CustomerId);
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Phone>().HasKey(p => new { p.CustomerId, p.Number });
+
+            modelBuilder.Entity<User>().HasKey(k => k.Login);
+
         }
-
     }
 }

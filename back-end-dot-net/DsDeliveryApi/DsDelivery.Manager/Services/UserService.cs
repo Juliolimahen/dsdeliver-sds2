@@ -8,10 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using DsDelivery.Data.Service;
+using DsDelivery.Manager.Interfaces;
 
 namespace DsDelivery.Manager.Services
 {
-    public class UserService
+    public class UserService: IUserService
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
@@ -34,45 +37,45 @@ namespace DsDelivery.Manager.Services
             return _mapper.Map<UserDTO>(await _repository.GetAsync(login));
         }
 
-        public async Task<UserDTO> InsertAsync(CreateUserDTO novoUser)
+        public async Task<UserDTO> InsertAsync(CreateUserDTO createUser)
         {
-            var usuario = _mapper.Map<User>(novoUser);
-            ConverteSenhaEmHash(usuario);
-            return _mapper.Map<UserDTO>(await _repository.InsertAsync(usuario));
+            var user = _mapper.Map<User>(createUser);
+            ConverteSenhaEmHash(user);
+            return _mapper.Map<UserDTO>(await _repository.InsertAsync(user));
         }
 
-        private static void ConverteSenhaEmHash(User usuario)
+        public void ConverteSenhaEmHash(User user)
         {
             var passwordHasher = new PasswordHasher<User>();
-            usuario.Password = passwordHasher.HashPassword(usuario, usuario.Password);
+            user.Password = passwordHasher.HashPassword(user, user.Password);
         }
 
-        public async Task<UserDTO> UpdateMedicoAsync(User usuario)
+        public async Task<UserDTO> UpdateMedicoAsync(User user)
         {
-            ConverteSenhaEmHash(usuario);
-            return _mapper.Map<UserDTO>(await _repository.UpdateAsync(usuario));
+            ConverteSenhaEmHash(user);
+            return _mapper.Map<UserDTO>(await _repository.UpdateAsync(user));
         }
 
-        public async Task<LoggedUser> ValidaUserEGeraTokenAsync(User usuario)
+        public async Task<LoggedUser> ValidaUserEGeraTokenAsync(User user)
         {
-            var usuarioConsultado = await _repository.GetAsync(usuario.Login);
-            if (usuarioConsultado == null)
+            var userConsulted = await _repository.GetAsync(user.Login);
+            if (userConsulted == null)
             {
                 return null;
             }
-            if (await ValidaEAtualizaHashAsync(usuario, usuarioConsultado.Password))
+            if (await ValidaEAtualizaHashAsync(user, userConsulted.Password))
             {
-                var usuarioLogado = _mapper.Map<LoggedUser>(usuarioConsultado);
-                usuarioLogado.Token = _jwt.GerarToken(usuarioConsultado);
-                return usuarioLogado;
+                var userLogado = _mapper.Map<LoggedUser>(userConsulted);
+                userLogado.Token = _jwt.GerarToken(userConsulted);
+                return userLogado;
             }
             return null;
         }
 
-        private async Task<bool> ValidaEAtualizaHashAsync(User usuario, string hash)
+        public async Task<bool> ValidaEAtualizaHashAsync(User user, string hash)
         {
             var passwordHasher = new PasswordHasher<User>();
-            var status = passwordHasher.VerifyHashedPassword(usuario, hash, usuario.Password);
+            var status = passwordHasher.VerifyHashedPassword(user, hash, user.Password);
             switch (status)
             {
                 case PasswordVerificationResult.Failed:
@@ -82,7 +85,7 @@ namespace DsDelivery.Manager.Services
                     return true;
 
                 case PasswordVerificationResult.SuccessRehashNeeded:
-                    await UpdateMedicoAsync(usuario);
+                    await UpdateMedicoAsync(user);
                     return true;
 
                 default:

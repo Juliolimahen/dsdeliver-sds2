@@ -101,3 +101,10 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\b
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\ILoggerTimings.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.Exceptions.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Serilog.Sinks.Async.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Humanizer.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\System.CodeDom.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\System.Text.Json.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

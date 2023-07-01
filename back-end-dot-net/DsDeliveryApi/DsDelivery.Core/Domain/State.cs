@@ -1,6 +1,6 @@
 ﻿namespace DsDelivery.Core.Domain
 {
-    public enum Estado
+    public enum State
     {
         AC,
         AL,

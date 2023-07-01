@@ -9,7 +9,7 @@ using DsDelivery.Manager.Interfaces;
 using DsDelivery.Data.Repositories;
 using DsDelivery.Manager.Services;
 using DsDelivery.Manager.Mapping;
-
+using DsDelivery.Data.Service;
 
 namespace DsDelivery.WebApi;
 
@@ -28,20 +28,6 @@ public class Startup
     {
 
         services.AddControllers();
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "DsDeliveryApi", Version = "v1" });
-        });
-
-        //services.AddCors(options =>
-        //{
-        //    options.AddDefaultPolicy(builder =>
-        //    {
-        //        builder.WithOrigins("http://localhost:3000")
-        //            .AllowAnyHeader()
-        //            .AllowAnyMethod();
-        //    });
-        //});
 
         services.AddCors(options =>
         {
@@ -57,11 +43,17 @@ public class Startup
 
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+
+        services.AddScoped<IJwtService, JwtService>();
 
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IUserService, UserService>();
 
         services.AddAutoMapper(typeof(MappingProfile));
+
+        services.AddSwaggerConfiguration();
 
 
     }

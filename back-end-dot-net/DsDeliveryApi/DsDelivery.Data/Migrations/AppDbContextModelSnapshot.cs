@@ -22,7 +22,72 @@ namespace DsDeliveryApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DsDeliveryApi.Models.Order", b =>
+            modelBuilder.Entity("DsDelivery.Core.Domain.Address", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Cep")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Complement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PublicPlace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("DsDelivery.Core.Domain.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Creation")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Document")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sexo")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("DsDelivery.Core.Domain.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,6 +96,7 @@ namespace DsDeliveryApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Latitude")
@@ -50,7 +116,7 @@ namespace DsDeliveryApi.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("DsDeliveryApi.Models.OrderProduct", b =>
+            modelBuilder.Entity("DsDelivery.Core.Domain.OrderProduct", b =>
                 {
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
@@ -65,7 +131,20 @@ namespace DsDeliveryApi.Migrations
                     b.ToTable("OrderProducts");
                 });
 
-            modelBuilder.Entity("DsDeliveryApi.Models.Product", b =>
+            modelBuilder.Entity("DsDelivery.Core.Domain.Phone", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CustomerId", "Number");
+
+                    b.ToTable("Phone");
+                });
+
+            modelBuilder.Entity("DsDelivery.Core.Domain.Position", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,12 +153,32 @@ namespace DsDeliveryApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Positions");
+                });
+
+            modelBuilder.Entity("DsDelivery.Core.Domain.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUri")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
@@ -90,15 +189,55 @@ namespace DsDeliveryApi.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DsDeliveryApi.Models.OrderProduct", b =>
+            modelBuilder.Entity("DsDelivery.Core.Domain.User", b =>
                 {
-                    b.HasOne("DsDeliveryApi.Models.Order", "Order")
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Login");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PositionUser", b =>
+                {
+                    b.Property<int>("PositionsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsersLogin")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PositionsId", "UsersLogin");
+
+                    b.HasIndex("UsersLogin");
+
+                    b.ToTable("PositionUser");
+                });
+
+            modelBuilder.Entity("DsDelivery.Core.Domain.Address", b =>
+                {
+                    b.HasOne("DsDelivery.Core.Domain.Customer", "Customer")
+                        .WithOne("Address")
+                        .HasForeignKey("DsDelivery.Core.Domain.Address", "CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("DsDelivery.Core.Domain.OrderProduct", b =>
+                {
+                    b.HasOne("DsDelivery.Core.Domain.Order", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DsDeliveryApi.Models.Product", "Product")
+                    b.HasOne("DsDelivery.Core.Domain.Product", "Product")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -109,12 +248,46 @@ namespace DsDeliveryApi.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("DsDeliveryApi.Models.Order", b =>
+            modelBuilder.Entity("DsDelivery.Core.Domain.Phone", b =>
+                {
+                    b.HasOne("DsDelivery.Core.Domain.Customer", "Customer")
+                        .WithMany("Phones")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("PositionUser", b =>
+                {
+                    b.HasOne("DsDelivery.Core.Domain.Position", null)
+                        .WithMany()
+                        .HasForeignKey("PositionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DsDelivery.Core.Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersLogin")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DsDelivery.Core.Domain.Customer", b =>
+                {
+                    b.Navigation("Address")
+                        .IsRequired();
+
+                    b.Navigation("Phones");
+                });
+
+            modelBuilder.Entity("DsDelivery.Core.Domain.Order", b =>
                 {
                     b.Navigation("OrderProducts");
                 });
 
-            modelBuilder.Entity("DsDeliveryApi.Models.Product", b =>
+            modelBuilder.Entity("DsDelivery.Core.Domain.Product", b =>
                 {
                     b.Navigation("OrderProducts");
                 });

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SerilogTimings;
 using Serilog;
 using Operation = SerilogTimings.Operation;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DsDelivery.WebApi.Controllers
 {
