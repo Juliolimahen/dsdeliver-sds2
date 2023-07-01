@@ -10,4 +10,9 @@
     <ProjectReference Include="..\DsDelivery.Core\DsDelivery.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dto\Customer\" />
+    <Folder Include="Dto\Address\" />
+  </ItemGroup>
+
 </Project>
