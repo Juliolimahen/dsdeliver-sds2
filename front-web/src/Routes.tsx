@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ThemeProvider} from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import Home from './Pages/Home/index';
 import Navbar from './Components/Navbar/index';
 import Orders from './Pages/Orders/index';
@@ -8,6 +8,7 @@ import ProductList from './Pages/Cadastro/index';
 import Login from './Pages/Admin/Login';
 import theme from './styles/theme/theme';
 import Footer from './Components/Footer';
+import NotFound from './Components/NotFound';
 
 const Routes: React.FC = () => {
   return (
@@ -27,12 +28,12 @@ const Routes: React.FC = () => {
           <Route path="/admin">
             <Login />
           </Route>
+          <Route path="*" component={NotFound} />
         </Switch>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
 };
 
 export default Routes;
-
