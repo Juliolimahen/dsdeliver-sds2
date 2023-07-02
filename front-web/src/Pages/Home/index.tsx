@@ -1,5 +1,4 @@
 import { ReactComponent as MainImage } from '../../assets/home/main.svg';
-import Footer from '../../Components/Footer';
 import {
     HomeContainer,
     HomeContent,

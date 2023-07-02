@@ -15,7 +15,6 @@ import {
   createTheme,
   ThemeProvider,
 } from '@mui/material';
-import Footer from '../../Components/Footer';
 import { fetchProducts, saveProduct, createProduct, deleteProduct } from '../../Services/api';
 import StepsHeader from './StepsHeader/index';
 import { Product } from '../Orders/types';
