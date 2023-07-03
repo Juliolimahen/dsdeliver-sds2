@@ -3,6 +3,12 @@ import LoginForm from '../../../Components/LoginForm';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { login } from '../../../Services/api';
+import { isTokenExpired } from '../../../utils/auth';
+
+interface LoginProps {
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+  setToken: React.Dispatch<React.SetStateAction<string | null>>;
+}
 
 const Container = styled.div`
   display: flex;
@@ -21,7 +27,12 @@ const Container = styled.div`
   }
 `;
 
-const Login: React.FC = () => {
+const ErrorMsg = styled.p`
+  color: red;
+  margin-top: 10px;
+`;
+
+const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setToken }) => {
   const history = useHistory();
   const [error, setError] = useState<string>('');
 
@@ -29,29 +40,40 @@ const Login: React.FC = () => {
     try {
       const response = await login(username, password);
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response.status === 200) {
+        const data = response.data;
         const { token } = data; // Desestruturação para obter o token
 
-        // Armazenar o token JWT no Local Storage
-        localStorage.setItem('token', token);
+        if (isTokenExpired(token)) {
 
-        // Redirecionar para a página de sucesso de login
-        history.push('/admin/products');
-      } else if (response.status === 401) {
-        setError('Credenciais inválidas');
+          localStorage.removeItem('token');
+          setError('Sua sessão expirou. Por favor, faça login novamente.');
+        } else {
+
+          localStorage.setItem('token', token);
+
+          setToken(token);
+
+          setIsAuthenticated(true);
+
+          history.push('/admin/products');
+        }
       } else {
         setError('Erro na requisição de login');
       }
     } catch (error) {
-      setError('Erro ao fazer a requisição de login');
+      if (error.response && error.response.status === 401) {
+        setError('Credenciais inválidas');
+      } else {
+        setError('Erro ao fazer a requisição de login');
+      }
     }
   };
-
 
   return (
     <Container>
       <LoginForm onSubmit={handleLoginSubmit} />
+      {error && <ErrorMsg>{error}</ErrorMsg>}
     </Container>
   );
 };

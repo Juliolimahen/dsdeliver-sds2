@@ -42,16 +42,11 @@ export function deleteProduct(productId: number) {
     return axios.delete(`${API_URL}/products/${productId}`);
 }
 
-//teste 
-export async function login(username: string, password: string) {
-  return await fetch(`${API_URL}/api/User/Login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username,
-      password,
-    }),
-  });
-}
+export function login(login: string, password: string) {
+    return axios.post(`${API_URL}/api/User/Login`, { login, password }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+  
