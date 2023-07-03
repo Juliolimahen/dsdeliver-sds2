@@ -7,47 +7,45 @@ using DsDelivery.Manager.Services;
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared.Dto.User;
 
-namespace DsDelivery.WebApi.Controllers
+namespace DsDelivery.WebApi.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+
+public class UserController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
+    private readonly IUserService manager;
 
-    public class UserController : ControllerBase
+    public UserController(IUserService manager)
     {
-        private readonly IUserService _service;
+        this.manager = manager;
+    }
 
-        public UserController(IUserService _service)
+    [HttpGet]
+    [Route("Login")]
+    public async Task<IActionResult> Login([FromBody] User user)
+    {
+        var userLogado = await manager.ValidaUserEGeraTokenAsync(user);
+        if (userLogado != null)
         {
-            this._service = _service;
+            return Ok(userLogado);
         }
+        return Unauthorized();
+    }
 
-        [HttpGet]
-        [Route("Login")]
-        public async Task<IActionResult> Login([FromBody] User user)
-        {
-            var userLogged = await _service.ValidaUserEGeraTokenAsync(user);
-            if (userLogged != null)
-            {
-                return Ok(userLogged);
-            }
-            return Unauthorized();
-        }
+    //[Authorize(Roles = "Presidente, Lider")]
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        string login = User.Identity.Name;
+        var user = await manager.GetAsync(login);
+        return Ok(user);
+    }
 
-        [Authorize(Roles = "Presidente, Lider, Diretor")]
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            string login = User.Identity.Name;
-            var user = await _service.GetAsync(login);
-            return Ok(user);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Post(CreateUserDTO user)
-        {
-            var userInserido = await _service.InsertAsync(user);
-            return CreatedAtAction(nameof(Get), new { login = user.Login }, userInserido);
-        }
+    [HttpPost]
+    public async Task<IActionResult> Post(CreateUserDTO user)
+    {
+        var userInserido = await manager.InsertAsync(user);
+        return CreatedAtAction(nameof(Get), new { login = user.Login }, userInserido);
     }
 }

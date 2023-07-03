@@ -10,6 +10,7 @@
         "dependencies": {
           "DsDelivery.Manager": "1.0.0",
           "ILoggerTimings": "1.0.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.2",
           "Microsoft.EntityFrameworkCore.Design": "7.0.8",
           "Microsoft.Extensions.Logging": "7.0.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.0",
@@ -100,6 +101,17 @@
           "lib/netstandard2.0/ILoggerTimings.dll": {
             "assemblyVersion": "1.0.1.0",
             "fileVersion": "1.0.1.0"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.2": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.21.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "assemblyVersion": "6.0.2.0",
+            "fileVersion": "6.0.222.6412"
           }
         }
       },
@@ -1049,6 +1061,13 @@
       "sha512": "sha512-WCPNY/y6fKjTRvKfsfWnOGYQbIDbP++cD7QSw04h2ZOJWcX/VVaYigi4b5Y+uTnL38Zw5D7nkQqbSS0Pt2lhCg==",
       "path": "iloggertimings/1.0.1",
       "hashPath": "iloggertimings.1.0.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-piqHQnFONTynowTNuMDqCyL2oWSVrnoDhwc7iywwl4VG0Y2WCbpyoYQyiXlHpyc9htWy2KcM2cAe2twC4gBt8w==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/6.0.2",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.6.0.2.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

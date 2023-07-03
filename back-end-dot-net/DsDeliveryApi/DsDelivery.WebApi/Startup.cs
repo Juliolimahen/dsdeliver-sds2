@@ -45,7 +45,7 @@ public class Startup
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
 
-        services.AddScoped<IJwtService, JwtService>();
+        services.AddSingleton<IJwtService, JwtService>();
 
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IProductService, ProductService>();
@@ -74,21 +74,9 @@ public class Startup
 
         app.UseCors();
 
-        app.UseCors(builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
+       
 
-        // Add logging middleware
-        app.Use(async (context, next) =>
-        {
-            Console.WriteLine($"Request: {context.Request.Method} {context.Request.Path}");
-            await next.Invoke();
-        });
-
-        app.UseAuthorization();
+        app.UseJwtConfiguration();
 
         app.UseEndpoints(endpoints =>
         {

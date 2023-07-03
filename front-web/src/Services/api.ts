@@ -41,3 +41,17 @@ export function createProduct(product: Product) {
 export function deleteProduct(productId: number) {
     return axios.delete(`${API_URL}/products/${productId}`);
 }
+
+//teste 
+export async function login(username: string, password: string) {
+  return await fetch(`${API_URL}/api/User/Login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  });
+}

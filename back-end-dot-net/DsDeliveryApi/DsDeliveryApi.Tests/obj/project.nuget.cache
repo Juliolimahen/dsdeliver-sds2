@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wnN5a6JbD6gkMvFcnwLJB6w03jaHmsins5YZ49bhudF2UjFjwB3Tx8Rg3/ebgbxr+l1SST8Vr4EA97WKbbuPBA==",
+  "dgSpecHash": "6oGQ/oommSqoHYleVpe+sGu7G6Wyq4eGfLOipz0+UhHNseAceeAiKOjybP2ojlTKQYe40YTEYJ6Or7gHg+Xt4w==",
   "success": true,
   "projectFilePath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi.Tests\\DsDelivery.WebApi.Tests.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\DevPC\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\iloggertimings\\1.0.1\\iloggertimings.1.0.1.nupkg.sha512",
+    "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.2\\microsoft.aspnetcore.authentication.jwtbearer.6.0.2.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
