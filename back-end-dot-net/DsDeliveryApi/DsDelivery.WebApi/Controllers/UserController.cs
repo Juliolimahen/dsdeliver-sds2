@@ -14,18 +14,18 @@ namespace DsDelivery.WebApi.Controllers;
 
 public class UserController : ControllerBase
 {
-    private readonly IUserService manager;
+    private readonly IUserService _service;
 
-    public UserController(IUserService manager)
+    public UserController(IUserService service)
     {
-        this.manager = manager;
+        _service = service;
     }
 
     [HttpPost]
     [Route("Login")]
     public async Task<IActionResult> Login([FromBody] User user)
     {
-        var userLogado = await manager.ValidaUserEGeraTokenAsync(user);
+        var userLogado = await _service.ValidaUserEGeraTokenAsync(user);
         if (userLogado != null)
         {
             return Ok(userLogado);
@@ -34,12 +34,12 @@ public class UserController : ControllerBase
     }
 
 
-    //[Authorize(Roles = "Presidente, Lider, Diretor")]
+    [Authorize(Roles = "Presidente, Lider, Diretor")]
     [HttpGet]
     public async Task<IActionResult> Get()
     {
         string login = User.Identity.Name;
-        var user = await manager.GetAsync(login);
+        var user = await _service.GetAsync(login);
         return Ok(user);
     }
 
@@ -47,7 +47,7 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post(CreateUserDTO user)
     {
-        var userInserido = await manager.InsertAsync(user);
+        var userInserido = await _service.InsertAsync(user);
         return CreatedAtAction(nameof(Get), new { login = user.Login }, userInserido);
     }
 }

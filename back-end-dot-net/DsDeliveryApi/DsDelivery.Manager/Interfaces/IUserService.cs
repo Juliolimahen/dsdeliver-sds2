@@ -10,12 +10,12 @@ namespace DsDelivery.Manager.Interfaces
 {
     public interface IUserService
     {
-        void ConverteSenhaEmHash(User usuario);
+        void ConverteSenhaEmHash(User user);
         Task<IEnumerable<UserDTO>> GetAsync();
         Task<UserDTO> GetAsync(string login);
-        Task<UserDTO> InsertAsync(CreateUserDTO novoUser);
-        Task<UserDTO> UpdateMedicoAsync(User usuario);
-        Task<bool> ValidaEAtualizaHashAsync(User usuario, string hash);
-        Task<LoggedUser> ValidaUserEGeraTokenAsync(User usuario);
+        Task<UserDTO> InsertAsync(CreateUserDTO userDTO);
+        Task<UserDTO> UpdateMedicoAsync(User user);
+        Task<bool> ValidaEAtualizaHashAsync(User user, string hash);
+        Task<LoggedUser> ValidaUserEGeraTokenAsync(User user);
     }
 }
