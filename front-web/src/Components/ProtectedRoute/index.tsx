@@ -1,30 +1,22 @@
-import React, { ComponentType } from 'react';
+import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
+import authService  from '../../Services/authService';
 
 interface ProtectedRouteProps extends RouteProps {
-  isAuthenticated: boolean;
-  redirectPath: string;
-  component: ComponentType<any>;
+  component: React.ComponentType<any>;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  isAuthenticated,
-  redirectPath,
-  component: Component,
-  ...rest
-}) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={redirectPath} />
-        )
-      }
-    />
-  );
-};
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      authService.isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/admin" />
+      )
+    }
+  />
+);
 
 export default ProtectedRoute;

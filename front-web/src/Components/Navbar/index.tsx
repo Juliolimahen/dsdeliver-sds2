@@ -1,7 +1,9 @@
 import { ReactComponent as Logo } from '../../assets/navbar/logo.svg';
 import { MainNavbar, LogoText} from './style';
 
-function Navbar() {
+
+const Navbar: React.FC = () =>  {
+
   return (
     <MainNavbar>
       <Logo />
