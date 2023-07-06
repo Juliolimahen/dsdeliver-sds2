@@ -1,15 +1,40 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/navbar/logo.svg';
-import { MainNavbar, LogoText} from './style';
+import { MainNavbar, LogoText, LogoutButton } from './style';
+import authService from '../../Services/authService';
 
+const Navbar: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const history = useHistory();
 
-const Navbar: React.FC = () =>  {
+  useEffect(() => {
+    const checkAuthStatus = () => {
+      const isAuthenticated = authService.isAuthenticated();
+      setIsAuthenticated(isAuthenticated);
+    };
+
+    checkAuthStatus();
+
+    // Chamamos a função checkAuthStatus sempre que a history.push é chamada
+    history.listen((location) => {
+      checkAuthStatus();
+    });
+  }, []);
+
+  const handleLogout = () => {
+    authService.logout();
+    setIsAuthenticated(false);
+    history.push('/admin'); // Redirecione para a página de login
+  };
 
   return (
     <MainNavbar>
       <Logo />
       <LogoText to="/">DS Delivery</LogoText>
+      {isAuthenticated && <LogoutButton onClick={handleLogout}>Logout</LogoutButton>}
     </MainNavbar>
   );
-}
+};
 
 export default Navbar;

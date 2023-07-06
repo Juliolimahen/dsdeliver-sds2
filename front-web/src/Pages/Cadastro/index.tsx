@@ -18,6 +18,7 @@ import {
 import { fetchProducts, saveProduct, createProduct, deleteProduct } from '../../Services/api';
 import StepsHeader from './StepsHeader/index';
 import { Product } from '../Orders/types';
+import LogoutButton from '../../Components/LogoutButton';
 import {
   Container,
   ButtonAlignmentStyle,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginForm from '../../../Components/LoginForm';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
@@ -34,19 +34,23 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
   const history = useHistory();
   const [error, setError] = useState<string>('');
 
+  useEffect(() => {
+    setIsAuthenticated(false);
+  }, []);
+
   const handleLoginSubmit = async (login: string, password: string) => {
     try {
       const { success } = await authService.login(login, password);
 
       if (success) {
+        history.push('/admin/products');        
         setIsAuthenticated(true);
-        history.push('/admin/products');
       } else {
         setError('Credenciais inválidas');
       }
     } catch (error) {
       setError('Erro ao fazer a requisição de login');
-      console.log(error)
+      console.log(error);
     }
   };
 
