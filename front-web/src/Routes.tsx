@@ -12,7 +12,7 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import Cadastro from './Pages/Cadastro/index';
 
 const Routes: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [, setIsAuthenticated] = useState(false);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
