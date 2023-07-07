@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/navbar/logo.svg';
 import { MainNavbar, LogoText, LogoutButton } from './style';
@@ -16,10 +16,11 @@ const Navbar: React.FC = () => {
 
     checkAuthStatus();
 
-    history.listen(() => {
+    // Chamamos a função checkAuthStatus sempre que a history.push é chamada
+    history.listen((_location) => {
       checkAuthStatus();
     });
-  });
+  }, [history]);
 
   const handleLogout = () => {
     authService.logout();
