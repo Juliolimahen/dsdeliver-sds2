@@ -19,7 +19,7 @@ O projeto consiste em um sistema de registro e entrega de pedidos. Onde desenvol
 ## Sistema administrativo
 
 ![web 5](https://raw.githubusercontent.com/Juliolimahen/assets/main/ds-deliver/prints/login-admin.png)
-![web 6](https://raw.githubusercontent.com/Juliolimahen/assets/main/ds-deliver/prints/admin-add-products.png)
+![web 6](https://raw.githubusercontent.com/Juliolimahen/assets/main/ds-deliver/prints/admin-products.png)
 ![web 7](https://raw.githubusercontent.com/Juliolimahen/assets/main/ds-deliver/prints/admin-add-products.png)
 ![web 8](https://raw.githubusercontent.com/Juliolimahen/assets/main/ds-deliver/prints/admin-edit-products.png)
 ![web 9](https://raw.githubusercontent.com/Juliolimahen/assets/main/ds-deliver/prints/admin-delete-products.png)
