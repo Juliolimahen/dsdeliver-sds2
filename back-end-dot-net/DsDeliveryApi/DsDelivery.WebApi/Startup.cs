@@ -1,15 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using DsDelivery.WebApi.Configuration;
-using DsDelivery.Manager.Interfaces;
-using DsDelivery.Data.Repositories;
-using DsDelivery.Manager.Services;
 using DsDelivery.Manager.Mapping;
-using DsDelivery.Data.Service;
 
 namespace DsDelivery.WebApi;
 
@@ -40,22 +30,10 @@ public class Startup
         });
 
         services.AddDataBaseConfiguration(Configuration);
-
-        services.AddScoped<IOrderRepository, OrderRepository>();
-        services.AddScoped<IProductRepository, ProductRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
-
-        services.AddSingleton<IJwtService, JwtService>();
-
-        services.AddScoped<IOrderService, OrderService>();
-        services.AddScoped<IProductService, ProductService>();
-        services.AddScoped<IUserService, UserService>();
-
+        services.AddDependencyInjectionConfiguration();
         services.AddAutoMapper(typeof(MappingProfile));
-
+        services.AddFluentValidationConfiguration();
         services.AddSwaggerConfiguration();
-
-
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

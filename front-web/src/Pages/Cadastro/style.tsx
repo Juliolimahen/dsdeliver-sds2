@@ -28,7 +28,6 @@ export const Container = styled.div<{ hasProducts: boolean }>`
   `}
 `;
 
-
 export const ProductImage = styled.img`
   width: 100%;
   height: auto;

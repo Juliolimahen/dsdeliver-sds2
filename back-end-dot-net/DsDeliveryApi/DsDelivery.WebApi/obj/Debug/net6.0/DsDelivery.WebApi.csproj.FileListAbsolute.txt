@@ -109,3 +109,11 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\b
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\System.Text.Json.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\FluentValidation.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\MicroElements.Swashbuckle.FluentValidation.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
