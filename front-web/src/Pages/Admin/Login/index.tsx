@@ -36,7 +36,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
 
   useEffect(() => {
     setIsAuthenticated(false);
-  }, []);
+  }, [setIsAuthenticated]);
 
   const handleLoginSubmit = async (login: string, password: string) => {
     try {
