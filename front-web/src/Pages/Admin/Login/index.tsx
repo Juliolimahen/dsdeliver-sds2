@@ -1,34 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import LoginForm from '../../../Components/LoginForm';
-import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import authService from '../../../Services/authService';
+import { Container, ErrorMsg } from './style';
 
 interface LoginProps {
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 90vh;
-  align-items: center;
-  justify-content: center;
-
-  h1 {
-    margin: 0;
-  }
-
-  @media only screen and (max-width: 768px), (max-height: 700px) {
-    height: auto;
-    margin-bottom: 10px;
-  }
-`;
-
-const ErrorMsg = styled.p`
-  color: red;
-  margin-top: 10px;
-`;
 
 const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
   const history = useHistory();
@@ -43,7 +21,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
       const { success } = await authService.login(login, password);
 
       if (success) {
-        history.push('/admin/products');        
+        history.push('/admin/products');
         setIsAuthenticated(true);
       } else {
         setError('Credenciais inválidas');
