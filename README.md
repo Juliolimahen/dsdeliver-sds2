@@ -41,7 +41,6 @@ O projeto consiste em um sistema de registro e entrega de pedidos. Onde desenvol
 ![api 1](https://raw.githubusercontent.com/Juliolimahen/assets/main/ds-deliver/prints/swagger-doc-api.png)
 ![api 2](https://raw.githubusercontent.com/Juliolimahen/assets/main/ds-deliver/prints/swagger-doc-api-1.png)
 
-
 <br>
 
 ## Modelo conceitual

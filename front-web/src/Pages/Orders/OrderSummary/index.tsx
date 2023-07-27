@@ -1,5 +1,12 @@
-import '../styles.css';
 import { formatPrice } from '../helpers';
+import {
+    OrderSummaryContainer,
+    OrderSummaryContent,
+    AmountSelectedContainer,
+    AmountSelected,
+    OrderSummaryTotal,
+    OrderSummaryMakeOrder
+} from '../styles';
 
 type Props = {
     amount: number;
@@ -9,26 +16,23 @@ type Props = {
 
 function OrderSummary({ amount, totalPrice, onSubmit }: Props) {
     return (
-        <div className="order-summary-container">
-            <div className="order-summary-content">
+        <OrderSummaryContainer>
+            <OrderSummaryContent>
                 <div>
-                    <span className="amount-selected-container">
-                        <strong className="amount-selected">{amount}</strong>
+                    <AmountSelectedContainer>
+                        <AmountSelected>{amount}</AmountSelected>
                         PEDIDOS SELECIONADOS
-                    </span>
-                    <span className="order-summary-total">
-                        <strong className="amount-selected">{formatPrice(totalPrice)}</strong>
+                    </AmountSelectedContainer>
+                    <OrderSummaryTotal>
+                        <AmountSelected>{formatPrice(totalPrice)}</AmountSelected>
                         VALOR TOTAL
-                    </span>
+                    </OrderSummaryTotal>
                 </div>
-                <button
-                    className="order-summary-make-order"
-                    onClick={onSubmit}
-                >
+                <OrderSummaryMakeOrder onClick={onSubmit}>
                     FAZER PEDIDO
-                </button>
-            </div>
-        </div>
+                </OrderSummaryMakeOrder>
+            </OrderSummaryContent>
+        </OrderSummaryContainer>
     )
 }
 

@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import AsyncSelect from 'react-select/async'
 import { fetchLocalMapBox } from '../../../Services/api';
 import { OrderLocationData } from '../types';
-import { OrderLocationContainer, OrderLocationContent, OrderLocationTitle } from '../styles';
+import { OrderLocationContainer, OrderLocationContent, OrderLocationTitle, FilterContainer } from '../styles';
 
 const initialPosition = {
     lat: -21.4882387,
@@ -60,14 +60,14 @@ function OrderLocation({ onChangeLocation }: Props) {
                 <OrderLocationTitle>
                     Selecione onde o pedido deve ser entregue
                 </OrderLocationTitle>
-                <div className="filter-container">
+                <FilterContainer>
                     <AsyncSelect
                         placeholder="Digite um endereço para entregar o pedido"
                         className="filter"
                         loadOptions={loadOptions}
                         onChange={value => handleChangeSelect(value as Place)}
                     />
-                </div>
+                </FilterContainer>
 
                 <MapContainer
                     center={address.position}

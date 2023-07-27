@@ -1,6 +1,7 @@
 import { checkIsSelected } from "../helpers";
 import ProductCard from "../ProductCard";
 import { Product } from "../types";
+import { OrderListContainer, OrderListItems } from "../styles";
 
 type Props = {
     products: Product[];
@@ -8,11 +9,14 @@ type Props = {
     onSelectProduct: (product: Product) => void;
 }
 
-function ProductsList({ products, selectedProducts, onSelectProduct }: Props) {
+const ProductsList: React.FC<Props> = ({
+    products,
+    selectedProducts,
+    onSelectProduct,
+}: Props) => {
     return (
-        <div
-            className="orders-list-container">
-            <div className="orders-list-items">
+        <OrderListContainer>
+            <OrderListItems>
                 {products.map(product => (
                     <ProductCard
                         key={product.id}
@@ -21,9 +25,9 @@ function ProductsList({ products, selectedProducts, onSelectProduct }: Props) {
                         isSelected={checkIsSelected(selectedProducts, product)}
                     />
                 ))}
-            </div>
-        </div>
-    )
-}
+            </OrderListItems>
+        </OrderListContainer>
+    );
+};
 
 export default ProductsList;

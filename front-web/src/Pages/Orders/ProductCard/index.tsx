@@ -1,6 +1,6 @@
 import { formatPrice } from '../helpers';
 import { Product } from '../types';
-
+import { OrderCardContainer, OrderCardTitle, OrderCardImage, OrderCardPrice, OrderCardDescription } from '../styles';
 
 type Props = {
     product: Product;
@@ -10,29 +10,20 @@ type Props = {
 
 function ProductCard({ product, onSelectProduct, isSelected }: Props) {
     return (
-        <div
-            className={`order-card-container ${isSelected ? 'selected' : ''}`}
+        <OrderCardContainer
+            isSelected={isSelected}
             onClick={() => onSelectProduct(product)}
         >
-            <h3 className="order-card-title">
-                {product.name}
-            </h3>
-            <img
-                src={product.imageUri}
-                className="order-card-image" alt={product.name}
-            />
-            <h3 className="order-card-price">
+            <OrderCardTitle isSelected={isSelected}>{product.name}</OrderCardTitle>
+            <OrderCardImage src={product.imageUri} alt={product.name} />
+            <OrderCardPrice isSelected={isSelected}>
                 {formatPrice(product.price)}
-            </h3>
-            <div className="order-card-description">
-                <h3>
-                    Descrição
-                </h3>
-                <p>
-                    {product.description}
-                </p>
-            </div>
-        </div>
+            </OrderCardPrice>
+            <OrderCardDescription>
+                <h3>Descrição</h3>
+                <p>{product.description}</p>
+            </OrderCardDescription>
+        </OrderCardContainer>
     )
 }
 
