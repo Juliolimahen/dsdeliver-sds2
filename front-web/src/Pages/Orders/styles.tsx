@@ -293,3 +293,14 @@ export const OrderSummaryMakeOrder = styled.button`
     width: 100%;
   }
 `;
+
+export const LoadingContainer = styled.div `
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #DA5C5C;
+`

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import Home from './Pages/Home/index';
@@ -7,7 +7,7 @@ import Orders from './Pages/Orders/index';
 import Login from './Pages/Admin/Login';
 import theme from './styles/theme/theme';
 import Footer from './Components/Footer';
-import NotFound from './Components/NotFound';
+import NotFound from './Components/PageNotFound';
 import ProtectedRoute from './Components/ProtectedRoute';
 import Cadastro from './Pages/Cadastro/index';
 

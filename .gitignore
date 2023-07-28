@@ -1,0 +1,78 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.eslintcache
+.env
+/.metadata/
+
+# Arquivos binários, executáveis e bibliotecas
+bin/
+obj/
+
+# Arquivos gerados pela build
+Debug/
+Release/
+
+# Arquivos do Visual Studio
+.vs/
+
+# Cache de pacotes NuGet
+*.nuget.props
+*.nuget.targets
+
+# Diretório de configuração do Visual Studio
+.vscode/
+
+# Arquivo de configuração do Visual Studio
+*.sln
+
+# Arquivos de configuração do Visual Studio
+*.csproj.user
+*.user
+
+# Arquivos temporários do Visual Studio
+*.tmp
+*.userprefs
+
+*.log
+*.logs
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc

@@ -4,7 +4,6 @@ import { OrderPayload, Product } from "../Pages/Orders/types";
 const API_URL = process.env.REACT_APP_API_URL ?? 'https://localhost:44369';
 const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
 
-
 export function fetchProducts() {
     return axios(`${API_URL}/products`)
 }
@@ -20,7 +19,6 @@ export function saveOrder(payload: OrderPayload) {
         },
     });
 }
-
 
 export function saveProduct(product: Product) {
     return axios.put(`${API_URL}/products/${product.id}`, JSON.stringify(product), {
@@ -44,9 +42,8 @@ export function deleteProduct(productId: number) {
 
 export function login(login: string, password: string) {
     return axios.post(`${API_URL}/api/User/Login`, { login, password }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+        headers: {
+            'Content-Type': 'application/json',
+        },
     });
-  }
-  
+}

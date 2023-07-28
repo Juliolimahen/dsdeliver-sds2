@@ -1,4 +1,3 @@
-import './styles.css';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { OrderLocationData, Product } from './types';
@@ -7,9 +6,9 @@ import OrderLocation from './OrderLocation/index';
 import OrderSummary from './OrderSummary/index';
 import { checkIsSelected } from './helpers';
 import { FadeLoader } from 'react-spinners';
-
 import StepsHeader from './StepsHeader/index';
 import ProductsList from './ProductsList/index';
+import { OrderContainer, LoadingContainer } from './styles'
 
 function Orders() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -63,26 +62,26 @@ function Orders() {
   };
 
   return (
-      <div className="orders-container">
-        <StepsHeader />
-        {loading ? (
-          <div className="loading-container">
-            <FadeLoader color="#DA5C5C" loading={loading} />
-          </div>
-        ) : (
-          <ProductsList
-            products={products}
-            onSelectProduct={handleSelectProduct}
-            selectedProducts={selectedProducts}
-          />
-        )}
-        <OrderLocation onChangeLocation={setOrderLocation} />
-        <OrderSummary
-          amount={selectedProducts.length}
-          totalPrice={totalPrice}
-          onSubmit={handleSubmit}
+    <OrderContainer>
+      <StepsHeader />
+      {loading ? (
+        <LoadingContainer>
+          <FadeLoader color="#DA5C5C" loading={loading} />
+        </LoadingContainer>
+      ) : (
+        <ProductsList
+          products={products}
+          onSelectProduct={handleSelectProduct}
+          selectedProducts={selectedProducts}
         />
-      </div>
+      )}
+      <OrderLocation onChangeLocation={setOrderLocation} />
+      <OrderSummary
+        amount={selectedProducts.length}
+        totalPrice={totalPrice}
+        onSubmit={handleSubmit}
+      />
+    </OrderContainer>
   );
 }
 

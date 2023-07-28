@@ -26,7 +26,6 @@ import {
   StyledButton,
   StyledModalPaper,
 } from './style';
-import '../Orders/styles.css';
 
 const theme = createTheme();
 
