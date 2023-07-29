@@ -3,7 +3,7 @@
 namespace DsDelivery.Core.Shared.Dto.Product;
 
 
-public class ProductDTO
+public class ProductDTO : ICloneable
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -13,6 +13,12 @@ public class ProductDTO
 
     public ProductDTO()
     {
+    }
+
+    public object Clone()
+    {
+        var product = (ProductDTO)MemberwiseClone();
+        return product;
     }
 
     public ProductDTO(int id, string name, double price, string description, string imageUri)
