@@ -5,14 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DsDelivery.Data.Repositories
+namespace DsDelivery.Data.Repositories.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        Task<IEnumerable<User>> GetAsync();
         Task<User> GetAsync(string login);
-        Task<User> InsertAsync(User user);
         Task InsertUserFuncaoAsync(User user);
-        Task<User> UpdateAsync(User user);
     }
 }

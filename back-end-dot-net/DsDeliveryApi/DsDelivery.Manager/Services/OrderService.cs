@@ -2,7 +2,7 @@
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared.Dto.Order;
 using DsDelivery.Core.Shared.Dto.Product;
-using DsDelivery.Data.Repositories;
+using DsDelivery.Data.Repositories.Interfaces;
 using DsDelivery.Manager.Interfaces;
 
 

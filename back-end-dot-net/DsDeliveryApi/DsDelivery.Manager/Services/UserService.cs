@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared.Dto.User;
-using DsDelivery.Data.Repositories;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using DsDelivery.Data.Service;
 using DsDelivery.Manager.Interfaces;
+using DsDelivery.Data.Repositories.Interfaces;
 
 namespace DsDelivery.Manager.Services
 {
@@ -29,7 +23,7 @@ namespace DsDelivery.Manager.Services
 
         public async Task<IEnumerable<UserDTO>> GetAsync()
         {
-            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(await _repository.GetAsync());
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(await _repository.GetAllAsync());
         }
 
         public async Task<UserDTO> GetAsync(string login)
@@ -41,7 +35,7 @@ namespace DsDelivery.Manager.Services
         {
             var user = _mapper.Map<User>(createUser);
             ConverteSenhaEmHash(user);
-            return _mapper.Map<UserDTO>(await _repository.InsertAsync(user));
+            return _mapper.Map<UserDTO>(await _repository.AddAsync(user));
         }
 
         public void ConverteSenhaEmHash(User user)

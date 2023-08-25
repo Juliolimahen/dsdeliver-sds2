@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using DsDelivery.Manager.Interfaces;
 using DsDelivery.Core.Domain;
-using DsDelivery.Data.Repositories;
 using DsDelivery.Core.Shared.Dto.Product;
+using DsDelivery.Data.Repositories.Interfaces;
 
 namespace DsDelivery.Manager.Services;
 

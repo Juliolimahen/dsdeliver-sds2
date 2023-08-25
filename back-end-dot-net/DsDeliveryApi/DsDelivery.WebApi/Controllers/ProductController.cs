@@ -73,6 +73,7 @@ namespace DsDelivery.WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -96,6 +97,7 @@ namespace DsDelivery.WebApi.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [Authorize]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -124,6 +126,7 @@ namespace DsDelivery.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

@@ -1,49 +1,66 @@
 ﻿using DsDelivery.Core.Domain;
 using DsDelivery.Data.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using DsDeliveryApi.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DsDelivery.Data.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        public Task AddAsync(TEntity entity)
+        protected readonly AppDbContext _dbContext;
+        protected readonly DbSet<TEntity> _dbSet;
+
+        protected Repository(AppDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+            _dbSet = dbContext.Set<TEntity>();
+        }
+
+        public async Task<TEntity> AddAsync(TEntity entity)
+        {
+            await _dbSet.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await _dbSet.AsNoTracking().ToListAsync();
+        }
+
+        public virtual async Task<TEntity> GetByIdAsync(int? id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
+        public async Task<TEntity> RemoveAsync(int? id)
+        {
+            var entity = await _dbSet.FindAsync(id);
+            if (entity == null)
+            {
+                return null;
+            }
+            var productRemoved = _dbSet.Remove(entity);
+            await _dbContext.SaveChangesAsync();
+            return productRemoved.Entity;
+        }
+
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbSet.Where(predicate).ToListAsync();
+        }
+
+        public virtual async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<TEntity>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TEntity> GetByIdAsync(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveAsync(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<TEntity>> SearchAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(TEntity entity)
-        {
-            throw new NotImplementedException();
+            _dbContext?.Dispose();
         }
     }
 }

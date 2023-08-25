@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DsDelivery.Core.Domain
 {
-    public class User
+    public class User : Entity
     {
         public string Login { get; set; }
         public string Password { get; set; }

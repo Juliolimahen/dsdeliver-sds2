@@ -1,7 +1,6 @@
 ﻿using DsDelivery.Core.Shared.Dto.Order;
 using DsDelivery.Manager.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace DsDelivery.WebApi.Controllers
 {

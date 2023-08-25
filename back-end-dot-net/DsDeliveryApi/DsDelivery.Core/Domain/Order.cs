@@ -5,10 +5,9 @@ using System.Linq;
 
 namespace DsDelivery.Core.Domain;
 
-public class Order
+public class Order:Entity
 {
     private object moment;
-    public int Id { get; set; }
     public string Address { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
