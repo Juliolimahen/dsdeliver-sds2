@@ -1,9 +1,8 @@
 ﻿using DsDelivery.Core.Domain;
 
-namespace DsDelivery.Data.Repositories.Interfaces
+namespace DsDelivery.Data.Repositories.Interfaces;
+
+public interface ICustomerRepository : IRepository<Customer>
 {
-    public interface ICustomerRepository : IRepository<Customer>
-    {
-        void UpdateCustomerTelefones(Customer customer, Customer customerConsulted);
-    }
+    void UpdateCustomerTelefones(Customer customer, Customer customerConsulted);
 }

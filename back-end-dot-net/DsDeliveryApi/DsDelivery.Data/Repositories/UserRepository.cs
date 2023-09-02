@@ -19,6 +19,14 @@ namespace DsDelivery.Data.Repositories
                 .SingleOrDefaultAsync(p => p.Login == login);
         }
 
+        public override async Task<User> AddAsync(User user)
+        {
+            await InsertUserFuncaoAsync(user);
+            await _dbSet.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+            return user;
+        }
+
         public async Task InsertUserFuncaoAsync(User user)
         {
             var positionsConsulteds = new List<Position>();
@@ -33,12 +41,15 @@ namespace DsDelivery.Data.Repositories
         public override async Task<User> UpdateAsync(User user)
         {
             var userConsulted = await _dbSet.FindAsync(user.Login);
+
             if (userConsulted == null)
             {
-                return null;
+                throw new Exception($"Usuário com login {user.Login} não encontrado.");
             }
+
             _dbContext.Entry(userConsulted).CurrentValues.SetValues(user);
             await _dbContext.SaveChangesAsync();
+
             return userConsulted;
         }
     }

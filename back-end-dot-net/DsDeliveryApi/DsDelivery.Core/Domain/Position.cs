@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace DsDelivery.Core.Domain
 {
-    public class Position
+    public class Position : Entity
     {
-        public int Id { get; set; }
         public string Description { get; set; }
 
         public ICollection<User> Users { get; set; }
