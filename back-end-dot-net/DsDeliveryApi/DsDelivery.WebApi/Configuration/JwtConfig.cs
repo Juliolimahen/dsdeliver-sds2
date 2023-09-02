@@ -17,6 +17,7 @@ namespace DsDelivery.WebApi.Configuration
             {
                 p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
             })
             .AddJwtBearer(p =>
             {

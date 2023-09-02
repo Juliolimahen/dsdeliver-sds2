@@ -1,18 +1,14 @@
-﻿using Azure;
-using DsDelivery.Core.Shared.Dto.Product;
+﻿using DsDelivery.Core.Shared.Dto.Product;
 using DsDelivery.Manager.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SerilogTimings;
-using Serilog;
 using Operation = SerilogTimings.Operation;
 using Microsoft.AspNetCore.Authorization;
 
 namespace DsDelivery.WebApi.Controllers
 {
+    [ApiController]
     [Route("products")]
     [Produces("application/json")]
-    [ApiController]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _service;
@@ -73,7 +69,7 @@ namespace DsDelivery.WebApi.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Presidente, Lider, Diretor")]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -95,9 +91,8 @@ namespace DsDelivery.WebApi.Controllers
                 }
             }
         }
-
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpPut("{id:int}")]
-        [Authorize]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -125,8 +120,8 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpDelete("{id}")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
