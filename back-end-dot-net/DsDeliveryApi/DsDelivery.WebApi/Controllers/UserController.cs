@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using DsDelivery.Manager.Interfaces;
-using DsDelivery.Manager.Services;
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared.Dto.User;
 
@@ -33,7 +30,7 @@ public class UserController : ControllerBase
         return Unauthorized();
     }
 
-    [Authorize(Roles = "Presidente, Lider, Diretor")]
+    [Authorize(Roles = "Diretor")]
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -42,7 +39,7 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
-    [Authorize(Roles = "Presidente, Lider, Diretor")]
+    [Authorize(Roles = "Diretor")]
     [HttpPost]
     public async Task<IActionResult> Post(CreateUserDTO user)
     {

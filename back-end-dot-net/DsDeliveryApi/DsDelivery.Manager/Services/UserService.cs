@@ -44,7 +44,7 @@ namespace DsDelivery.Manager.Services
             user.Password = passwordHasher.HashPassword(user, user.Password);
         }
 
-        public async Task<UserDTO> UpdateMedicoAsync(User user)
+        public async Task<UserDTO> UpdateAsync(User user)
         {
             ConverteSenhaEmHash(user);
             return _mapper.Map<UserDTO>(await _repository.UpdateAsync(user));
@@ -79,7 +79,7 @@ namespace DsDelivery.Manager.Services
                     return true;
 
                 case PasswordVerificationResult.SuccessRehashNeeded:
-                    await UpdateMedicoAsync(user);
+                    await UpdateAsync(user);
                     return true;
 
                 default:
