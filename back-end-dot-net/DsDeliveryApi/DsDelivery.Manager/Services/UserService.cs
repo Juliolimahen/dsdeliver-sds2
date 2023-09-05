@@ -23,7 +23,7 @@ namespace DsDelivery.Manager.Services
 
         public async Task<IEnumerable<UserDTO>> GetAsync()
         {
-            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(await _repository.GetAllAsync());
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(await _repository.GetAsync());
         }
 
         public async Task<UserDTO> GetAsync(string login)

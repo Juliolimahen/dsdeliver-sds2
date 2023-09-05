@@ -28,33 +28,27 @@ public static class SwaggerConfig
                 TermsOfService = new Uri("https://opensource.org/osd")
             });
 
-            // Bearer token authentication
-            OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                Name = "Bearer",
-                BearerFormat = "JWT",
-                Scheme = "bearer",
-                Description = "Specify the authorization token.",
                 In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-            };
+                Description = "Insira o token",
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey
+            });
 
-            c.AddSecurityDefinition("jwt_auth", securityDefinition);
-
-            // Make sure swagger UI requires a Bearer token specified
-            OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme()
-            {
-                Reference = new OpenApiReference()
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {
-                    Id = "jwt_auth",
-                    Type = ReferenceType.SecurityScheme
-                }
-            };
-            OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
-{
-{securityScheme, new string[] { }},
-};
-            c.AddSecurityRequirement(securityRequirements);
+                    new OpenApiSecurityScheme
+                    {
+                        Reference= new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id ="Bearer"
+                        }
+                    },
+                        Array.Empty<string>()
+                    }
+            });
 
             //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -69,7 +63,7 @@ public static class SwaggerConfig
 
             //    throw;
             //}
-           
+
             //c.AddFluentValidationRulesScoped();
         });
     }
