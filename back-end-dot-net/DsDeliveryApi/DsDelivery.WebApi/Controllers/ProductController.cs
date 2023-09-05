@@ -21,7 +21,6 @@ namespace DsDelivery.WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Diretor")]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -92,8 +91,9 @@ namespace DsDelivery.WebApi.Controllers
                 }
             }
         }
-        [Authorize(AuthenticationSchemes = "Bearer")]
+
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Presidente, Lider, Diretor")]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -121,8 +121,8 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
-        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Presidente, Lider, Diretor")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

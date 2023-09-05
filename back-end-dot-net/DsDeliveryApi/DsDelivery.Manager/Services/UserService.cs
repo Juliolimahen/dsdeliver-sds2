@@ -23,7 +23,7 @@ namespace DsDelivery.Manager.Services
 
         public async Task<IEnumerable<UserDTO>> GetAsync()
         {
-            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(await _repository.GetAsync());
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(await _repository.GetAllAsync());
         }
 
         public async Task<UserDTO> GetAsync(string login)
@@ -60,7 +60,7 @@ namespace DsDelivery.Manager.Services
             if (await ValidaEAtualizaHashAsync(user, userConsulted.Password))
             {
                 var userLogado = _mapper.Map<LoggedUser>(userConsulted);
-                userLogado.Token = _jwt.GerarToken(userConsulted);
+                userLogado.Token = _jwt.GenerateToken(userConsulted);
                 return userLogado;
             }
             return null;

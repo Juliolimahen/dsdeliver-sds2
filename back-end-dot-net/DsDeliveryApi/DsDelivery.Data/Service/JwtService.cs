@@ -20,7 +20,7 @@ public class JwtService : IJwtService
         this.configuration = configuration;
     }
 
-    public string GerarToken(User user)
+    public string GenerateToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var chave = Encoding.ASCII.GetBytes(configuration.GetSection("JWT:Secret").Value);

@@ -11,11 +11,6 @@ namespace DsDelivery.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<User>> GetAsync()
-        {
-            return await _dbSet.AsNoTracking().ToListAsync();
-        }
-
         public async Task<User> GetAsync(string login)
         {
             return await _dbSet

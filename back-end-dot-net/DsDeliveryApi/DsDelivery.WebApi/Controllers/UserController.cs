@@ -30,7 +30,7 @@ public class UserController : ControllerBase
         return Unauthorized();
     }
 
-    [Authorize(Roles = "Diretor")]
+    [Authorize(Roles = "Presidente, Lider, Diretor")]
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -39,7 +39,7 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
-    [Authorize(Roles = "Diretor")]
+    [Authorize(Roles = "Presidente, Lider, Diretor")]
     [HttpPost]
     public async Task<IActionResult> Post(CreateUserDTO user)
     {

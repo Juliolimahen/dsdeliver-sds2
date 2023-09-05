@@ -29,6 +29,7 @@ public class Startup
             });
         });
 
+        services.AddJwtTConfiguration(Configuration);
         services.AddDataBaseConfiguration(Configuration);
         services.AddAutoMapper(typeof(MappingProfile));
         services.AddFluentValidationConfiguration();

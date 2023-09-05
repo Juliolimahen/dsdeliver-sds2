@@ -1,5 +1,3 @@
-// authService.ts
-
 import axios from 'axios';
 import jwt_decode, { JwtPayload } from 'jwt-decode';
 
@@ -13,7 +11,7 @@ const authService = {
       const response = await axios.post<{ token: string }>(`${API_URL}/api/user/login`, { login, password });
       const token = response.data.token;
 
-      localStorage.setItem(TOKEN_KEY, token);
+      authService.setToken(token);
 
       return { success: true };
     } catch (error) {
@@ -21,8 +19,16 @@ const authService = {
     }
   },
 
+  setToken: (token: string) => {
+    localStorage.setItem(TOKEN_KEY, token);
+  },
+
+  getToken: (): string | null => {
+    return localStorage.getItem(TOKEN_KEY);
+  },
+
   isAuthenticated: (): boolean => {
-    const token = localStorage.getItem(TOKEN_KEY);
+    const token = authService.getToken();
 
     if (token) {
       const decodedToken = jwt_decode<JwtPayload>(token);
