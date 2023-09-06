@@ -5,13 +5,14 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.AssemblyInfo.cs
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.csproj.CoreCompileInputs.cache
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\testhost.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.Manager.deps.json
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.Manager.runtimeconfig.json
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.WebApi.deps.json
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.WebApi.runtimeconfig.json
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\appsettings.Development.json
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\appsettings.json
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.WebApi.exe
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\testhost.exe
-C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\xunit.runner.reporters.netcoreapp10.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\xunit.runner.utility.netcoreapp10.dll
@@ -24,6 +25,7 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Azure.Core.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Azure.Identity.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Castle.Core.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\FluentAssertions.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\FluentValidation.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
@@ -60,6 +62,7 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.TestPlatform.CoreUtilities.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.TestPlatform.CommunicationUtilities.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Microsoft.TestPlatform.CrossPlatEngine.dll
@@ -69,6 +72,7 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Moq.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\NSubstitute.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\NuGet.Frameworks.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\Serilog.AspNetCore.dll

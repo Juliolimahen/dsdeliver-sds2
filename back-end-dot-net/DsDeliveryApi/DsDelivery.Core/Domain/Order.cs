@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DsDelivery.Core.Domain;
 
-public class Order:Entity
+public class Order : Entity
 {
     private object moment;
     public string Address { get; set; }

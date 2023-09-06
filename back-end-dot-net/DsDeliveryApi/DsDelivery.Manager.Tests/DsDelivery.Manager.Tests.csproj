@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
-    <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="xunit" Version="2.5.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DsDelivery.Core.Shared\DsDelivery.Core.Shared.csproj" />
+    <ProjectReference Include="..\DsDelivery.Data\DsDelivery.Data.csproj" />
+    <ProjectReference Include="..\DsDelivery.FakeData\DsDelivery.FakeData.csproj" />
     <ProjectReference Include="..\DsDelivery.Manager\DsDelivery.Manager.csproj" />
-    <ProjectReference Include="..\DsDelivery.WebApi\DsDelivery.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

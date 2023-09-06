@@ -53,10 +53,24 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     public virtual async Task<TEntity> UpdateAsync(TEntity entity)
     {
-        _dbContext.Entry(entity).State = EntityState.Modified;
+        var existingEntity = await _dbContext.Set<TEntity>().FindAsync(entity.Id);
+
+        if (existingEntity == null)
+        {
+            throw new Exception($"Entidade com o ID {entity.Id} não foi encontrada.");
+        }
+
+        _dbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
         await _dbContext.SaveChangesAsync();
-        return entity;
+        return existingEntity;
     }
+
+    //public virtual async Task<TEntity> UpdateAsync(TEntity entity)
+    //{
+    //    _dbContext.Entry(entity).State = EntityState.Modified;
+    //    await _dbContext.SaveChangesAsync();
+    //    return entity; 
+    //}
 
     public void Dispose()
     {
