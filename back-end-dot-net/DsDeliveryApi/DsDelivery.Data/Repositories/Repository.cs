@@ -11,7 +11,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     protected readonly AppDbContext _dbContext;
     protected readonly DbSet<TEntity> _dbSet;
 
-    protected Repository(AppDbContext dbContext)
+    public Repository(AppDbContext dbContext)
     {
         _dbContext = dbContext;
         _dbSet = dbContext.Set<TEntity>();

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DsDelivery.Core.Shared\DsDelivery.Core.Shared.csproj" />
     <ProjectReference Include="..\DsDelivery.Core\DsDelivery.Core.csproj" />
   </ItemGroup>
 
