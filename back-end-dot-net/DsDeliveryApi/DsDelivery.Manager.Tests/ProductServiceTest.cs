@@ -1,6 +1,7 @@
 using AutoMapper;
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared.Dto.Product;
+using DsDelivery.Data.Repositories;
 using DsDelivery.Data.Repositories.Interfaces;
 using DsDelivery.FakeData;
 using DsDelivery.Manager.Interfaces;
@@ -43,24 +44,54 @@ namespace DsDelivery.Manager.Tests
         [Fact]
         public async Task GetProductsAsync_Sucesso()
         {
+            // Arrange
             var listaProducts = productFaker.Generate(10);
-            repository.GetAllAsync().Returns(listaProducts);
+            repository.FindAllByOrderByNameAscAsync().Returns(listaProducts);
             var controle = mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(listaProducts);
+
+            // Act
             var retorno = await manager.GetAllAsync();
 
-            await repository.Received().GetAllAsync();
+            // Assert
+            await repository.Received().FindAllByOrderByNameAscAsync();
             retorno.Should().BeEquivalentTo(controle);
         }
 
         [Fact]
         public async Task GetProductsAsync_Vazio()
         {
-            repository.GetAllAsync().Returns(new List<Product>());
+            repository.FindAllByOrderByNameAscAsync().Returns((List<Product>)null);
 
             var retorno = await manager.GetAllAsync();
 
-            await repository.Received().GetAllAsync();
-            retorno.Should().BeEquivalentTo(new List<Product>());
+            retorno.Should().NotBeNull();
+            retorno.Should().BeEmpty();
+        }
+
+        [Fact]
+        public async Task UpdateProductAsync_Sucesso()
+        {
+            repository.UpdateAsync(Arg.Any<Product>()).Returns(product);
+            var controle = mapper.Map<ProductDTO>(product);
+
+            var retorno = await manager.UpdateAsync(updateProductDTO);
+
+            await repository.Received().UpdateAsync(Arg.Any<Product>());
+            retorno.Should().BeEquivalentTo(controle);
+        }
+
+        [Fact]
+        public async Task UpdateProductAsync_NaoEncontrado()
+        {
+            // Arrange
+            repository.UpdateAsync(Arg.Any<Product>()).ReturnsNull();
+
+            // Act
+            var retorno = await manager.UpdateAsync(updateProductDTO);
+
+            // Assert
+            await repository.Received().UpdateAsync(Arg.Any<Product>());
+            retorno.Should().BeNull();
         }
 
         [Fact]
@@ -96,27 +127,27 @@ namespace DsDelivery.Manager.Tests
             retorno.Should().BeEquivalentTo(controle);
         }
 
-        [Fact]
-        public async Task UpdateProductAsync_Sucesso()
-        {
-            repository.UpdateAsync(Arg.Any<Product>()).Returns(product);
-            var controle = mapper.Map<ProductDTO>(product);
-            var retorno = await manager.UpdateAsync(updateProductDTO);
+        //[Fact]
+        //public async Task UpdateProductAsync_Sucesso()
+        //{
+        //    repository.UpdateAsync(Arg.Any<Product>()).Returns(product);
+        //    var controle = mapper.Map<ProductDTO>(product);
+        //    var retorno = await manager.UpdateAsync(updateProductDTO);
 
-            await repository.Received().AddAsync(Arg.Any<Product>());
-            retorno.Should().BeEquivalentTo(controle);
-        }
+        //    await repository.Received().AddAsync(Arg.Any<Product>());
+        //    retorno.Should().BeEquivalentTo(controle);
+        //}
 
-        [Fact]
-        public async Task UpdateProductAsync_NaoEncontrado()
-        {
-            repository.UpdateAsync(Arg.Any<Product>()).ReturnsNull();
+        //[Fact]
+        //public async Task UpdateProductAsync_NaoEncontrado()
+        //{
+        //    repository.UpdateAsync(Arg.Any<Product>()).ReturnsNull();
 
-            var retorno = await manager.UpdateAsync(updateProductDTO);
+        //    var retorno = await manager.UpdateAsync(updateProductDTO);
 
-            await repository.Received().AddAsync(Arg.Any<Product>());
-            retorno.Should().BeNull();
-        }
+        //    await repository.Received().AddAsync(Arg.Any<Product>());
+        //    retorno.Should().BeNull();
+        //}
 
         [Fact]
         public async Task DeleteProductAsync_Sucesso()

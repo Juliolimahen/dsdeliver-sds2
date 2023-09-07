@@ -17,12 +17,27 @@ public class ProductService : IProductService
         _mapper = mapper;
     }
 
-    public async Task<List<ProductDTO>> GetAllAsync()
+    //public async Task<List<ProductDTO>> GetAllAsync()
+    //{
+    //    List<Product> list = await _repository.FindAllByOrderByNameAscAsync();
+    //    List<ProductDTO> dtoList = list.Select(x => _mapper.Map<ProductDTO>(x)).ToList();
+    //    return dtoList;
+    //}
+
+    public async Task<IEnumerable<ProductDTO>> GetAllAsync()
     {
-        List<Product> list = await _repository.FindAllByOrderByNameAscAsync();
-        List<ProductDTO> dtoList = list.Select(x => _mapper.Map<ProductDTO>(x)).ToList();
-        return dtoList;
+        var products = await _repository.FindAllByOrderByNameAscAsync();
+
+        // Verifique se a lista de produtos é nula e retorne uma lista vazia se for o caso
+        if (products == null)
+        {
+            return new List<ProductDTO>();
+        }
+
+        var productDTOs = _mapper.Map<IEnumerable<ProductDTO>>(products);
+        return productDTOs;
     }
+
 
     public async Task<ProductDTO> GetByIdAsync(int id)
     {
@@ -50,11 +65,5 @@ public class ProductService : IProductService
     {
         var product = await _repository.RemoveAsync(id);
         return _mapper.Map<ProductDTO>(product);
-    }
-}
-public class NotFoundException : Exception
-{
-    public NotFoundException(string message) : base(message)
-    {
     }
 }

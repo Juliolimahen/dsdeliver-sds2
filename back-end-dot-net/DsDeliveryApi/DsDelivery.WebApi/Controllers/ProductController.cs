@@ -30,7 +30,7 @@ namespace DsDelivery.WebApi.Controllers
             {
                 try
                 {
-                    List<ProductDTO> list = await _service.GetAllAsync();
+                    IEnumerable<ProductDTO> list = await _service.GetAllAsync();
                     return Ok(list);
                 }
                 catch (Exception ex)
