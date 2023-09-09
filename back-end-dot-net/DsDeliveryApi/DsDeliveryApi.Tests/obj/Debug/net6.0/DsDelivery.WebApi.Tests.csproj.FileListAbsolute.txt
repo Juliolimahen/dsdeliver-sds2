@@ -194,3 +194,5 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.pdb
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\DsDelivery.WebApi.Tests.genruntimeconfig.cache
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\obj\Debug\net6.0\ref\DsDelivery.WebApi.Tests.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.Core.Shared.xml
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDeliveryApi.Tests\bin\Debug\net6.0\DsDelivery.WebApi.xml

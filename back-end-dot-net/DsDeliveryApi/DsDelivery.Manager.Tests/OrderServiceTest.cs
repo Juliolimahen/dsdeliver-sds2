@@ -54,7 +54,7 @@ namespace DsDelivery.Manager.Tests
         }
 
         [Fact]
-        public async Task GetProductsAsync_Sucesso()
+        public async Task GetOrdersAsync_Sucesso()
         {
             orderRepository.FindOrdersWithProducts().Returns(new List<Order>());
             var retorno = await manager.GetAllAsync();
@@ -88,31 +88,6 @@ namespace DsDelivery.Manager.Tests
             await orderRepository.Received().GetByIdAsync(orderId);
             result.Should().BeNull();
         }
-
-        //[Fact]
-        //public async Task SetDeliveredAsync_Sucesso()
-        //{
-        //    int orderId = 1; 
-        //    var order = new Order { Id = orderId, Status = OrderStatus.PENDING };
-        //    orderRepository.GetByIdAsync(orderId).Returns(order);
-        //    orderRepository.UpdateAsync(Arg.Any<Order>()).Returns(callInfo => callInfo.Arg<Order>());
-        //    var result = await manager.SetDeliveredAsync(orderId);
-        //    await orderRepository.Received().GetByIdAsync(orderId);
-        //    order.Status.Should().Be(OrderStatus.DELIVERED);
-        //    await orderRepository.Received().UpdateAsync(order);
-        //    result.Should().NotBeNull();
-        //    result.Should().BeEquivalentTo(mapper.Map<OrderDTO>(order));
-        //}
-
-        //[Fact]
-        //public async Task SetDeliveredAsync_NaoEncontrado()
-        //{
-        //    int orderId = 1;
-        //    orderRepository.GetByIdAsync(orderId).ReturnsNull();
-        //    var result = await manager.SetDeliveredAsync(orderId);
-        //    await orderRepository.Received().GetByIdAsync(orderId);
-        //    result.Should().BeNull();
-        //}
 
         [Fact]
         public async Task GetOrdersAsync_Vazio()

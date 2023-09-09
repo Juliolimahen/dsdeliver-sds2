@@ -19,10 +19,8 @@ namespace DsDelivery.Repository.Tests
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
-
             context = new AppDbContext(optionsBuilder.Options);
             repository = new OrderRepository(context);
-
             orderFaker = new OrderFakerDto();
             order = orderFaker.Generate();
         }
@@ -42,13 +40,8 @@ namespace DsDelivery.Repository.Tests
         [Fact]
         public async Task FindOrdersWithProductsAsync_Deve_Retornar_Ordens_Com_Produtos()
         {
-            // Arrange
             var registros = await InsereRegistros();
-
-            // Act
             var ordersWithProducts = await repository.FindOrdersWithProducts();
-
-            // Assert
             ordersWithProducts.Should().NotBeNull();
             ordersWithProducts.Should().HaveCount(registros.Count);
             foreach (var order in ordersWithProducts)
@@ -63,7 +56,6 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var retorno = await repository.GetAllAsync();
-
             retorno.Should().HaveCount(registros.Count);
         }
 
@@ -111,12 +103,9 @@ namespace DsDelivery.Repository.Tests
         public async Task UpdateOrderAsync_NaoEncontrado()
         {
             var idNaoExistente = 9999;
-
             var orderNaoExistente = orderFaker.Generate();
             orderNaoExistente.Id = idNaoExistente;
-
             Func<Task> action = async () => await repository.UpdateAsync(orderNaoExistente);
-
             var exception = await Assert.ThrowsAsync<Exception>(action);
             exception.Message.Should().Be($"Entidade com o ID {idNaoExistente} não foi encontrada.");
         }
@@ -134,7 +123,6 @@ namespace DsDelivery.Repository.Tests
         public async Task DeleteOrderAsync_NaoEncontrado()
         {
             Func<Task> retorno = async () => await repository.RemoveAsync(1);
-
             await retorno.Should().ThrowAsync<Exception>()
                 .WithMessage("Entidade com o ID 1 não foi encontrada.");
         }

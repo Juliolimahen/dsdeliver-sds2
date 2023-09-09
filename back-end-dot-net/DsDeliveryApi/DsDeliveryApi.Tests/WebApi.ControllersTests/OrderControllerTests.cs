@@ -29,9 +29,6 @@ namespace DsDelivery.WebApi.Controllers.Tests
         [Fact]
         public async Task GetAll_WhenServiceReturnsList_ReturnsOkResultWithList()
         {
-            // Arrange
-
-
             var expectedList = new List<OrderDTO>
             {
                 new OrderDTO
@@ -67,7 +64,6 @@ namespace DsDelivery.WebApi.Controllers.Tests
 
             _serviceMock.Setup(s => s.GetAllAsync()).ReturnsAsync(expectedList);
 
-            // Act
             IActionResult result = await _controller.GetAll();
 
             // Assert
@@ -314,6 +310,5 @@ namespace DsDelivery.WebApi.Controllers.Tests
             var model = Assert.IsType<OrderDTO>(okResult.Value);
             Assert.Equal(orderId, model.Id);
         }
-
     }
 }

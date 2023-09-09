@@ -20,10 +20,8 @@ namespace DsDelivery.Repository.Tests
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
-
             context = new AppDbContext(optionsBuilder.Options);
             repository = new ProductRepository(context);
-
             productFaker = new ProductFakerDto();
             product = productFaker.Generate();
         }
@@ -45,7 +43,6 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var retorno = await repository.GetAllAsync();
-
             retorno.Should().HaveCount(registros.Count);
         }
 
@@ -68,9 +65,7 @@ namespace DsDelivery.Repository.Tests
         public async Task FindAllByOrderByNameAscAsync_ComRetorno()
         {
             var registros = await InsereRegistros();
-
             var retorno = await repository.FindAllByOrderByNameAscAsync();
-
             retorno.Should().HaveCount(registros.Count);
             var sortedProducts = registros.OrderBy(p => p.Name).ToList();
             for (int i = 0; i < registros.Count; i++)
@@ -84,7 +79,6 @@ namespace DsDelivery.Repository.Tests
         public async Task FindAllByOrderByNameAscAsync_Vazio()
         {
             var retorno = await repository.FindAllByOrderByNameAscAsync();
-
             retorno.Should().HaveCount(0);
         }
 
@@ -118,12 +112,9 @@ namespace DsDelivery.Repository.Tests
         public async Task UpdateProductAsync_NaoEncontrado()
         {
             var idNaoExistente = 9999;
-
             var produtoNaoExistente = productFaker.Generate();
             produtoNaoExistente.Id = idNaoExistente;
-
             Func<Task> action = async () => await repository.UpdateAsync(produtoNaoExistente);
-
             var exception = await Assert.ThrowsAsync<Exception>(action);
             exception.Message.Should().Be($"Entidade com o ID {idNaoExistente} não foi encontrada.");
         }
@@ -140,7 +131,6 @@ namespace DsDelivery.Repository.Tests
         public async Task DeleteProductAsync_NaoEncontrado()
         {
             Func<Task> retorno = async () => await repository.RemoveAsync(1);
-
             await retorno.Should().ThrowAsync<Exception>()
                 .WithMessage("Entidade com o ID 1 não foi encontrada.");
         }
