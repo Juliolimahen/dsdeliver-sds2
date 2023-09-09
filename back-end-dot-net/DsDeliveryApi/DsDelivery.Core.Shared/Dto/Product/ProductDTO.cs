@@ -1,6 +1,5 @@
 ﻿namespace DsDelivery.Core.Shared.Dto.Product;
 
-
 public class ProductDTO : ICloneable
 {
     public int Id { get; set; }

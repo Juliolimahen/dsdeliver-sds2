@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DsDelivery.WebApi.Controllers
 {
+
     [ApiController]
     [Route("products")]
     [Produces("application/json")]
@@ -20,6 +21,9 @@ namespace DsDelivery.WebApi.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retorna todos produtos cadastrados na base.
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -41,6 +45,10 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retorna um produto consultado pelo id.
+        /// </summary>
+        /// <param name="productId" example="1">Id do produto.</param>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -68,6 +76,10 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Insere um novo produto. 
+        /// </summary>
+        /// <param name="productDTO"></param>
         [HttpPost]
         [Authorize(Roles = "Presidente, Lider, Diretor")]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status201Created)]
@@ -92,6 +104,11 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Altera um produto.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="productDTO"></param>
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Presidente, Lider, Diretor")]
         [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
@@ -121,6 +138,10 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Exclui um produto.
+        /// </summary>
+        /// <param name="id" example="1"></param>
         [HttpDelete("{id}")]
         [Authorize(Roles = "Presidente, Lider, Diretor")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

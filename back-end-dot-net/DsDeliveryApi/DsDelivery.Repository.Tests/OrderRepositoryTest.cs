@@ -4,7 +4,7 @@ using DsDelivery.Data.Repositories;
 using DsDeliveryApi.Data.Context;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-
+using DsDelivery.FakeData.OrderData;
 
 namespace DsDelivery.Repository.Tests
 {
@@ -13,7 +13,7 @@ namespace DsDelivery.Repository.Tests
         private readonly IOrderRepository repository;
         private readonly AppDbContext context;
         private readonly Order order;
-        private readonly OrderFakeDto orderFaker;
+        private readonly OrderFakerDto orderFaker;
 
         public OrderRepositoryTest()
         {
@@ -23,7 +23,7 @@ namespace DsDelivery.Repository.Tests
             context = new AppDbContext(optionsBuilder.Options);
             repository = new OrderRepository(context);
 
-            orderFaker = new OrderFakeDto();
+            orderFaker = new OrderFakerDto();
             order = orderFaker.Generate();
         }
 

@@ -161,3 +161,4 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Manager\
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Manager\obj\Debug\net6.0\DsDelivery.Manager.pdb
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Manager\obj\Debug\net6.0\DsDelivery.Manager.genruntimeconfig.cache
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Manager\obj\Debug\net6.0\ref\DsDelivery.Manager.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Manager\bin\Debug\net6.0\DsDelivery.Core.Shared.xml

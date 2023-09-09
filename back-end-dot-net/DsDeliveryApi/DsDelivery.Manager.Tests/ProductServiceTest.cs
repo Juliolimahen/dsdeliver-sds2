@@ -1,7 +1,6 @@
 using AutoMapper;
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared.Dto.Product;
-using DsDelivery.Data.Repositories;
 using DsDelivery.Data.Repositories.Interfaces;
 using DsDelivery.FakeData;
 using DsDelivery.Manager.Interfaces;
@@ -44,15 +43,10 @@ namespace DsDelivery.Manager.Tests
         [Fact]
         public async Task GetProductsAsync_Sucesso()
         {
-            // Arrange
             var listaProducts = productFaker.Generate(10);
             repository.FindAllByOrderByNameAscAsync().Returns(listaProducts);
             var controle = mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(listaProducts);
-
-            // Act
             var retorno = await manager.GetAllAsync();
-
-            // Assert
             await repository.Received().FindAllByOrderByNameAscAsync();
             retorno.Should().BeEquivalentTo(controle);
         }
@@ -61,9 +55,7 @@ namespace DsDelivery.Manager.Tests
         public async Task GetProductsAsync_Vazio()
         {
             repository.FindAllByOrderByNameAscAsync().Returns((List<Product>)null);
-
             var retorno = await manager.GetAllAsync();
-
             retorno.Should().NotBeNull();
             retorno.Should().BeEmpty();
         }
@@ -73,9 +65,7 @@ namespace DsDelivery.Manager.Tests
         {
             repository.UpdateAsync(Arg.Any<Product>()).Returns(product);
             var controle = mapper.Map<ProductDTO>(product);
-
             var retorno = await manager.UpdateAsync(updateProductDTO);
-
             await repository.Received().UpdateAsync(Arg.Any<Product>());
             retorno.Should().BeEquivalentTo(controle);
         }
@@ -83,13 +73,8 @@ namespace DsDelivery.Manager.Tests
         [Fact]
         public async Task UpdateProductAsync_NaoEncontrado()
         {
-            // Arrange
             repository.UpdateAsync(Arg.Any<Product>()).ReturnsNull();
-
-            // Act
             var retorno = await manager.UpdateAsync(updateProductDTO);
-
-            // Assert
             await repository.Received().UpdateAsync(Arg.Any<Product>());
             retorno.Should().BeNull();
         }
@@ -100,7 +85,6 @@ namespace DsDelivery.Manager.Tests
             repository.GetByIdAsync(Arg.Any<int>()).Returns(product);
             var controle = mapper.Map<ProductDTO>(product);
             var retorno = await manager.GetByIdAsync(product.Id);
-
             await repository.Received().GetByIdAsync(Arg.Any<int>());
             retorno.Should().BeEquivalentTo(controle);
         }
@@ -111,7 +95,6 @@ namespace DsDelivery.Manager.Tests
             repository.GetByIdAsync(Arg.Any<int>()).Returns(new Product());
             var controle = mapper.Map<ProductDTO>(new Product());
             var retorno = await manager.GetByIdAsync(1);
-
             await repository.Received().GetByIdAsync(Arg.Any<int>());
             retorno.Should().BeEquivalentTo(controle);
         }
@@ -122,32 +105,9 @@ namespace DsDelivery.Manager.Tests
             repository.AddAsync(Arg.Any<Product>()).Returns(product);
             var controle = mapper.Map<ProductDTO>(product);
             var retorno = await manager.InsertAsync(createProductDTO);
-
             await repository.Received().AddAsync(Arg.Any<Product>());
             retorno.Should().BeEquivalentTo(controle);
         }
-
-        //[Fact]
-        //public async Task UpdateProductAsync_Sucesso()
-        //{
-        //    repository.UpdateAsync(Arg.Any<Product>()).Returns(product);
-        //    var controle = mapper.Map<ProductDTO>(product);
-        //    var retorno = await manager.UpdateAsync(updateProductDTO);
-
-        //    await repository.Received().AddAsync(Arg.Any<Product>());
-        //    retorno.Should().BeEquivalentTo(controle);
-        //}
-
-        //[Fact]
-        //public async Task UpdateProductAsync_NaoEncontrado()
-        //{
-        //    repository.UpdateAsync(Arg.Any<Product>()).ReturnsNull();
-
-        //    var retorno = await manager.UpdateAsync(updateProductDTO);
-
-        //    await repository.Received().AddAsync(Arg.Any<Product>());
-        //    retorno.Should().BeNull();
-        //}
 
         [Fact]
         public async Task DeleteProductAsync_Sucesso()
@@ -155,7 +115,6 @@ namespace DsDelivery.Manager.Tests
             repository.RemoveAsync(Arg.Any<int>()).Returns(product);
             var controle = mapper.Map<ProductDTO>(product);
             var retorno = await manager.DeleteAsync(product.Id);
-
             await repository.Received().RemoveAsync(Arg.Any<int>());
             retorno.Should().BeEquivalentTo(controle);
         }
@@ -164,9 +123,7 @@ namespace DsDelivery.Manager.Tests
         public async Task DeleteProductAsync_NaoEncontrado()
         {
             repository.RemoveAsync(Arg.Any<int>()).ReturnsNull();
-
             var retorno = await manager.DeleteAsync(1);
-
             await repository.Received().RemoveAsync(Arg.Any<int>());
             retorno.Should().BeNull();
         }

@@ -28,28 +28,6 @@ public static class SwaggerConfig
                 TermsOfService = new Uri("https://opensource.org/osd")
             });
 
-            //c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            //{
-            //    In = ParameterLocation.Header,
-            //    Description = "Insira o token",
-            //    Name = "Authorization",
-            //    Type = SecuritySchemeType.ApiKey
-            //});
-
-            //c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-            //    {
-            //        new OpenApiSecurityScheme
-            //        {
-            //            Reference= new OpenApiReference
-            //            {
-            //                Type = ReferenceType.SecurityScheme,
-            //                Id ="Bearer"
-            //            }
-            //        },
-            //            Array.Empty<string>()
-            //        }
-            //});
-
             // Bearer token authentication
             OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
             {
@@ -78,6 +56,12 @@ public static class SwaggerConfig
             };
 
             c.AddSecurityRequirement(securityRequirements);
+
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            c.IncludeXmlComments(xmlPath);
+            xmlPath = Path.Combine(AppContext.BaseDirectory, "DsDelivery.Core.Shared.xml");
+            c.IncludeXmlComments(xmlPath);
 
             //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

@@ -5,7 +5,6 @@ using DsDelivery.Core.Shared.Dto.Product;
 using DsDelivery.Data.Repositories.Interfaces;
 using DsDelivery.Manager.Interfaces;
 
-
 namespace DsDelivery.Manager.Services;
 
 public class OrderService : IOrderService
@@ -24,6 +23,11 @@ public class OrderService : IOrderService
     public async Task<List<OrderDTO>> GetAllAsync()
     {
         List<Order> orders = await _repository.FindOrdersWithProducts();
+
+        if (orders == null)
+        {
+            return new List<OrderDTO>();
+        }
 
         List<OrderDTO> dtoList = orders.Select(order =>
         {
@@ -64,6 +68,12 @@ public class OrderService : IOrderService
     public async Task<OrderDTO> SetDeliveredAsync(int id)
     {
         Order order = await _repository.GetByIdAsync(id);
+
+        if (order == null)
+        {
+            return null;
+        }
+
         order.Status = OrderStatus.DELIVERED;
         order = await _repository.UpdateAsync(order);
         return _mapper.Map<OrderDTO>(order);
@@ -95,15 +105,7 @@ public class OrderService : IOrderService
             }
         }
 
-
         order = await _repository.AddAsync(order);
-
         return _mapper.Map<OrderDTO>(order);
-    }
-
-
-    public Task Delete(int id)
-    {
-        throw new NotImplementedException();
     }
 }

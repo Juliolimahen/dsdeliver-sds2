@@ -205,3 +205,5 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\o
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\obj\Debug\net6.0\DsDelivery.WebApi.pdb
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\obj\Debug\net6.0\DsDelivery.WebApi.genruntimeconfig.cache
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\obj\Debug\net6.0\ref\DsDelivery.WebApi.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\DsDelivery.WebApi.xml
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.WebApi\bin\Debug\net6.0\DsDelivery.Core.Shared.xml

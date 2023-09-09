@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System;
-using System.Linq;
-
-namespace DsDelivery.Core.Domain;
+﻿namespace DsDelivery.Core.Domain;
 
 public class Order : Entity
 {
@@ -21,7 +16,6 @@ public class Order : Entity
 
     public Order()
     {
-
     }
 
     public Order(int id, string address, double latitude, double longitude, DateTime moment, OrderStatus status)

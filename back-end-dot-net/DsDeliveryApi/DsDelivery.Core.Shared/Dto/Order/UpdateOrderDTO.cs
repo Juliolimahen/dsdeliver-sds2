@@ -1,5 +1,4 @@
-﻿
-namespace DsDelivery.Core.Shared.Dto.Order;
+﻿namespace DsDelivery.Core.Shared.Dto.Order;
 
 public class UpdateOrderDTO : CreateOrderDTO
 {

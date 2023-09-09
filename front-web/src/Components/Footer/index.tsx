@@ -6,15 +6,15 @@ import { MainFooter, FooterIconLink, FooterIcons } from './style';
 const Footer: React.FC = () => {
   return (
     <MainFooter>
-      App desenvolvido durante a 2ª ed. do evento Semana DevSuperior e refatorado ao longo do tempo
+      App desenvolvido durante a 2ª ed. do evento Semana DevSuperior e refatorado ao longo do tempo pelo autor.
       <FooterIcons>
-        <FooterIconLink href="https://www.youtube.com/c/DevSuperior" target="_new">
+        <FooterIconLink href="#" target="_new">
           <YouTubeIcon />
         </FooterIconLink>
-        <FooterIconLink href="https://www.linkedin.com/school/devsuperior/" target="_new">
+        <FooterIconLink href="https://www.linkedin.com/in/julio-henrique-143193154" target="_new">
           <LikedinIcon />
         </FooterIconLink>
-        <FooterIconLink href="https://www.instagram.com/devsuperior.ig" target="_new">
+        <FooterIconLink href="#" target="_new">
           <IntagramIcon />
         </FooterIconLink>
       </FooterIcons>

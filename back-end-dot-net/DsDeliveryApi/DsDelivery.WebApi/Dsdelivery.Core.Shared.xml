@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DsDelivery.Core.Shared</name>
+    </assembly>
+    <members>
+        <member name="P:DsDelivery.Core.Shared.Dto.Product.CreateProductDTO.Name">
+            <summary>
+            Namo do produto.
+            </summary>
+            <example>Pizza Doce</example>
+        </member>
+        <member name="P:DsDelivery.Core.Shared.Dto.Product.CreateProductDTO.Price">
+            <summary>
+            Preço do produto.
+            </summary>
+            <example>65.76</example>
+        </member>
+        <member name="P:DsDelivery.Core.Shared.Dto.Product.CreateProductDTO.Description">
+            <summary>
+            Descrição do produto. 
+            </summary>
+            <example>Uma combinação mineira tradicional, 
+            que acabou caindo no gosto do povo. 
+            O sabor é baseado no doce da goiabada 
+            combinado com o sabor irresistível dos queijos.</example>
+        </member>
+        <member name="P:DsDelivery.Core.Shared.Dto.Product.CreateProductDTO.ImageUri">
+            <summary>
+            Url da imagem. 
+            </summary>
+            <example>www.exampleimagem.com.br</example>
+        </member>
+    </members>
+</doc>

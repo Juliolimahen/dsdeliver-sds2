@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DsDelivery.WebApi.Controllers
 {
+
     [Route("orders")]
     [Produces("application/json")]
     [ApiController]
@@ -18,6 +19,9 @@ namespace DsDelivery.WebApi.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retorno todos os pedidos. 
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -36,6 +40,10 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retorna um pedido consultado pelo id.
+        /// </summary>
+        /// <param name="id"></param>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -58,6 +66,10 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Cria um novo pedido. 
+        /// </summary>
+        /// <param name="dto"></param>
         [HttpPost]
         [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -80,6 +92,10 @@ namespace DsDelivery.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Marca o pedido como entregue. 
+        /// </summary>
+        /// <param name="id" example="1"></param>
         [HttpPut("{id}/delivered")]
         [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
