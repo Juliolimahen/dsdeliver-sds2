@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PybRALlKcFZvPdMbps+dAK8n3qwQdBC/ZlculpXTc1ZnluRwB7XEP/vwFgczprdTDfbb7rEXEBwm+pgU0UStLA==",
+  "dgSpecHash": "X+rsffANwCp1ahtStNPiQLmSEoRKccfReMcmFGUqeGpcjGWQbB8RPYNLTF+Nx+o2VA2b2pYVc1bHHJ0uV0i+uQ==",
   "success": true,
   "projectFilePath": "C:\\ws-projetos\\dsdeliver-sds2\\back-end-dot-net\\DsDeliveryApi\\DsDeliveryApi.Tests\\DsDelivery.WebApi.Tests.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\DevPC\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\DevPC\\.nuget\\packages\\bogus\\34.0.2\\bogus.34.0.2.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\DevPC\\.nuget\\packages\\fluentassertions\\6.12.0\\fluentassertions.6.12.0.nupkg.sha512",

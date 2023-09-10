@@ -31,6 +31,9 @@ namespace DsDelivery.WebApi.Controllers
             try
             {
                 List<OrderDTO> list = await _service.GetAllAsync();
+                if (!list.Any())
+                    return NotFound();
+
                 return Ok(list);
             }
             catch (Exception ex)
@@ -54,7 +57,7 @@ namespace DsDelivery.WebApi.Controllers
             {
                 OrderDTO orderDto = await _service.GetByIdAsync(id);
 
-                if (orderDto == null)
+                if (orderDto.Id == 0)
                     return NotFound();
 
                 return Ok(orderDto);
@@ -105,6 +108,10 @@ namespace DsDelivery.WebApi.Controllers
             try
             {
                 OrderDTO dto = await _service.SetDeliveredAsync(id);
+                if (dto == null)
+                {
+                    return NotFound();
+                }
                 return Ok(dto);
             }
             catch (Exception ex)

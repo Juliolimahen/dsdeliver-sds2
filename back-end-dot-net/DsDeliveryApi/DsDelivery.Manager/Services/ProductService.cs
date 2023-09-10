@@ -17,18 +17,10 @@ public class ProductService : IProductService
         _mapper = mapper;
     }
 
-    //public async Task<List<ProductDTO>> GetAllAsync()
-    //{
-    //    List<Product> list = await _repository.FindAllByOrderByNameAscAsync();
-    //    List<ProductDTO> dtoList = list.Select(x => _mapper.Map<ProductDTO>(x)).ToList();
-    //    return dtoList;
-    //}
-
     public async Task<IEnumerable<ProductDTO>> GetAllAsync()
     {
         var products = await _repository.FindAllByOrderByNameAscAsync();
 
-        // Verifique se a lista de produtos é nula e retorne uma lista vazia se for o caso
         if (products == null)
         {
             return new List<ProductDTO>();

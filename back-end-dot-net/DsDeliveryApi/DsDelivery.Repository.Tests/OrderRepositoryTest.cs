@@ -42,8 +42,10 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var ordersWithProducts = await repository.FindOrdersWithProducts();
+
             ordersWithProducts.Should().NotBeNull();
             ordersWithProducts.Should().HaveCount(registros.Count);
+
             foreach (var order in ordersWithProducts)
             {
                 order.OrderProducts.Should().NotBeNull();
@@ -56,6 +58,7 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var retorno = await repository.GetAllAsync();
+
             retorno.Should().HaveCount(registros.Count);
         }
 
@@ -71,6 +74,7 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var retorno = await repository.GetByIdAsync(registros.First().Id);
+
             retorno.Should().BeEquivalentTo(registros.First());
         }
 
@@ -93,8 +97,10 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var orderParaAtualizar = registros.First();
+
             orderParaAtualizar.Status = OrderStatus.DELIVERED;
             var retorno = await repository.UpdateAsync(orderParaAtualizar);
+
             retorno.Should().NotBeNull();
             retorno.Id.Should().Be(orderParaAtualizar.Id);
         }
@@ -104,8 +110,10 @@ namespace DsDelivery.Repository.Tests
         {
             var idNaoExistente = 9999;
             var orderNaoExistente = orderFaker.Generate();
+
             orderNaoExistente.Id = idNaoExistente;
             Func<Task> action = async () => await repository.UpdateAsync(orderNaoExistente);
+
             var exception = await Assert.ThrowsAsync<Exception>(action);
             exception.Message.Should().Be($"Entidade com o ID {idNaoExistente} não foi encontrada.");
         }
@@ -116,6 +124,7 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var retorno = await repository.RemoveAsync(registros.First().Id);
+
             retorno.Should().BeEquivalentTo(registros.First());
         }
 

@@ -47,8 +47,10 @@ namespace DsDelivery.Manager.Tests
         public async Task GetOrderAsync_Sucesso()
         {
             orderRepository.GetByIdAsync(Arg.Any<int>()).Returns(order);
+
             var controle = mapper.Map<OrderDTO>(order);
             var retorno = await manager.GetByIdAsync(order.Id);
+
             await orderRepository.Received().GetByIdAsync(Arg.Any<int>());
             retorno.Should().BeEquivalentTo(controle);
         }
@@ -57,8 +59,10 @@ namespace DsDelivery.Manager.Tests
         public async Task GetOrdersAsync_Sucesso()
         {
             orderRepository.FindOrdersWithProducts().Returns(new List<Order>());
+
             var retorno = await manager.GetAllAsync();
             await orderRepository.Received().FindOrdersWithProducts();
+
             retorno.Should().BeEquivalentTo(new List<Order>());
         }
 
@@ -67,14 +71,19 @@ namespace DsDelivery.Manager.Tests
         {
             int orderId = 1;
             var order = orderFaker.Generate();
+
             order.Id = orderId;
             order.Status = OrderStatus.PENDING;
+
             orderRepository.GetByIdAsync(orderId).Returns(order);
             orderRepository.UpdateAsync(Arg.Any<Order>()).Returns(callInfo => callInfo.Arg<Order>());
+
             var result = await manager.SetDeliveredAsync(orderId);
             await orderRepository.Received().GetByIdAsync(orderId);
+
             order.Status.Should().Be(OrderStatus.DELIVERED);
             await orderRepository.Received().UpdateAsync(order);
+
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(mapper.Map<OrderDTO>(order));
         }
@@ -84,8 +93,11 @@ namespace DsDelivery.Manager.Tests
         {
             int orderId = 1;
             orderRepository.GetByIdAsync(orderId).ReturnsNull();
+
             var result = await manager.SetDeliveredAsync(orderId);
+
             await orderRepository.Received().GetByIdAsync(orderId);
+
             result.Should().BeNull();
         }
 
@@ -102,8 +114,10 @@ namespace DsDelivery.Manager.Tests
         public async Task GetOrderAsync_NaoEncontrado()
         {
             orderRepository.GetByIdAsync(Arg.Any<int>()).Returns(new Order());
+
             var controle = mapper.Map<OrderDTO>(new Order());
             var retorno = await manager.GetByIdAsync(1);
+
             await orderRepository.Received().GetByIdAsync(Arg.Any<int>());
             retorno.Should().BeEquivalentTo(controle);
         }
@@ -111,9 +125,11 @@ namespace DsDelivery.Manager.Tests
         [Fact]
         public async Task InsertOrderAsync_Sucesso()
         {
-            orderRepository.AddAsync(Arg.Any<Order>()).Returns(order);
+            orderRepository.AddAsync(Arg.Any<Order>()).Returns(order)
+                ;
             var retorno = await manager.InsertAsync(createOrderDTO);
             await orderRepository.Received().AddAsync(Arg.Any<Order>());
+
             retorno.Should().NotBeNull();
             retorno.Should().BeEquivalentTo(mapper.Map<OrderDTO>(order));
         }
@@ -122,7 +138,9 @@ namespace DsDelivery.Manager.Tests
         public async Task InsertOrderAsync_Falha()
         {
             orderRepository.AddAsync(Arg.Any<Order>()).ReturnsNull();
+
             var retorno = await manager.InsertAsync(createOrderDTO);
+
             await orderRepository.Received().AddAsync(Arg.Any<Order>());
             retorno.Should().BeNull();
         }

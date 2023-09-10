@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DsDelivery.Core.Shared\DsDelivery.Core.Shared.csproj" />
+    <ProjectReference Include="..\DsDelivery.FakeData\DsDelivery.FakeData.csproj" />
     <ProjectReference Include="..\DsDelivery.Manager\DsDelivery.Manager.csproj" />
     <ProjectReference Include="..\DsDelivery.WebApi\DsDelivery.WebApi.csproj" />
   </ItemGroup>

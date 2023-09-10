@@ -9,9 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Bogus" Version="34.0.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+    <PackageReference Include="xunit" Version="2.5.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -25,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DsDelivery.Core.Shared\DsDelivery.Core.Shared.csproj" />
     <ProjectReference Include="..\DsDelivery.Core\DsDelivery.Core.csproj" />
+    <ProjectReference Include="..\DsDelivery.Manager\DsDelivery.Manager.csproj" />
   </ItemGroup>
 
 </Project>

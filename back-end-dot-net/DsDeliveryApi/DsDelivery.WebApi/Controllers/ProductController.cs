@@ -3,6 +3,7 @@ using DsDelivery.Manager.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Operation = SerilogTimings.Operation;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace DsDelivery.WebApi.Controllers
 {
@@ -35,6 +36,10 @@ namespace DsDelivery.WebApi.Controllers
                 try
                 {
                     IEnumerable<ProductDTO> list = await _service.GetAllAsync();
+                    if (!list.Any())
+                    {
+                        return NotFound();
+                    }
                     return Ok(list);
                 }
                 catch (Exception ex)
@@ -60,12 +65,10 @@ namespace DsDelivery.WebApi.Controllers
                 try
                 {
                     var product = await _service.GetByIdAsync(productId);
-
-                    if (product == null)
+                    if (product.Id == 0)
                     {
                         return NotFound();
                     }
-
                     return Ok(product);
                 }
                 catch (Exception ex)
@@ -120,15 +123,12 @@ namespace DsDelivery.WebApi.Controllers
             {
                 try
                 {
-                    if (productDTO.Id == id)
-                    {
-                        var product = await _service.UpdateAsync(productDTO);
-                        return Ok(product);
-                    }
-                    else
+                    var product = await _service.UpdateAsync(productDTO);
+                    if (product == null)
                     {
                         return NotFound();
                     }
+                    return Ok(product);
                 }
                 catch (Exception ex)
                 {

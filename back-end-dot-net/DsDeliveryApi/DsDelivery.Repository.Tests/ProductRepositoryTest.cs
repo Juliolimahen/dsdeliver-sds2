@@ -1,7 +1,7 @@
 ﻿using DsDelivery.Core.Domain;
 using DsDelivery.Data.Repositories;
 using DsDelivery.Data.Repositories.Interfaces;
-using DsDelivery.FakeData;
+using DsDelivery.FakeData.ProductData;
 using DsDeliveryApi.Data.Context;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
@@ -29,11 +29,13 @@ namespace DsDelivery.Repository.Tests
         private async Task<List<Product>> InsereRegistros()
         {
             var products = productFaker.Generate(100);
+
             foreach (var cli in products)
             {
                 cli.Id = 0;
                 await context.Products.AddAsync(cli);
             }
+
             await context.SaveChangesAsync();
             return products;
         }
@@ -58,6 +60,7 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var retorno = await repository.GetByIdAsync(registros.First().Id);
+
             retorno.Should().BeEquivalentTo(registros.First());
         }
 
@@ -66,8 +69,11 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var retorno = await repository.FindAllByOrderByNameAscAsync();
+
             retorno.Should().HaveCount(registros.Count);
+
             var sortedProducts = registros.OrderBy(p => p.Name).ToList();
+
             for (int i = 0; i < registros.Count; i++)
             {
                 retorno[i].Id.Should().Be(sortedProducts[i].Id);
@@ -101,9 +107,12 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var productParaAtualizar = registros.First();
+
             productParaAtualizar.Name = "Novo Nome";
             productParaAtualizar.Price = 99.99;
+
             var retorno = await repository.UpdateAsync(productParaAtualizar);
+
             retorno.Should().NotBeNull();
             retorno.Id.Should().Be(productParaAtualizar.Id);
         }
@@ -113,8 +122,10 @@ namespace DsDelivery.Repository.Tests
         {
             var idNaoExistente = 9999;
             var produtoNaoExistente = productFaker.Generate();
+
             produtoNaoExistente.Id = idNaoExistente;
             Func<Task> action = async () => await repository.UpdateAsync(produtoNaoExistente);
+
             var exception = await Assert.ThrowsAsync<Exception>(action);
             exception.Message.Should().Be($"Entidade com o ID {idNaoExistente} não foi encontrada.");
         }
@@ -124,6 +135,7 @@ namespace DsDelivery.Repository.Tests
         {
             var registros = await InsereRegistros();
             var retorno = await repository.RemoveAsync(registros.First().Id);
+
             retorno.Should().BeEquivalentTo(registros.First());
         }
 
