@@ -13,3 +13,4 @@ C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Core.Sha
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Core.Shared\obj\Debug\net6.0\refint\DsDelivery.Core.Shared.dll
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Core.Shared\obj\Debug\net6.0\DsDelivery.Core.Shared.pdb
 C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Core.Shared\obj\Debug\net6.0\ref\DsDelivery.Core.Shared.dll
+C:\ws-projetos\dsdeliver-sds2\back-end-dot-net\DsDeliveryApi\DsDelivery.Core.Shared\bin\Debug\net6.0\Dsdelivery.Core.Shared.xml

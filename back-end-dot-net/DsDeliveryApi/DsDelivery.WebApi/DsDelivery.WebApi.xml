@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DsDelivery.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:DsDelivery.WebApi.Controllers.OrderController.GetAll">
+            <summary>
+            Retorno todos os pedidos. 
+            </summary>
+        </member>
+        <member name="M:DsDelivery.WebApi.Controllers.OrderController.GetOrderById(System.Int32)">
+            <summary>
+            Retorna um pedido consultado pelo id.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:DsDelivery.WebApi.Controllers.OrderController.CreateOrder(DsDelivery.Core.Shared.Dto.Order.CreateOrderDTO)">
+            <summary>
+            Cria um novo pedido. 
+            </summary>
+            <param name="dto"></param>
+        </member>
+        <member name="M:DsDelivery.WebApi.Controllers.OrderController.SetDelivered(System.Int32)">
+            <summary>
+            Marca o pedido como entregue. 
+            </summary>
+            <param name="id" example="1"></param>
+        </member>
+        <member name="M:DsDelivery.WebApi.Controllers.ProductController.GetAll">
+            <summary>
+            Retorna todos produtos cadastrados na base.
+            </summary>
+        </member>
+        <member name="M:DsDelivery.WebApi.Controllers.ProductController.GetById(System.Int32)">
+            <summary>
+            Retorna um produto consultado pelo id.
+            </summary>
+            <param name="productId" example="1">Id do produto.</param>
+        </member>
+        <member name="M:DsDelivery.WebApi.Controllers.ProductController.Insert(DsDelivery.Core.Shared.Dto.Product.CreateProductDTO)">
+            <summary>
+            Insere um novo produto. 
+            </summary>
+            <param name="productDTO"></param>
+        </member>
+        <member name="M:DsDelivery.WebApi.Controllers.ProductController.Update(System.Int32,DsDelivery.Core.Shared.Dto.Product.UpdateProductDTO)">
+            <summary>
+            Altera um produto.
+            </summary>
+            <param name="id"></param>
+            <param name="productDTO"></param>
+        </member>
+        <member name="M:DsDelivery.WebApi.Controllers.ProductController.Delete(System.Int32)">
+            <summary>
+            Exclui um produto.
+            </summary>
+            <param name="id" example="1"></param>
+        </member>
+    </members>
+</doc>

@@ -1,68 +1,19 @@
 ﻿using DsDelivery.Core.Domain;
-using DsDeliveryApi.Data;
-using DsDelivery.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using DsDeliveryApi.Data.Context;
-using System.Collections.Generic;
+using DsDelivery.Data.Repositories.Interfaces;
 
 namespace DsDelivery.Data.Repositories;
 
-public class ProductRepository : IProductRepository
+public class ProductRepository : Repository<Product>, IProductRepository
 {
-    private readonly AppDbContext _dbContext;
-    private readonly DbSet<Product> _dbSet;
-
-    public ProductRepository(AppDbContext dbContext)
+    public ProductRepository(AppDbContext dbContext) : base(dbContext)
     {
-        _dbContext = dbContext;
-        _dbSet = dbContext.Set<Product>();
-    }
-
-    public async Task<Product> GetByIdAsync(int id)
-    {
-        return await _dbSet.FindAsync(id);
-    }
-
-    public async Task<List<Product>> GetAllAsync()
-    {
-        return await _dbSet.ToListAsync();
-    }
-
-    public async Task<List<Product>> FindAsync(Expression<Func<Product, bool>> predicate)
-    {
-        return await _dbSet.Where(predicate).ToListAsync();
-    }
-
-    public async Task<Product> AddAsync(Product entity)
-    {
-        await _dbSet.AddAsync(entity);
-        await _dbContext.SaveChangesAsync();
-        return entity;
-    }
-
-    public async Task<Product> UpdateAsync(Product entity)
-    {
-        _dbContext.Entry(entity).State = EntityState.Modified;
-        await _dbContext.SaveChangesAsync();
-        return entity;
     }
 
     public async Task<List<Product>> FindAllByOrderByNameAscAsync()
     {
         List<Product> productList = await _dbSet.OrderBy(p => p.Name).ToListAsync();
         return productList;
-    }
-
-    public async Task<Product> RemoveAsync(int id)
-    {
-        var product = await _dbSet.FindAsync(id);
-        if (product == null)
-        {
-            return null;
-        }
-        var productRemoved = _dbSet.Remove(product);
-        await _dbContext.SaveChangesAsync();
-        return productRemoved.Entity;
     }
 }

@@ -5,6 +5,6 @@ namespace DsDelivery.Data.Service
 {
     public interface IJwtService
     {
-        string GerarToken(User user);
+        string GenerateToken(User user);
     }
 }

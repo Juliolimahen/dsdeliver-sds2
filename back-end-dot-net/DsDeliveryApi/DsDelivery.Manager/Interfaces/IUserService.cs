@@ -14,7 +14,7 @@ namespace DsDelivery.Manager.Interfaces
         Task<IEnumerable<UserDTO>> GetAsync();
         Task<UserDTO> GetAsync(string login);
         Task<UserDTO> InsertAsync(CreateUserDTO userDTO);
-        Task<UserDTO> UpdateMedicoAsync(User user);
+        Task<UserDTO> UpdateAsync(User user);
         Task<bool> ValidaEAtualizaHashAsync(User user, string hash);
         Task<LoggedUser> ValidaUserEGeraTokenAsync(User user);
     }

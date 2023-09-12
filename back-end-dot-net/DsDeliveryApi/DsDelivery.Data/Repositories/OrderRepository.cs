@@ -1,19 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using DsDelivery.Core.Domain;
 using DsDeliveryApi.Data.Context;
+using DsDelivery.Data.Repositories.Interfaces;
 
 namespace DsDelivery.Data.Repositories;
 
-public class OrderRepository : IOrderRepository
+public class OrderRepository : Repository<Order>, IOrderRepository
 {
-    private readonly AppDbContext _dbContext;
-    private readonly DbSet<Order> _dbSet;
-
-    public OrderRepository(AppDbContext dbContext)
+    public OrderRepository(AppDbContext dbContext) : base(dbContext)
     {
-        _dbContext = dbContext;
-        _dbSet = dbContext.Set<Order>();
     }
 
     public async Task<List<Order>> FindOrdersWithProducts()
@@ -22,53 +17,5 @@ public class OrderRepository : IOrderRepository
             .Include(o => o.OrderProducts)
             .ThenInclude(op => op.Product)
             .ToListAsync();
-    }
-
-    public async Task<Order> GetByIdAsync(int id)
-    {
-        return await _dbSet.FindAsync(id);
-    }
-
-    public async Task<List<Order>> GetAllAsync()
-    {
-        return await _dbSet.ToListAsync();
-    }
-
-    public async Task<List<Order>> FindAsync(Expression<Func<Order, bool>> predicate)
-    {
-        return await _dbSet.Where(predicate).ToListAsync();
-    }
-
-    public async Task<Order> AddAsync(Order entity)
-    {
-        await _dbSet.AddAsync(entity);
-        await _dbContext.SaveChangesAsync();
-        return entity;
-    }
-
-    public async Task<Order> UpdateAsync(Order entity)
-    {
-        _dbContext.Entry(entity).State = EntityState.Modified;
-        await _dbContext.SaveChangesAsync();
-        return entity;
-    }
-
-    public async Task<bool> RemoveAsync(Order entity)
-    {
-        _dbSet.Remove(entity);
-        return await _dbContext.SaveChangesAsync() > 0;
-    }
-
-    public async Task<Order> RemoveAsync(int id)
-    {
-
-        var order = await _dbSet.FindAsync(id);
-        if (order == null)
-        {
-            return null;
-        }
-        var orderRemoved = _dbSet.Remove(order);
-        await _dbContext.SaveChangesAsync();
-        return orderRemoved.Entity;
     }
 }

@@ -29,16 +29,19 @@ public class Startup
             });
         });
 
+        services.AddJwtTConfiguration(Configuration);
         services.AddDataBaseConfiguration(Configuration);
-        services.AddDependencyInjectionConfiguration();
         services.AddAutoMapper(typeof(MappingProfile));
         services.AddFluentValidationConfiguration();
+        services.AddDependencyInjectionConfiguration();
         services.AddSwaggerConfiguration();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        app.UseExceptionHandler("/error");
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -46,19 +49,18 @@ public class Startup
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DsDeliveryApi v1"));
         }
 
+        app.UseDataBaseConfiguration();
+
+        app.UseSwaggerConfiguration();
+
         app.UseHttpsRedirection();
 
         app.UseRouting();
 
         app.UseCors();
 
-       
-
         app.UseJwtConfiguration();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
+        app.UseEndpoints(endpoints => endpoints.MapControllers());
     }
 }

@@ -16,8 +16,6 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        //CreateHostBuilder(args).Build().Run();
-
         IConfigurationRoot configuration = GetConfiguration();
 
         ConfiguraLog(configuration);

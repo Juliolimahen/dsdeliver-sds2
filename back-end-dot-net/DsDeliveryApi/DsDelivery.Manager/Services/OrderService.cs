@@ -2,9 +2,9 @@
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared.Dto.Order;
 using DsDelivery.Core.Shared.Dto.Product;
-using DsDelivery.Data.Repositories;
+using DsDelivery.Data.Repositories.Interfaces;
 using DsDelivery.Manager.Interfaces;
-
+using Microsoft.Extensions.Logging;
 
 namespace DsDelivery.Manager.Services;
 
@@ -13,9 +13,11 @@ public class OrderService : IOrderService
     private readonly IMapper _mapper;
     private readonly IOrderRepository _repository;
     private readonly IProductRepository _productRepository;
+    private readonly ILogger<OrderService> _logger;
 
-    public OrderService(IMapper mapper, IOrderRepository repository, IProductRepository productRepository)
+    public OrderService(IMapper mapper, IOrderRepository repository, IProductRepository productRepository, ILogger<OrderService> logger)
     {
+        _logger = logger;
         _mapper = mapper;
         _repository = repository;
         _productRepository = productRepository;
@@ -23,7 +25,13 @@ public class OrderService : IOrderService
 
     public async Task<List<OrderDTO>> GetAllAsync()
     {
+        _logger.LogInformation("Chamada de negócio para buscar todos os pedidos.");
         List<Order> orders = await _repository.FindOrdersWithProducts();
+
+        if (orders == null)
+        {
+            return new List<OrderDTO>();
+        }
 
         List<OrderDTO> dtoList = orders.Select(order =>
         {
@@ -56,6 +64,7 @@ public class OrderService : IOrderService
 
     public async Task<OrderDTO> GetByIdAsync(int id)
     {
+        _logger.LogInformation("Chamada de negócio para buscar um pedido por Id.");
         Order order = await _repository.GetByIdAsync(id);
         OrderDTO orderDto = _mapper.Map<OrderDTO>(order);
         return orderDto;
@@ -63,7 +72,14 @@ public class OrderService : IOrderService
 
     public async Task<OrderDTO> SetDeliveredAsync(int id)
     {
+        _logger.LogInformation("Chamada de negócio para marcar um pedido como entregue.");
         Order order = await _repository.GetByIdAsync(id);
+
+        if (order == null)
+        {
+            return null;
+        }
+
         order.Status = OrderStatus.DELIVERED;
         order = await _repository.UpdateAsync(order);
         return _mapper.Map<OrderDTO>(order);
@@ -71,6 +87,8 @@ public class OrderService : IOrderService
 
     public async Task<OrderDTO> InsertAsync(CreateOrderDTO dto)
     {
+        _logger.LogInformation("Chamada de negócio para inserir um pedido.");
+
         Order order = new Order
         {
             Address = dto.Address,
@@ -95,15 +113,7 @@ public class OrderService : IOrderService
             }
         }
 
-
         order = await _repository.AddAsync(order);
-
         return _mapper.Map<OrderDTO>(order);
-    }
-
-
-    public Task Delete(int id)
-    {
-        throw new NotImplementedException();
     }
 }

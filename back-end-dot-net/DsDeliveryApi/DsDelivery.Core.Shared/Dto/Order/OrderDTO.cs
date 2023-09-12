@@ -5,7 +5,7 @@ using DsDelivery.Core.Shared.Dto.Product;
 
 namespace DsDelivery.Core.Shared.Dto.Order;
 
-public class OrderDTO
+public class OrderDTO : ICloneable
 {
     public int Id { get; set; }
     public string Address { get; set; }
@@ -31,5 +31,20 @@ public class OrderDTO
         Status = status;
         Total = total;
         Products = products;
+    }
+
+    public object Clone()
+    {
+        var order = (OrderDTO)MemberwiseClone();
+        var products = new List<ProductDTO>();
+        order.Products.ToList().ForEach(p => products.Add((ProductDTO)p.Clone()));
+        order.Products = products;
+
+        return order;
+    }
+
+    public OrderDTO CloneTipado()
+    {
+        return (OrderDTO)Clone();
     }
 }

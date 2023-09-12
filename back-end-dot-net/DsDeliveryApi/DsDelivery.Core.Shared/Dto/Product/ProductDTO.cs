@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DsDelivery.Core.Shared.Dto.Product;
-
+﻿namespace DsDelivery.Core.Shared.Dto.Product;
 
 public class ProductDTO : ICloneable
 {
@@ -19,6 +16,11 @@ public class ProductDTO : ICloneable
     {
         var product = (ProductDTO)MemberwiseClone();
         return product;
+    }
+
+    public ProductDTO CloneTipado()
+    {
+        return (ProductDTO)Clone();
     }
 
     public ProductDTO(int id, string name, double price, string description, string imageUri)

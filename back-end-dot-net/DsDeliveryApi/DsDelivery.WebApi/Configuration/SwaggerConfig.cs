@@ -51,10 +51,17 @@ public static class SwaggerConfig
                 }
             };
             OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
-{
-{securityScheme, new string[] { }},
-};
+            {
+                {securityScheme, new string[] { }},
+            };
+
             c.AddSecurityRequirement(securityRequirements);
+
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            c.IncludeXmlComments(xmlPath);
+            xmlPath = Path.Combine(AppContext.BaseDirectory, "DsDelivery.Core.Shared.xml");
+            c.IncludeXmlComments(xmlPath);
 
             //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -69,7 +76,7 @@ public static class SwaggerConfig
 
             //    throw;
             //}
-           
+
             //c.AddFluentValidationRulesScoped();
         });
     }

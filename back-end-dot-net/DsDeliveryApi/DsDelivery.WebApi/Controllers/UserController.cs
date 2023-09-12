@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using DsDelivery.Manager.Interfaces;
-using DsDelivery.Manager.Services;
 using DsDelivery.Core.Domain;
 using DsDelivery.Core.Shared.Dto.User;
 
@@ -32,7 +29,6 @@ public class UserController : ControllerBase
         }
         return Unauthorized();
     }
-
 
     [Authorize(Roles = "Presidente, Lider, Diretor")]
     [HttpGet]
