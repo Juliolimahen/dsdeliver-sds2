@@ -8,13 +8,11 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace DsDelivery.WebApi.Controllers.Tests
 {
     public class OrderControllerTest
     {
-        private readonly ITestOutputHelper _output;
         private readonly IOrderService manager;
         private readonly ILogger<OrderController> logger;
         private readonly OrderController controller;
@@ -22,14 +20,11 @@ namespace DsDelivery.WebApi.Controllers.Tests
         private readonly List<OrderDTO> listaOrderDTO;
         private readonly CreateOrderDTO createOrderDTO;
 
-        public OrderControllerTest(ITestOutputHelper output)
+        public OrderControllerTest()
         {
             manager = Substitute.For<IOrderService>();
             logger = Substitute.For<ILogger<OrderController>>();
             controller = new OrderController(manager, logger);
-
-            _output = output;
-
             orderDTO = new OrderFakerDtoRefactor().Generate();
             listaOrderDTO = new OrderFakerDtoRefactor().Generate(10);
             createOrderDTO = new CreateOrderFakerDto().Generate();
@@ -99,18 +94,22 @@ namespace DsDelivery.WebApi.Controllers.Tests
         [Fact]
         public async Task SetDelivered_Ok()
         {
-        }
+            manager.SetDeliveredAsync(orderDTO.Id).Returns(orderDTO.CloneTipado());
 
+            var resultado = await controller.SetDelivered(orderDTO.Id);
+
+            await manager.Received().SetDeliveredAsync(orderDTO.Id);
+            resultado.Result.Should().BeOfType<OkObjectResult>();
+        }
 
         [Fact]
         public async Task SetDelivered_NotFound()
         {
-            int orderId = 1;
-            manager.SetDeliveredAsync(orderId).ReturnsNull();
-            var resultado = await controller.SetDelivered(orderId);
+            manager.SetDeliveredAsync(orderDTO.Id).ReturnsNull();
 
+            var resultado = await controller.SetDelivered(orderDTO.Id);
 
-            resultado.Result.Should().BeOfType<NotFoundResult>(); // Verifique se o resultado.Result é um NotFoundResult
+            resultado.Result.Should().BeOfType<NotFoundResult>();
         }
     }
 }

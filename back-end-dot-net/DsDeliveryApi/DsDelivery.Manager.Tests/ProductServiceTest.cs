@@ -31,7 +31,7 @@ namespace DsDelivery.Manager.Tests
             repository = Substitute.For<IProductRepository>();
             logger = Substitute.For<ILogger<ProductService>>();
             mapper = new MapperConfiguration(p => p.AddProfile<MappingProfile>()).CreateMapper();
-            manager = new ProductService(repository, mapper);
+            manager = new ProductService(repository, mapper, logger);
             productFaker = new ProductFakerDto();
             createProductDtoFaker = new CreateProductDtoFaker();
             updateProductFaker = new ProductUpdateDtoFaker();

@@ -65,13 +65,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
         return existingEntity;
     }
 
-    //public virtual async Task<TEntity> UpdateAsync(TEntity entity)
-    //{
-    //    _dbContext.Entry(entity).State = EntityState.Modified;
-    //    await _dbContext.SaveChangesAsync();
-    //    return entity; 
-    //}
-
     public void Dispose()
     {
         _dbContext?.Dispose();

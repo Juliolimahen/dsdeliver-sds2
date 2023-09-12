@@ -16,8 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\Customer\" />
     <Folder Include="Dto\Address\" />
+    <Folder Include="Dto\Address\" />
+    <Folder Include="Dto\Customer\" />
   </ItemGroup>
 
 </Project>

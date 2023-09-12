@@ -3,7 +3,6 @@ using DsDelivery.Core.Domain;
 
 namespace DsDelivery.FakeData.OrderData;
 
-
 public class OrderFakerDto : Faker<Order>
 {
     public OrderFakerDto()
@@ -24,7 +23,7 @@ public class OrderFakerDto : Faker<Order>
 
         for (var i = 0; i < f.Random.Int(1, 5); i++)
         {
-            var productId = f.Random.Number(1, 100); // Assuming product IDs range from 1 to 100
+            var productId = f.Random.Number(1, 100);
             if (!productIds.Contains(productId))
             {
                 productIds.Add(productId);

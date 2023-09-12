@@ -23,7 +23,7 @@ namespace DsDelivery.Manager.Tests
         private readonly IOrderService manager;
         private readonly Order order;
         private readonly CreateOrderDTO createOrderDTO;
-        private readonly UpdateOrderDTO updateOrderDTO;
+        private readonly OrderDTO updateOrderDTO;
         private readonly OrderFakerDto orderFaker;
         private readonly CreateOrderFakerDto createOrderDtoFaker;
         private readonly UpdateOrderFakerDto updateOrderFaker;
@@ -34,7 +34,7 @@ namespace DsDelivery.Manager.Tests
             productRepository = Substitute.For<IProductRepository>();
             logger = Substitute.For<ILogger<OrderService>>();
             mapper = new MapperConfiguration(p => p.AddProfile<MappingProfile>()).CreateMapper();
-            manager = new OrderService(mapper, orderRepository, productRepository);
+            manager = new OrderService(mapper, orderRepository, productRepository, logger);
             orderFaker = new OrderFakerDto();
             createOrderDtoFaker = new CreateOrderFakerDto();
             updateOrderFaker = new UpdateOrderFakerDto();
@@ -69,17 +69,13 @@ namespace DsDelivery.Manager.Tests
         [Fact]
         public async Task SetDeliveredAsync_Sucesso()
         {
-            int orderId = 1;
-            var order = orderFaker.Generate();
-
-            order.Id = orderId;
             order.Status = OrderStatus.PENDING;
 
-            orderRepository.GetByIdAsync(orderId).Returns(order);
+            orderRepository.GetByIdAsync(order.Id).Returns(order);
             orderRepository.UpdateAsync(Arg.Any<Order>()).Returns(callInfo => callInfo.Arg<Order>());
 
-            var result = await manager.SetDeliveredAsync(orderId);
-            await orderRepository.Received().GetByIdAsync(orderId);
+            var result = await manager.SetDeliveredAsync(order.Id);
+            await orderRepository.Received().GetByIdAsync(order.Id);
 
             order.Status.Should().Be(OrderStatus.DELIVERED);
             await orderRepository.Received().UpdateAsync(order);
@@ -91,12 +87,11 @@ namespace DsDelivery.Manager.Tests
         [Fact]
         public async Task SetDeliveredAsync_NaoEncontrado()
         {
-            int orderId = 1;
-            orderRepository.GetByIdAsync(orderId).ReturnsNull();
+            orderRepository.GetByIdAsync(order.Id).ReturnsNull();
 
-            var result = await manager.SetDeliveredAsync(orderId);
+            var result = await manager.SetDeliveredAsync(order.Id);
 
-            await orderRepository.Received().GetByIdAsync(orderId);
+            await orderRepository.Received().GetByIdAsync(order.Id);
 
             result.Should().BeNull();
         }
