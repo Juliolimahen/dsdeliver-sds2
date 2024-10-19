@@ -136,7 +136,7 @@ yarn install
 yarn start
 ```
 
-<sup>Projeto desenvolvido com a tutoria de [Nelio Alves](https://github.com/acenelio), da [DevSuperior](https://devsuperior.com.br/).</sup>
+<sup>Projeto desenvolvido com a tutoria de [Nelio Alves](https://github.com/acenelio), da [DevSuperior](https://devsuperior.com.br/) e refatorado ao longo de tempo. </sup>
 
 # Autor
 
