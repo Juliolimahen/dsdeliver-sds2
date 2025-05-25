@@ -56,7 +56,7 @@ O projeto consiste em um sistema de registro e entrega de pedidos. Onde desenvol
 - JPA / Hibernate
 - Maven
 
-## Back end - donet 
+## Back end - dotnet 
 - C# 
 - Net Core
 - Entity Framework 
